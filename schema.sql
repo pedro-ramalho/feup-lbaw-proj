@@ -70,6 +70,7 @@ CREATE TABLE users (
   username TEXT CONSTRAINT user_username UNIQUE,
   password TEXT,
   email TEXT CONSTRAINT user_email UNIQUE,
+  biography TEXT,
   register_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL
 );
 
@@ -88,6 +89,7 @@ CREATE TABLE community (
   id SERIAL PRIMARY KEY,
   id_owner INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   name TEXT NOT NULL CONSTRAINT community_name UNIQUE,
+  description TEXT,
   founded TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
   tag COMMUNITY_TAG NOT NULL
 );
