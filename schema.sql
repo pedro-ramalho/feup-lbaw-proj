@@ -3,7 +3,7 @@
 -------------------------------------------------------------------
 
 
-DROP SCHEMA lbaw22124;
+DROP SCHEMA lbaw22124 CASCADE;
 
 
 -------------------------------------------------------------------
@@ -70,7 +70,6 @@ CREATE TABLE users (
   username TEXT CONSTRAINT user_username UNIQUE,
   password TEXT,
   email TEXT CONSTRAINT user_email UNIQUE,
-  biography TEXT,
   register_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL
 );
 
@@ -89,7 +88,6 @@ CREATE TABLE community (
   id SERIAL PRIMARY KEY,
   id_owner INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   name TEXT NOT NULL CONSTRAINT community_name UNIQUE,
-  description TEXT,
   founded TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
   tag COMMUNITY_TAG NOT NULL
 );
@@ -217,3 +215,128 @@ CREATE TABLE like_notification (
   created TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
   read BOOLEAN NOT NULL
 );
+
+
+-------------------------------------------------------------------
+-- Indexes
+-------------------------------------------------------------------
+
+-------------------------------------------------------------------
+-- Performance Indexes
+-------------------------------------------------------------------
+
+
+CREATE INDEX post_community ON post USING hash (id_community);
+
+CREATE INDEX name_community ON community USING btree (name);
+
+CREATE INDEX users_username ON users USING btree (username);
+
+CREATE INDEX content_date ON content USING btree (created);
+
+
+-------------------------------------------------------------------
+-- Full-Text Search Indexes
+-------------------------------------------------------------------
+
+-- Index to improve the performance when searching for a post by it's title
+
+-- Add column to post to store the computed tsvectors
+ALTER TABLE post
+ADD COLUMN tsvectors TSVECTOR; 
+
+
+-- Create a function to automatically update the post's tsvectors
+CREATE FUNCTION post_search_update() RETURNS TRIGGER AS $$
+BEGIN 
+  IF TG_OP = 'INSERT' THEN 
+    NEW.tsvectors = (
+      setweight(to_tsvector('english', NEW.title), 'A') 
+    );
+  END IF;
+  IF TG_OP = 'UPDATE' THEN
+    IF (NEW.title <> OLD.title) THEN 
+      NEW.tsvectors = (
+        setweight(to_tsvector('english', NEW.title), 'A')
+      );
+    END IF;
+  END IF;
+  RETURN NEW;
+END $$
+LANGUAGE plpgsql;
+
+
+-- Create a trigger before INSERT or UPDATE operations on post 
+CREATE TRIGGER post_search_update
+  BEFORE INSERT OR UPDATE ON post
+  FOR EACH ROW 
+  EXECUTE PROCEDURE post_search_update();
+
+
+-- Create a GIN index for tsvectors
+CREATE INDEX post_search ON post USING GIN (tsvectors);
+
+-------------------------------------
+
+-- Index to improve the performance when searching for a text post by its content
+
+-- Add column to post to store the computed tsvectors
+ALTER TABLE text_post 
+ADD COLUMN tsvectors TSVECTOR;
+
+
+-- Create a function to automatically update the text_posts tsvectors
+CREATE FUNCTION text_post_search_update() RETURNS TRIGGER AS $$
+BEGIN 
+  IF TG_OP = 'INSERT' THEN 
+    NEW.tsvectors = (
+      setweight(to_tsvector('english', NEW.text), 'A') 
+    );
+  END IF;
+  IF TG_OP = 'UPDATE' THEN
+    IF (NEW.text <> OLD.text) THEN 
+      NEW.tsvectors = (
+        setweight(to_tsvector('english', NEW.text), 'A')
+      );
+    END IF;
+  END IF;
+  RETURN NEW;
+END $$
+LANGUAGE plpgsql;
+
+
+-- Create a trigger before INSERT or UPDATE operations on text_post 
+CREATE TRIGGER text_post_search_update
+  BEFORE INSERT OR UPDATE ON post
+  FOR EACH ROW 
+  EXECUTE PROCEDURE text_post_search_update();
+
+
+-- Create a GIN index for tsvectors
+CREATE INDEX text_post_search ON text_post USING GIN (tsvectors);
+
+-------------------------------------------------------------------
+-- Triggers
+-------------------------------------------------------------------
+
+-- TRIGGER01 - when a like/dislike is cast, the reputation of the author is updated accordingly
+
+-- TRIGGER02 - when a user follows another user, the followed user receives an appropriate notification
+
+-- TRIGGER03 - when a user likes the content of another user, the author of the content receives an appropriate notification
+
+-- TRIGGER04 - when a user replies to the content of another user, the author of the content receives an appropriate notification
+
+-- TRIGGER05 (might be able to be implemented using regular inline constraints in the creation of the table, still worth to consider)
+-- a user cannot follow themselves
+
+-------------------------------------------------------------------
+-- Transactions
+-------------------------------------------------------------------
+
+
+
+-- One full-text search index for communities
+-- One full-text search index for posts
+-- One performance index for an often accessed table (user notifications, posts...)
+
