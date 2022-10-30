@@ -14,6 +14,7 @@ DROP SCHEMA lbaw22124 CASCADE;
 CREATE SCHEMA lbaw22124;
 SET search_path TO lbaw22124;
 
+
 -------------------------------------------------------------------
 -- Types
 -------------------------------------------------------------------
@@ -21,37 +22,6 @@ SET search_path TO lbaw22124;
 
 CREATE TYPE report_reason AS ENUM ('Breaks Community Rules', 'Breaks Rabbit TOS', 'Explicit Content', 'Hate Speech', 'Sharing Personal Information', 'Spam', 'Misinformation');
 CREATE TYPE community_tag AS ENUM ('Sports', 'Gaming', 'News', 'TV', 'Memes', 'Travel', 'Tech', 'Music', 'Art', 'Literature', 'Fashion', 'Finance', 'Food', 'Health and Fitness', 'Science');
-
-
--------------------------------------------------------------------
--- Drop Tables
--------------------------------------------------------------------
-
-
-DROP TABLE IF EXISTS administrator;
-DROP TABLE IF EXISTS platform_block;
-DROP TABLE IF EXISTS follow_notification;
-DROP TABLE IF EXISTS reply_notification;
-DROP TABLE IF EXISTS like_notification;
-DROP TABLE IF EXISTS content;
-DROP TABLE IF EXISTS content_rate;
-DROP TABLE IF EXISTS comment;
-DROP TABLE IF EXISTS post;
-DROP TABLE IF EXISTS text_post;
-DROP TABLE IF EXISTS img_post;
-DROP TABLE IF EXISTS favorite_post;
-DROP TABLE IF EXISTS report_information;
-DROP TABLE IF EXISTS report_reason;
-DROP TABLE IF EXISTS community_tag;
-DROP TABLE IF EXISTS tag;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS users_profile_img;
-DROP TABLE IF EXISTS community_icon_img;
-DROP TABLE IF EXISTS community_banner_img;
-DROP TABLE IF EXISTS user_follow_user;
-DROP TABLE IF EXISTS user_follow_community;
-DROP TABLE IF EXISTS moderator;
-DROP TABLE IF EXISTS community_block;
 
 
 -------------------------------------------------------------------
@@ -67,10 +37,13 @@ CREATE TABLE administrator (
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY, 
-  username TEXT CONSTRAINT user_username UNIQUE,
-  password TEXT,
-  email TEXT CONSTRAINT user_email UNIQUE,
-  register_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL
+  username TEXT CONSTRAINT user_username UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  email TEXT CONSTRAINT user_email UNIQUE NOT NULL,
+  register_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
+  biography TEXT,
+  pfp INTEGER DEFAULT NULL,
+  is_deleted BOOLEAN NOT NULL DEFAULT FALSE 
 );
 
 CREATE TABLE user_follow_user (
@@ -79,17 +52,16 @@ CREATE TABLE user_follow_user (
   PRIMARY KEY (id_follower, id_followee)
 );
 
-CREATE TABLE users_profile_img (
-  id SERIAL PRIMARY KEY,
-  id_user INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE
-);
-
 CREATE TABLE community (
   id SERIAL PRIMARY KEY,
   id_owner INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   name TEXT NOT NULL CONSTRAINT community_name UNIQUE,
+  description TEXT,
   founded TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
-  tag COMMUNITY_TAG NOT NULL
+  tag COMMUNITY_TAG NOT NULL,
+  icon INTEGER NOT NULL,
+  banner INTEGER,
+  is_deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE user_follow_community (
@@ -104,21 +76,13 @@ CREATE TABLE moderator (
   PRIMARY KEY (id_mod, id_community)
 );
 
-CREATE TABLE community_icon_img (
-  id SERIAL PRIMARY KEY,
-  id_community INTEGER NOT NULL REFERENCES community (id) ON UPDATE CASCADE
-);
-
-CREATE TABLE community_banner_img (
-  id SERIAL PRIMARY KEY,
-  id_community INTEGER NOT NULL REFERENCES community (id) ON UPDATE CASCADE
-);
-
 CREATE TABLE content (
   id SERIAL PRIMARY KEY,
   id_author INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   created TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
-  is_post BOOLEAN NOT NULL
+  is_post BOOLEAN NOT NULL,
+  is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
+  is_edited BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE content_rate (
@@ -130,7 +94,7 @@ CREATE TABLE content_rate (
 
 CREATE TABLE comment (
   id INTEGER PRIMARY KEY REFERENCES content (id),
-  id_parent INTEGER NOT NULL REFERENCES comment (id) ON UPDATE CASCADE,
+  id_parent INTEGER NOT NULL REFERENCES content (id) ON UPDATE CASCADE,
   text TEXT NOT NULL
 );
 
@@ -195,7 +159,7 @@ CREATE TABLE follow_notification (
   id_received INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   id_triggered INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   created TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL, 
-  read BOOLEAN NOT NULL 
+  read BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE reply_notification (
@@ -218,17 +182,15 @@ CREATE TABLE like_notification (
 
 
 -------------------------------------------------------------------
--- Indexes
+-- Indices
 -------------------------------------------------------------------
 
 -------------------------------------------------------------------
--- Performance Indexes
+-- Performance Indices
 -------------------------------------------------------------------
 
 
 CREATE INDEX post_community ON post USING hash (id_community);
-
-CREATE INDEX name_community ON community USING btree (name);
 
 CREATE INDEX users_username ON users USING btree (username);
 
@@ -239,19 +201,17 @@ CREATE INDEX content_date ON content USING btree (created);
 -- Full-Text Search Indexes
 -------------------------------------------------------------------
 
+
 -- Index to improve the performance when searching for a post by it's title
 
--- Add column to post to store the computed tsvectors
 ALTER TABLE post
 ADD COLUMN tsvectors TSVECTOR; 
 
-
--- Create a function to automatically update the post's tsvectors
 CREATE FUNCTION post_search_update() RETURNS TRIGGER AS $$
 BEGIN 
   IF TG_OP = 'INSERT' THEN 
     NEW.tsvectors = (
-      setweight(to_tsvector('english', NEW.title), 'A') 
+      setweight(to_tsvector('english', NEW.title), 'A')
     );
   END IF;
   IF TG_OP = 'UPDATE' THEN
@@ -265,27 +225,22 @@ BEGIN
 END $$
 LANGUAGE plpgsql;
 
-
--- Create a trigger before INSERT or UPDATE operations on post 
 CREATE TRIGGER post_search_update
   BEFORE INSERT OR UPDATE ON post
   FOR EACH ROW 
   EXECUTE PROCEDURE post_search_update();
 
-
--- Create a GIN index for tsvectors
 CREATE INDEX post_search ON post USING GIN (tsvectors);
+
 
 -------------------------------------
 
+
 -- Index to improve the performance when searching for a text post by its content
 
--- Add column to post to store the computed tsvectors
 ALTER TABLE text_post 
 ADD COLUMN tsvectors TSVECTOR;
 
-
--- Create a function to automatically update the text_posts tsvectors
 CREATE FUNCTION text_post_search_update() RETURNS TRIGGER AS $$
 BEGIN 
   IF TG_OP = 'INSERT' THEN 
@@ -304,39 +259,177 @@ BEGIN
 END $$
 LANGUAGE plpgsql;
 
-
--- Create a trigger before INSERT or UPDATE operations on text_post 
 CREATE TRIGGER text_post_search_update
   BEFORE INSERT OR UPDATE ON post
   FOR EACH ROW 
   EXECUTE PROCEDURE text_post_search_update();
 
-
--- Create a GIN index for tsvectors
 CREATE INDEX text_post_search ON text_post USING GIN (tsvectors);
+
+
+-------------------------------------
+
+
+-- Index to improve the perfomance when searching for a comment 
+
+ALTER TABLE COMMENT
+ADD COLUMN tsvectors TSVECTOR;
+
+CREATE FUNCTION comment_search_update() RETURNS TRIGGER AS $$
+BEGIN
+  IF TG_OP = 'INSERT' THEN
+    NEW.tsvectors = (
+      setweight(to_tsvector('english', NEW.text), 'A')
+    );
+  END IF;
+  IF TG_OP = 'UPDATE' THEN
+    IF (NEW.text <> OLD.text) THEN
+      NEW.tsvectors = (
+        setweight(to_tsvector('english', NEW.text), 'A')
+      );
+    END IF;
+  END IF;
+  RETURN NEW; 
+END $$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER comment_search_update 
+  BEFORE INSERT OR UPDATE ON comment
+  FOR EACH ROW
+  EXECUTE PROCEDURE comment_search_update();
+
+CREATE INDEX comment_search ON comment USING GIN(tsvectors);
+
+
+-------------------------------------
+
+
+-- Index to improve the performance when searching for users by their username or biopgrahy
+
+ALTER TABLE users
+ADD COLUMN tsvectors TSVECTOR;
+
+CREATE FUNCTION user_search_update() RETURNS TRIGGER AS $$
+BEGIN
+  IF TG_OP = 'INSERT' THEN
+    NEW.tsvectors = (
+      setweight(to_tsvector('english', NEW.username), 'A') ||
+      setweight(to_tsvector('english', NEW.biography), 'B')
+    );
+  END IF;
+  IF TG_OP = 'UPDATE' THEN
+    IF (NEW.biography <> OLD.biography) THEN
+      NEW.tsvectors = (
+        setweight(to_tsvector('english', NEW.username), 'A') ||
+        setweight(to_tsvector('english', NEW.biography), 'B')
+      );
+    END IF;
+  END IF;
+  RETURN NEW;
+END $$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER user_search_update
+  BEFORE INSERT OR UPDATE ON users
+  FOR EACH ROW
+  EXECUTE PROCEDURE user_search_update();
+
+CREATE INDEX user_search ON users USING GIN(tsvectors);
+
 
 -------------------------------------------------------------------
 -- Triggers
 -------------------------------------------------------------------
 
--- TRIGGER01 - when a like/dislike is cast, the reputation of the author is updated accordingly
+-- Trigger 01
 
--- TRIGGER02 - when a user follows another user, the followed user receives an appropriate notification
+CREATE FUNCTION follow_notif() RETURNS TRIGGER AS 
+$BODY$
+BEGIN 
+  INSERT INTO follow_notification(id_received, id_triggered) VALUES(NEW.id_followee, NEW.id_follower);
+  RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
 
--- TRIGGER03 - when a user likes the content of another user, the author of the content receives an appropriate notification
+CREATE TRIGGER follow_notif
+  AFTER INSERT ON user_follow_user
+  FOR EACH ROW 
+  EXECUTE PROCEDURE follow_notif(); 
 
--- TRIGGER04 - when a user replies to the content of another user, the author of the content receives an appropriate notification
 
--- TRIGGER05 (might be able to be implemented using regular inline constraints in the creation of the table, still worth to consider)
--- a user cannot follow themselves
+-- Trigger 02
+
+CREATE FUNCTION like_notif() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+  IF (NEW.liked = TRUE) THEN
+    INSERT INTO like_notification(id_received, id_triggered, id_content) 
+    (SELECT content.id_author,
+            NEW.id_user AS id_user,
+            NEW.id_content AS id_content
+            FROM content
+            WHERE content.id = NEW.id_content);
+  END IF;
+  RETURN NEW;
+END
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER like_notif
+  AFTER INSERT ON content_rate
+  FOR EACH ROW
+  EXECUTE PROCEDURE like_notif();
+
+
+-- Trigger 03
+
+CREATE OR REPLACE FUNCTION get_author(id_comment INTEGER)
+RETURNS INTEGER AS $id_author$
+DECLARE
+  id_author INTEGER;
+BEGIN
+  SELECT content.id_author INTO id_author FROM content WHERE content.id = id_comment;
+  RETURN id_author;
+END;
+$id_author$ LANGUAGE plpgsql; 
+
+CREATE FUNCTION reply_notif() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+  INSERT INTO reply_notification(id_received, id_triggered, id_comment)
+  (SELECT (SELECT get_author(NEW.id_parent)), 
+          (SELECT get_author(NEW.id)), 
+           NEW.id AS id_comment);
+END
+$BODY$  
+LANGUAGE plpgsql;
+
+CREATE TRIGGER reply_notif
+  AFTER INSERT ON comment
+  FOR EACH ROW
+  EXECUTE PROCEDURE reply_notif();
+
+
+-- Trigger 04
+
+CREATE FUNCTION delete_user() RETURNS TRIGGER AS
+$BODY$
+BEGIN
+  UPDATE users SET is_deleted = TRUE WHERE id = OLD.id;
+  RETURN NEW;
+END            
+$BODY$
+LANGUAGE plpgsql;
+
+CREATE TRIGGER delete_user
+  BEFORE DELETE ON users 
+  FOR EACH ROW
+  EXECUTE PROCEDURE delete_user();
+
 
 -------------------------------------------------------------------
 -- Transactions
 -------------------------------------------------------------------
 
-
-
--- One full-text search index for communities
--- One full-text search index for posts
--- One performance index for an often accessed table (user notifications, posts...)
 
