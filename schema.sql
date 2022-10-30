@@ -72,7 +72,7 @@ CREATE TABLE user_follow_community (
 
 CREATE TABLE moderator (
   id_mod INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
-  id_community INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
+  id_community INTEGER NOT NULL REFERENCES community (id) ON UPDATE CASCADE,
   PRIMARY KEY (id_mod, id_community)
 );
 

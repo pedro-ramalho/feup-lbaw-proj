@@ -1,0 +1,15 @@
+insert into administrator (id, username, password) values (1, 'groncelli0', 'fV29W6J7xRc');
+insert into administrator (id, username, password) values (2, 'jlanning1', 'SruHpRA9');
+insert into administrator (id, username, password) values (3, 'mpepin2', 'qfBKmBR4jrQ');
+insert into administrator (id, username, password) values (4, 'dbaglow3', 'vWE0jC6tOTCI');
+insert into administrator (id, username, password) values (5, 'aridpath4', 'yxCZlNx8');
+insert into administrator (id, username, password) values (6, 'cfust5', 'RnYs1wNTvi');
+insert into administrator (id, username, password) values (7, 'pbestar6', 'EBIjYVkoUaa');
+insert into administrator (id, username, password) values (8, 'rchappell7', 'qEPOT7');
+insert into administrator (id, username, password) values (9, 'emacbrearty8', 'cybeTg6D');
+insert into administrator (id, username, password) values (10, 'ddemanche9', 'qNFV8s2gm');
+insert into administrator (id, username, password) values (11, 'morourkea', 'BpRuGcKqului');
+insert into administrator (id, username, password) values (12, 'cbolusb', 'Xe4sWdwXeuy');
+insert into administrator (id, username, password) values (13, 'jowbrickc', 'EK6UW7N');
+insert into administrator (id, username, password) values (14, 'mhellend', 'MJCyKzWrpa');
+insert into administrator (id, username, password) values (15, 'xstewartsone', 'VpC0LLRLsUI');
