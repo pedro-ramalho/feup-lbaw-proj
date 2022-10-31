@@ -168,7 +168,7 @@ CREATE TABLE reply_notification (
   id_triggered INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   id_comment INTEGER NOT NULL references comment (id) ON UPDATE CASCADE,
   created TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
-  read BOOLEAN NOT NULL
+  read BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE like_notification (
@@ -177,7 +177,7 @@ CREATE TABLE like_notification (
   id_triggered INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   id_content INTEGER NOT NULL references content (id) ON UPDATE CASCADE,
   created TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
-  read BOOLEAN NOT NULL
+  read BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 
@@ -190,11 +190,11 @@ CREATE TABLE like_notification (
 -------------------------------------------------------------------
 
 
-CREATE INDEX post_community ON post USING hash (id_community);
+CREATE INDEX post_community ON post USING HASH (id_community);
 
-CREATE INDEX users_username ON users USING btree (username);
+CREATE INDEX content_date ON content USING BTREE (created);
 
-CREATE INDEX content_date ON content USING btree (created);
+CREATE INDEX user_content ON content USING HASH (id_author);
 
 
 -------------------------------------------------------------------
@@ -260,7 +260,7 @@ END $$
 LANGUAGE plpgsql;
 
 CREATE TRIGGER text_post_search_update
-  BEFORE INSERT OR UPDATE ON post
+  BEFORE INSERT OR UPDATE ON text_post
   FOR EACH ROW 
   EXECUTE PROCEDURE text_post_search_update();
 
@@ -313,15 +313,13 @@ CREATE FUNCTION user_search_update() RETURNS TRIGGER AS $$
 BEGIN
   IF TG_OP = 'INSERT' THEN
     NEW.tsvectors = (
-      setweight(to_tsvector('english', NEW.username), 'A') ||
-      setweight(to_tsvector('english', NEW.biography), 'B')
+      setweight(to_tsvector('english', NEW.biography), 'A')
     );
   END IF;
   IF TG_OP = 'UPDATE' THEN
     IF (NEW.biography <> OLD.biography) THEN
       NEW.tsvectors = (
-        setweight(to_tsvector('english', NEW.username), 'A') ||
-        setweight(to_tsvector('english', NEW.biography), 'B')
+        setweight(to_tsvector('english', NEW.biography), 'A')
       );
     END IF;
   END IF;
@@ -401,6 +399,7 @@ BEGIN
   (SELECT (SELECT get_author(NEW.id_parent)), 
           (SELECT get_author(NEW.id)), 
            NEW.id AS id_comment);
+  RETURN NEW;
 END
 $BODY$  
 LANGUAGE plpgsql;
