@@ -1,24 +1,161 @@
 openapi: 3.0.0
 
 info:
- version: '1.0'
- title: 'LBAW Rabbit Web API'
- description: 'Web Resources Specification (A7)'
+  version: '1.0'
+  title: 'LBAW Rabbit Web API'
+  description: 'Web Resources Specification (A7)'
 
 servers:
 - url: http://lbaw.fe.up.pt
- description: Production server
+  description: Production server
 
 tags:
- - name: 'M01: Authentication and Individual Profile'
- - name: 'M02: Communities'
- - name: 'M03: Posts'
- - name: 'M04: Comments'
- - name: 'M05: User Administration and Static pages'
+  - name: 'M01: Authentication and Individual Profile'
+  - name: 'M02: Communities'
+  - name: 'M03: Posts'
+  - name: 'M04: Comments'
+  - name: 'M05: User Administration and Static pages'
 
 paths:
- /login:
-  get:
-   operationId: R101  
-   summary: 
-  
+
+  /signin:
+    get:
+      operationId: R101  
+      summary: 'R101 Login Form'
+      description: 'Provide Sign In form. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '200':
+          description: 'Ok. Show Sign In UI'
+    post: 
+      operationId: R102
+      summary: 'R102: Login Action'
+      description: 'Processes the Sign In form submission. Access: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+                required:
+                  - username
+                  - email
+                  - password
+
+      responses:
+        '302':
+          description: 'Redirect after processing the Sign In credentials.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful authentication. Redirect to user profile.'
+                  value: '/users/{id}'
+                302Error:
+                  description: 'Failed authentication. Redirect to Sign In form.'
+                  value: '/signin' 
+
+  /signout:
+    
+    post: 
+      operationId: R103
+      summary: 'R103: Sign Out Action'
+      description: 'Sign Out the current authenticated user. Access: USR, ADM'
+      tags: 
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '302':
+          description: 'Redirect after processing Sign Out.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Sucessful Sign Out. Redirect to Sign In form.'
+                  value: '/signin'
+
+  /signup:
+    
+    get:
+      operationId: R104
+      summary: 'R104: Register Form'
+      description: 'Provide new user registration form. Access: PUB'
+      tags: 
+        - 'M01: Authentication and Individual Profile'
+      responses:
+        '200':
+          description: 'Ok. Show Sign Up UI'
+      
+    post: 
+      operationId: R105
+      summary: 'R105: Sign Up Action'
+      description: 'Process the new user registration form submission. Acess: PUB'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - username
+                - email
+                - password
+      
+      responses:
+        '302': 
+          description: 'Redirect after processing the new user information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful authentication. Redirect to user profile.'
+                  value: '/users/{id}'
+                302Failure:
+                  description: 'Failed authentication. Redirect to Sign In form.'
+                  value: '/signin'
+
+  /users/{id}:
+
+    get:
+      operationId: R106
+      summary: 'R106: View user profile'
+      description: 'Show the individual user profile. Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+      
+      responses:
+        '200':
+          description: 'Ok. Show view profile UI'
