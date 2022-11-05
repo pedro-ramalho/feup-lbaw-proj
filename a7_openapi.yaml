@@ -1,0 +1,24 @@
+openapi: 3.0.0
+
+info:
+ version: '1.0'
+ title: 'LBAW Rabbit Web API'
+ description: 'Web Resources Specification (A7)'
+
+servers:
+- url: http://lbaw.fe.up.pt
+ description: Production server
+
+tags:
+ - name: 'M01: Authentication and Individual Profile'
+ - name: 'M02: Communities'
+ - name: 'M03: Posts'
+ - name: 'M04: Comments'
+ - name: 'M05: User Administration and Static pages'
+
+paths:
+ /login:
+  get:
+   operationId: R101  
+   summary: 
+  
