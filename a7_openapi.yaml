@@ -159,3 +159,68 @@ paths:
       responses:
         '200':
           description: 'Ok. Show view profile UI'
+
+
+  /api/communities:
+    get:
+      operationId: R201
+      summary: 'R201: Search communities API'
+      description: 'Searches for communities and returns results as JSON. Access: PUB'
+      tags:
+        - 'M02: Communities'
+      parameters:
+        - in: query
+          name: query
+          description: String to use for full-text search
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: tag
+          description: Category of the communities
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: owner
+          description: Boolean with the owner flag value
+          schema:
+            type: boolean
+          required: false 
+      
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    owner:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+                    founded_date:
+                      type: string
+                    tag:
+                      type: string
+                example:
+                  - id: 2
+                    owner: 4
+                    name: lbawmemes
+                    description: The best memes of the LBAW course are all found here.
+                    founded_date: 22-12-2019
+                    tag: memes
+                  - id: 3
+                    owner: 6
+                    name: laravel
+                    description: The best community to stay informed about new laravel updates and news.
+                    founded_date: 22-12-2019
+                    tag: tech
+
