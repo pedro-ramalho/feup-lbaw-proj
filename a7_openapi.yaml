@@ -6,7 +6,7 @@ info:
   description: 'Web Resources Specification (A7)'
 
 servers:
-- url: http://lbaw.fe.up.pt
+- url: http://lbaw22124.lbaw.fe.up.pt
   description: Production server
 
 tags:
@@ -145,7 +145,7 @@ paths:
     get:
       operationId: R106
       summary: 'R106: View user profile'
-      description: 'Show the individual user profile. Access: USR'
+      description: 'Show the individual user profile. Access: PUB'
       tags:
         - 'M01: Authentication and Individual Profile'
       
@@ -159,13 +159,14 @@ paths:
       responses:
         '200':
           description: 'Ok. Show view profile UI'
+    
 
 
   /api/communities:
     get:
-      operationId: R201
-      summary: 'R201: Search communities API'
-      description: 'Searches for communities and returns results as JSON. Access: PUB'
+      operationId: R204
+      summary: 'R204: View community page and its posts'
+      description: 'Show view community and its posts. Acess: PUB'
       tags:
         - 'M02: Communities'
       parameters:
@@ -177,15 +178,25 @@ paths:
           required: false
         - in: query
           name: tag
-          description: Category of the communities
+          description: Only communities with at least one of the given tags will be considered for the search
           schema:
-            type: string
+            type: array
+            items:
+              type: string
           required: false
         - in: query
           name: owner
-          description: Boolean with the owner flag value
+          description: Only communities 
           schema:
-            type: boolean
+            type: object
+            properties:
+              user_id: 
+                type: integer
+              is_owned: 
+                type: boolean
+              required:
+                - user_id
+                - is_owned
           required: false 
       
       responses:
@@ -215,12 +226,92 @@ paths:
                     owner: 4
                     name: lbawmemes
                     description: The best memes of the LBAW course are all found here.
-                    founded_date: 22-12-2019
+                    founded_date: 2019-12-22
                     tag: memes
                   - id: 3
                     owner: 6
                     name: laravel
                     description: The best community to stay informed about new laravel updates and news.
-                    founded_date: 22-12-2019
+                    founded_date: 2019-12-22
                     tag: tech
 
+# view community page
+
+  /community/{id}:
+  
+    get:
+      operationId: R204
+      summary: 'R204: View community page'
+      description: 'Show the individual community page. Access: PUB'
+      tags:
+        - 'M02: Communities'
+      
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+      
+      responses:
+        '200':
+          description: 'Ok. Show view community UI'
+
+
+  /create_community:
+
+    get:
+      operationId: R202  
+      summary: 'R202: View create/edit community page'
+      description: 'Provide Create Community form. Access: USR'
+      tags:
+        - 'M02: Communities'
+      responses:
+        '200':
+          description: 'Ok. Show create community UI'
+    
+    post:
+      operationId: R202
+      summary: 'R202: Create/Edit community action'
+      description: 'Processes the create community or edit community form submission. Access: USR'
+      tags:
+        - 'M02: Communities'
+      
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+                tag:
+                  type: string
+                icon:
+                  type: integer
+                banner:
+                  type: integer
+                # dúvida - passar um token?
+                required:
+                  - name
+                  - description
+                  - tag
+                  - icon
+      
+      responses:
+        '302': 
+          description: 'Redirect after processing the created community information.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful authentication. Redirect to the created community page.'
+                  value: '/community/{id}'
+                302Failure:
+                  description: 'Failed authentication. Redirect to create community form.'
+                  value: '/create_community'
