@@ -164,8 +164,8 @@ paths:
 
   /api/communities:
     get:
-      operationId: R204
-      summary: 'R204: View community page and its posts'
+      operationId: R201
+      summary: 'R201: View community page and its posts'
       description: 'Show view community and its posts. Acess: PUB'
       tags:
         - 'M02: Communities'
@@ -240,8 +240,8 @@ paths:
   /community/{id}:
   
     get:
-      operationId: R204
-      summary: 'R204: View community page'
+      operationId: R202
+      summary: 'R202: View community page'
       description: 'Show the individual community page. Access: PUB'
       tags:
         - 'M02: Communities'
@@ -261,8 +261,8 @@ paths:
   /create_community:
 
     get:
-      operationId: R202  
-      summary: 'R202: View create/edit community page'
+      operationId: R203  
+      summary: 'R203: View create/edit community page'
       description: 'Provide Create Community form. Access: USR'
       tags:
         - 'M02: Communities'
@@ -271,8 +271,8 @@ paths:
           description: 'Ok. Show create community UI'
     
     post:
-      operationId: R202
-      summary: 'R202: Create/Edit community action'
+      operationId: R204
+      summary: 'R204: Create/Edit community action'
       description: 'Processes the create community or edit community form submission. Access: USR'
       tags:
         - 'M02: Communities'
