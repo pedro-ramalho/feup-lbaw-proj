@@ -172,13 +172,13 @@ paths:
       parameters:
         - in: query
           name: query
-          description: String to use for full-text search
+          description: 'String to use for full-text search'
           schema:
             type: string
           required: false
         - in: query
           name: tag
-          description: Only communities with at least one of the given tags will be considered for the search
+          description: 'Only communities with at least one of the given tags will be considered for the search'
           schema:
             type: array
             items:
@@ -186,16 +186,13 @@ paths:
           required: false
         - in: query
           name: owner
-          description: Only communities 
+          description: 'Only communities that are owned by the user will be shown' 
           schema:
             type: object
             properties:
-              user_id: 
-                type: integer
               is_owned: 
                 type: boolean
               required:
-                - user_id
                 - is_owned
           required: false 
       
@@ -294,7 +291,6 @@ paths:
                   type: integer
                 banner:
                   type: integer
-                # dúvida - passar um token?
                 required:
                   - name
                   - description
@@ -315,3 +311,744 @@ paths:
                 302Failure:
                   description: 'Failed authentication. Redirect to create community form.'
                   value: '/create_community'
+  
+
+  /community/{id}/moderators:
+
+    get:
+      operationId: R205
+      summary: 'R205: Assign and Unassign Moderators UI'
+      description: 'Provide the form that allows to assign and unassign moderators. Access: OWN'
+      tags:
+        - 'M02: Communities'
+      responses:
+        '200':
+          description: 'Ok. Show Assign and Unassign Moderators UI'
+
+
+    post:
+      operationId: R206
+      summary: 'R206: Provide new assign and unassign moderators form. Access: OWN'
+      tags:
+        - 'M02: Communities'
+      
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username: 
+                  type: string 
+                required:
+                  - username
+      
+      responses: 
+        '302': 
+          description: 'Redirect after processing the added/excluded moderator.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful addition/removal of moderators. Redirect to community page.'
+                  value: '/community/{id}'
+                302Failure:
+                  description: 'Failed addition/removal of moderators. Redirect to the same page.'
+                  value: '/community/{id}/moderators'
+
+
+  /community/{id}/post_tags:
+
+    get:
+      operationId: R207
+      summary: 'R207: Create/edit/delete post tags'
+      description: 'Shows a page where the owner can create, edit or delete post tags. Access: PUB'
+      tags:
+        - 'M02: Communities'
+
+      parameters:
+        - in: path 
+          name: id
+          schema:
+            type: integer
+          required: true 
+
+      responses:
+        '200':
+          description: 'Ok. Show post tags UI.'
+
+
+  /community/{id}/post_tags/create:
+
+    post:
+      operationId: R208
+      summary: 'R208: Create new post tag'
+      description: 'Processes the create post tag form submission. Access: OWN'
+      tags:
+        - 'M02: Communities'
+
+      parameters:
+        - in: path 
+          name: id
+          schema:
+            type: integer
+          required: true 
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                tag_name: 
+                  type: string
+                required:
+                  - tag_name
+
+      responses: 
+        '302': 
+          description: 'Redirect after processing the created post tag.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful creation of post tag. Redirect to the post tags page.'
+                  value: '/community/{id}/post_tags/'
+                302Failure:
+                  description: 'Failed creation of post tag. Redirect to the same page.'
+                  value: '/community/{id}/post_tags/'
+
+
+  /community/{id}/post_tags/delete:
+
+    post:
+      operationId: R209
+      summary: 'R209: Delete a post tag'
+      description: 'Processes the deletion of a post tag. Access: OWN'
+      tags:
+        - 'M02: Communities'
+
+      parameters:
+        - in: path 
+          name: id
+          schema:
+            type: integer
+          required: true
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                tag_name: 
+                  type: string
+                required:
+                  - tag_name
+
+      responses: 
+        '302': 
+          description: 'Redirect after processing the created post tag.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful deletion of the post tag. Redirect to the post tags page.'
+                  value: '/community/{id}/post_tags/'
+                302Failure:
+                  description: 'Failed deletion of the post tag. Redirect to the same page.'
+                  value: '/community/{id}/post_tags/'
+
+  /community/{id}/post_tags/edit:
+    post:
+      operationId: R210
+      summary: 'R210: Edit a post tag'
+      description: 'Processes the edit of a post tag. Access: OWN'
+      tags:
+        - 'M02: Communities'
+
+      parameters:
+        - in: path 
+          name: id
+          schema:
+            type: integer
+          required: true
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                old_name: 
+                  type: string
+                new_name: 
+                  type: string
+                required:
+                  - old_name
+                  - new_name
+
+      responses: 
+        '302': 
+          description: 'Redirect after processing the edited post tag.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful edit of the post tag. Redirect to the post tags page.'
+                  value: '/community/{id}/post_tags/'
+                302Failure:
+                  description: 'Failed deletion of the post tag. Redirect to the same page.'
+                  value: '/community/{id}/post_tags/'
+
+
+  /community/{id}/follow:
+    post:
+      operationId: R211
+      summary: 'R211: Follow community'
+      description: 'Processes the following of a community. Access: USR'
+      tags:
+        - 'M02: Communities'
+
+      parameters:
+        - in: path 
+          name: id
+          schema:
+            type: integer
+          required: true
+
+      responses: 
+        '302': 
+          description: 'Redirect after following the community.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful follow. Redirect to the community page.'
+                302Failure:
+                  description: 'Failed to follow community. Redirect to the same page.'
+
+  /community/{id}/unfollow:
+    post:
+      operationId: R212
+      summary: 'R212: Unfollow community'
+      description: 'Processes the unfollowing of a community. Access: USR'
+      tags:
+        - 'M02: Communities'
+      parameters:
+        - in: path 
+          name: id
+          schema:
+            type: integer
+          required: true
+
+      responses: 
+        '302': 
+          description: 'Redirect after unfollowing the community.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful unfollow of the community. Redirect to community page.'
+                302Failure:
+                  description: 'Failed to unfollow community. Redirect to the same page.'
+                
+  /community/{id}/upload/icon:
+    post:
+      operationId: R213
+      summary: 'R213: Upload community icon'
+      description: 'Process the upload of the community icon. Access: OWN'
+      tags:
+        - 'M02: Communities'
+      parameters:
+        - in: path 
+          name: id
+          schema:
+            type: integer
+          required: true
+          
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                image_file:
+                  type: string
+                  format: byte
+                required:
+                  - image_file
+
+  /community/{id}/upload/banner:
+    post:
+      operationId: R214
+      summary: 'R214: Upload community banner'
+      description: 'Process the upload of the community banner. Access: OWN'
+      tags:
+        - 'M02: Communities'
+      parameters:
+        - in: path 
+          name: id
+          schema:
+            type: integer
+          required: true
+          
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                image_file:
+                  type: string
+                  format: byte
+                required:
+                  - image_file
+
+# M03 - Posts
+
+  # view post
+  /community/{cid}/post/{pid}:
+    get:
+      operationId: R301
+      summary: 'R301: View post'
+      description: 'Shows an individual post. Access: PUB'
+      tags:
+        - 'M03: Posts'
+
+      parameters:
+        - in: path 
+          name: cid
+          schema:
+            type: integer
+          required: true
+        - in: path 
+          name: pid
+          schema:
+            type: integer
+          required: true
+
+      responses:
+        '200':
+          description: 'Ok. Show post UI.'
+
+  # edit post
+  /community/{cid}/post/{pid}/edit:
+    post:
+      operationId: R302
+      summary: 'R302: Edit a post tag'
+      description: 'Processes the edit of a post. Access: OWN'
+      tags:
+        - 'M03: Posts'
+
+      parameters:
+        - in: path 
+          name: cid
+          schema:
+            type: integer
+          required: true
+        - in: path 
+          name: pid
+          schema:
+            type: integer
+          required: true
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                new_title: 
+                  type: string
+                new_text:
+                  type: string
+                required:
+                  - new_title
+                  - new_text # TODO: O que fazer com posts de imagem? Deixamos editar?
+
+      responses: 
+        '302': 
+          description: 'Redirect after processing the edited post.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful edit of the post. Redirect to the post page.'
+                  value: '/community/{cid}/post/{pid}/'
+                302Failure:
+                  description: 'Failed edit of the post. Redirect to the same page.'
+                  value: '/community/{cid}/post/{pid}/'
+
+  # delete post
+  /community/{cid}/post/{pid}/delete:
+    post:
+      operationId: R303
+      summary: 'R303: Delete a post'
+      description: 'Processes the deletion of a post. Access: OWN'
+      tags:
+        - 'M03: Posts'
+
+      parameters:
+        - in: path 
+          name: cid
+          schema:
+            type: integer
+          required: true
+        - in: path 
+          name: pid
+          schema:
+            type: integer
+          required: true
+
+      responses: 
+        '302': 
+          description: 'Redirect after deleting the post.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successfully deleted the post. Redirect to the community page.'
+                  value: '/community/{cid}/post/{pid}/'
+                302Failure:
+                  description: 'Failed edit of the post. Redirect to the same page.'
+                  value: '/community/{cid}/post/{pid}/'
+
+
+  # view create post form + process form
+  /community/{cid}/submit:
+    get:
+      operationId: R304
+      summary: 'R304: View create post'
+      description: 'Shows the create a post page. Access: USR'
+      tags:
+        - 'M03: Posts'
+
+      parameters:
+        - in: path 
+          name: cid
+          schema:
+            type: integer
+          required: true
+
+      responses:
+        '200':
+          description: 'Ok. Show create post UI.'
+
+    post:
+      operationId: R305
+      summary: 'R305: Submit create post'
+      description: 'Processes the create a post form. Access: USR'
+      tags:
+        - 'M03: Posts'
+
+      parameters:
+        - in: path 
+          name: cid
+          schema:
+            type: integer
+          required: true
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                title: 
+                  type: string
+                text:
+                  type: string
+                image:
+                  type: string
+                  format: byte
+                required:
+                  - title # TODO: e preciso fazer o xor aqui?
+
+      responses: 
+        '302': 
+          description: 'Redirect after processing the created post.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful submition of the post. Redirect to the post page.'
+                  value: '/community/{cid}/post/{pid}/'
+                302Failure:
+                  description: 'Failed creation of the post. Redirect to the submit post page.'
+                  value: '/community/{cid}/submit/'
+  # TODO: Como arranjar o {pid} 🥴
+
+  /api/posts:
+    get:
+      operationId: R306
+      summary: 'R306: List posts'
+      description: 'Show list posts. Acess: PUB'
+      tags:
+        - 'M03: Posts'
+      parameters:
+        - in: query
+          name: query
+          description: 'String to use for full-text search'
+          schema:
+            type: string
+          required: false
+        - in: query
+          name: author
+          description: 'Only posts that were submitted by the given user will be shown'
+          schema:
+            type: object
+            properties:
+              user_id: 
+                type: integer
+              required:
+                - user_id
+          required: false
+        - in: query
+          name: community
+          description: 'Only posts that were submitted to the given community will be shown'
+          schema:
+            type: object
+            properties:
+              community_id:
+                type: integer
+              required:
+                - community_id
+          required: false 
+        - in: query
+          name: post_tag
+          description: 'Only posts that have the given post tag will be shown' 
+          schema:
+            type: object
+            properties:
+              tag_id: 
+                type: integer
+              required:
+                - tag_id
+          required: false 
+      
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string # TODO: inteiro em string?
+                    post_date:
+                      type: string
+                    community:
+                      type: string
+                    tag:
+                      type: string
+                    likes:
+                      type: string
+                    dislikes:
+                      type: string
+                    author:
+                      type: string
+                    title:
+                      type: string
+                    text:
+                      type: string
+                    image:
+                      type: string
+                      format: byte
+                    is_edited:
+                      type: string
+
+                example:
+                  - id: 10
+                    post_date: 2022-11-11
+                    community: lbawmemes
+                    tag: relatable
+                    likes: 16
+                    dislikes: 3
+                    author: VeryRealUser8261
+                    title: An interesting title
+                    text:
+                    image: [REDACTED]
+                    is_edited: false
+                  - id: 10
+                    post_date: 2022-10-20
+                    community: lbawmemes
+                    tag: sad
+                    likes: 60
+                    dislikes: 7
+                    author: OriginalName142
+                    title: An uninteresting title
+                    text:
+                    image: [REDACTED]
+                    is_edited: true
+
+
+
+# M04 - Comments
+
+  /comment/{id}:
+    get:
+      operationId: R401
+      summary: 'R401: View a comment'
+      description: 'Show a individual comment. Access: PUB'
+      tags:
+        - 'M04: Comments'
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+
+      responses:
+        '200':
+          description: 'Ok. Show comment'
+
+  /create_comment/{id}:
+    get:
+      operationId: R402  
+      summary: 'R402: View create/edit comment section'
+      description: 'Provide a place where the user can write/edit and post a comment. Access: PUB'
+      tags:
+        - 'M04: Comments'
+
+      parameters:
+        - in: path 
+          name: post_id 
+          schema:
+            type: integer
+          required: true 
+
+      responses:
+        '200':
+          description: 'Ok. Show create/edit comment UI'
+
+    post:
+      operationId: R403
+      summary: 'R403: Create/Edit community action'
+      description: 'Processes the creation of the comment with the input given. Access: USR'
+      tags:
+        - 'M04: Comments'
+      parameters:
+          - in: path
+            name: id_post
+            schema:
+              type: integer
+            required: true
+          - in: path
+            name: id_user
+            schema:
+              type: integer
+            required: true
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                text:
+                  type: string
+                required:
+                  - text
+      responses:
+        '302': 
+          description: 'Redirect after comment.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful comment. Redirect to the post page.'
+                  value: '/post/{id}'
+                302Failure:
+                  description: 'Failed to comment. Redirect to the post page.'
+                  value: '/post/{id}'
+
+  /comment/{id}/like:
+    post:
+      operationId: R404
+      summary: 'R404: Like comment'
+      description: 'Processes a like on a comment. Access: USR'
+      tags:
+        - 'M04: Comments'
+
+      parameters:
+        - in: path 
+          name: id
+          schema:
+            type: integer
+          required: true
+
+      responses: 
+        '302': 
+          description: 'Redirect after processing the like of a comment.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful liked the comment. Redirect to the post page.'
+                302Failure:
+                  description: 'Failed on liking the comment. Redirect to the post page.'
+
+  /comment/{id}/dislike:
+    post:
+      operationId: R405
+      summary: 'R405: Like comment'
+      description: 'Processes a dislike on a comment. Access: USR'
+      tags:
+        - 'M04: Comments'
+
+      parameters:
+        - in: path 
+          name: id
+          schema:
+            type: integer
+          required: true
+
+      responses: 
+        '302': 
+          description: 'Redirect after processing the unlike of a comment.'
+          headers:
+            Location:
+              schema:
+                type: string
+              examples:
+                302Success:
+                  description: 'Successful unliked the comment. Redirect to the post page.'
+                302Failure:
+                  description: 'Failed on unliking the comment. Redirect to the post page.'
+  #TODO Decide between toogle or just add remove like/dislike cases
+  

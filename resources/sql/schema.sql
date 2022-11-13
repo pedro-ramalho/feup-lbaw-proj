@@ -70,7 +70,9 @@ CREATE TABLE users (
   username TEXT CONSTRAINT user_username UNIQUE,
   password TEXT,
   email TEXT CONSTRAINT user_email UNIQUE,
-  register_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL
+  register_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
+  is_platform_blocked BOOLEAN NOT NULL,
+  show_communities BOOLEAN NOT NULL
 );
 
 CREATE TABLE user_follow_user (
