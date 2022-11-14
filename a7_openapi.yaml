@@ -575,3 +575,78 @@ paths:
       responses:
         '200':
           description: 'Ok. Show feed UI.'
+
+#M04 - User administration and Static Pages
+  #user reports
+  # TODO: Might remove for now
+  /admin/reports:
+    get: 
+      operationId: R401
+      summary: 'R401: List reports'
+      description: 'Provides a list of reported posts. Access: ADM'
+      tags:
+        - 'M04: User Administration and Static pages'
+      responses:
+        '200':
+          description: 'Ok. Show reports list UI'
+
+  #delete user
+
+  /users/{id}:
+    delete:
+      operationId: R402
+      summary: 'R402: Delete user'
+      description: 'Deletes a user from the platform, making all of their data anonymous. Access: ADM'
+      tags:
+        - 'M04: User Administration and Static pages'
+
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+
+      responses:
+        '200':
+          description: 'Ok. User deleted.'
+
+  /users/{id}/block:
+    put:
+      operationId: R403
+      summary: 'R403: Platform block user'
+      description: 'Blocks a user from the platform, preventing them from further submitting content. Access: ADM'
+      tags:
+        - 'M04: User Administration and Static pages'
+      
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true
+      
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: integer
+                reason: 
+                  type: string
+                start_date:
+                  type: string
+                end_date:
+                  type: string
+                required:
+                  - user
+                  - reason
+                  - start_date
+
+
+      responses:
+        '200':
+          description: 'Ok. Platform Block created.'
