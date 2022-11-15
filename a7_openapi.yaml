@@ -160,7 +160,9 @@ paths:
       
       responses:
         '200':
-          description: 'Ok. Show view profile UI'    
+          description: 'Ok. Show view profile UI'
+        '404':
+          description: 'Error. User not found'
     
   /users/{id}/edit:
 
@@ -180,9 +182,11 @@ paths:
       
       responses:
         '200':
-          description: 'Ok. Show edit profile UI'    
+          description: 'Ok. Show edit profile UI'  
+        '404':
+          description: 'Error. User not found'  
 
-    post:
+    put:
       operationId: R107
       summary: 'R107: Edit user profile'
       description: 'Process the user profile editing form submission. Access: USR'
@@ -212,7 +216,9 @@ paths:
               
       responses:
         '201':
-          description: 'Ok. Profile edited successfully.'    
+          description: 'Ok. Profile edited successfully.'
+        '404':
+          description: 'Error. User not found'
 
 
 # M02 - Communities
@@ -303,6 +309,8 @@ paths:
       responses:
         '200':
           description: 'Ok. Show view community UI'
+        '404':
+          description: 'Error. Community not found'
 
 
 # M03 - Posts 
@@ -325,8 +333,10 @@ paths:
       responses:
         '200':
           description: 'Ok. Show create post UI.'
+        '404':
+          description: 'Error. Community not found'
 
-    put:
+    post:
       operationId: R302
       summary: 'R302: Create post action'
       description: 'Processes the create a post form sub. Access: USR'
@@ -390,6 +400,8 @@ paths:
       responses:
         '200':
           description: 'Ok. Show post UI.'
+        '404':
+          description: 'Error. Post not found'
 
     delete:
       operationId: R304
@@ -408,6 +420,10 @@ paths:
       responses:
         '200':
           description: 'Ok. Post deleted.'
+        '403':
+          description: 'Error. Insufficient permissions' # TODO: Error code quando um post owner tenta apagar um post com replies / likes / etc.
+        '404':
+          description: 'Error. Post not found'
 
   /post/{id}/edit:
     get:
@@ -426,9 +442,14 @@ paths:
 
       responses:
         '200':
-          description: 'Ok. Show edit post UI.'      
+          description: 'Ok. Show edit post UI.'
+        '403':
+          description: 'Error. Insufficient permissions'
+        '404':
+          description: 'Error. Post not found'
 
-    post:
+
+    put:
       operationId: R306
       summary: 'R306: Edit Post Action'
       description: 'Processes the edit post form submission. Access: POWN'
@@ -577,19 +598,6 @@ paths:
           description: 'Ok. Show feed UI.'
 
 #M04 - User administration and Static Pages
-  #user reports
-  # TODO: Might remove for now
-  /admin/reports:
-    get: 
-      operationId: R401
-      summary: 'R401: List reports'
-      description: 'Provides a list of reported posts. Access: ADM'
-      tags:
-        - 'M04: User Administration and Static pages'
-      responses:
-        '200':
-          description: 'Ok. Show reports list UI'
-
   #delete user
 
   /users/{id}:
@@ -612,7 +620,7 @@ paths:
           description: 'Ok. User deleted.'
 
   /users/{id}/block:
-    put:
+    post:
       operationId: R403
       summary: 'R403: Platform block user'
       description: 'Blocks a user from the platform, preventing them from further submitting content. Access: ADM'
@@ -650,3 +658,7 @@ paths:
       responses:
         '200':
           description: 'Ok. Platform Block created.'
+        '403':
+          description: 'Error. Insufficient permissions'
+        '404':
+          description: 'Error. User not found'
