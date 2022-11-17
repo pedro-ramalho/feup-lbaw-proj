@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Artifika&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+#signin {
+  display: grid;
+  margin-top: 20px;
+  font-family: Poppins, sans-serif;
+}
+
+#signin form {
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+  padding: 1.5em;
+  font-size: 1.5em;
+  border: 1px solid #8D99AE;
+  border-radius: 4px; 
+}
+
+#signin form input {
+  border-radius: 15px;
+  border: 1px solid #EDF2F4;
+  padding: 8px;
+  background-color: #b4bbbed3;
+  transition: all 0.3s;
+  font-family: Poppins, sans-serif;
+}
+
+#signin form input:focus {
+  background-color: rgb(255, 255, 255);
+  outline: none;
+  border: 1px solid #2B2D42;
+}
+
+#signin-signup-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+
+#signin button, a {
+  border-radius: 5px;
+  font-family: Poppins, sans-serif;
+  font-size: 1em;
+  color: white;
+  padding: calc(0.1em - 2px) 0.3em;
+  transition: all 0.3s;
+}
+
+#signin button {
+  border: 2px solid #e43e65;
+  background-color: #f65b7f;
+}
+
+#signin button:hover {
+  background-color: rgb(253, 133, 161);
+}
+
+#signin button:focus {
+  background-color: rgb(240, 166, 183);
+  color:#e43e65;
+}
+
+#signin a {
+  border: 1px solid #a8a5b2;
+  background-color: #d2cccc;
+  font-weight: 500;
+}
+
+#signin a:hover {
+  background-color: #faf0f0;
+  color: #d2cccc;
+}
+
+#signin a:focus {
+  background-color: #ffffff;
+  color: #a8a5b2;
+}
+
