@@ -26,7 +26,7 @@
     <main>
       @include('layouts.header')
       <section id="signin">
-        @yield('signin')
+        @yield('content')
       </section>
     </main>
   </body>

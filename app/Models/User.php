@@ -30,10 +30,35 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    /**
-     * The cards this user owns.
-     */
-     public function cards() {
-      return $this->hasMany('App\Models\Card');
+    public function community_block() {
+        return $this->belongsToMany(Community::class);
+    }
+
+    public function platform_block() {
+        return $this->hasMany(PlatformBlock::class);
+    }
+
+    public function community() {
+        return $this->hasMany(Community::class);
+    }
+
+    public function content() {
+        return $this->hasMany(Content::class);
+    }
+
+    public function moderator() {
+        return $this->belongsToMany(Community::class);
+    }
+
+    public function rate() {
+        return $this
+        ->hasMany(Content::class)
+        ->withPivot('liked');
+    }
+
+    public function reported() {
+        return $this
+        ->hasMany(Content::class)
+        ->withPivot('reason', 'report_date', 'reviewed');
     }
 }
