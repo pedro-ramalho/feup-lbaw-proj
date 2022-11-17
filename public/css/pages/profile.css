@@ -1,0 +1,71 @@
+#profile-container {
+  display: grid;
+  grid-template-areas: "options options"
+                       "data       info";
+  
+  justify-content: center;
+}
+
+#profile-options {
+  grid-area: options;
+
+}
+
+#profile-options ul {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  column-gap: 6em;
+
+  background-color: #8D99AE;
+  border: 2px solid #7b8697;
+  border-radius: 3px;
+  color: white;
+  font-weight: bold;
+  padding: 1em;
+
+  font-size: 1.4em;
+
+  list-style-type: none;
+}
+
+
+div #user-data {
+  grid-area: data;
+
+  justify-self: center;
+}
+
+div #user-info {
+  grid-area: info;
+  display: flex;
+  flex-direction: column;
+
+  row-gap: 2em;
+
+  justify-self: center;
+  align-items: center;
+}
+
+#user-details {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+
+  background-color: #8D99AE;
+  border-radius: 2px;
+  color: white;
+}
+
+#user-img-username {
+}
+
+#user-misc {
+  display: flex;
+  flex-direction: row;
+
+  column-gap: 2em;
+}

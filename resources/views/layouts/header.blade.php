@@ -10,7 +10,6 @@
 
   @if (Auth::check())
   <div id="header-user-profile">
-    <p>PFP + username</p>
     <a href="{{ route('logout') }}"></a>
   </div>
   @else
