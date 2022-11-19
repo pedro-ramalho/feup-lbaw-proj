@@ -12,9 +12,13 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/common/header.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/common/popCommunity.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
+    <link href="{{ asset('css/common/sort.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/font.css') }}" rel="stylesheet">
     <link href="{{ asset('css/auth/login.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/pages/profile.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pages/profile.css') }}" rel="stylesheet">
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
@@ -26,9 +30,7 @@
   <body>
     <main>
       @include('layouts.header')
-      <section id="signin">
         @yield('content')
-      </section>
     </main>
   </body>
 </html>
