@@ -6,12 +6,12 @@
   <div id="profile-container">
     <nav id="profile-options">
       <ul>
-        <li>Overview</li>
-        <li>Posts</li>
-        <li>Comments</li>
-        <li>Liked</li>
-        <li>Disliked</li>
-        <li>Favorites</li>
+        <li>OVERVIEW</li>
+        <li>POSTS</li>
+        <li>COMMENTS</li>
+        <li>LIKED</li>
+        <li>DISLIKED</li>
+        <li>FAVORITES</li>
       </ul>
     </nav>
     <div id="user-data">
@@ -19,5 +19,4 @@
     </div>
     @include('partials.userinfo', ['user' => $user])
   </div>
-
 @endsection
