@@ -13,23 +13,23 @@
 div #community-info{
     grid-area: info;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: flex-start;
     background-color: rgb(242, 242, 242);
-    align-items: center;
-    padding-left: 2em;
-    border: 1px solid #d5d5d5;
+    align-items: left;
+
+    border-bottom: 1px solid #d5d5d5;
   
 }
 
 
 #community-details{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   
-    align-items: center;
-    align-content: center;
-    justify-items: center;
+    align-items: left;
+    align-content: left;
+    justify-items: left;
   
     border-radius: 2px;
     color: black;
@@ -39,13 +39,52 @@ div #community-info{
   
 }
 
+#community-banner{
+    color: white;
+    background-size: cover;
+    background-position: center center;
+    background-color: darkslateblue;
+    height: 20vh;
+    text-align: center;
+    font-size: 45px;
+}
+
 
 
 #community-img-name{
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    align-items: left;
 }
+
+#community-img-name > img{
+    grid-area: image;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border-color: black;
+    border-width: 5em;
+}
+
+#name_com{
+    display:flex;
+    flex-direction: column;
+    align-items: left;
+    margin:0;
+}
+
+
+#name{
+    font-size: 1.8em;
+    font-weight: 600;
+    margin: 0%;
+}
+
+#c_slash{
+    font-weight: 300;
+    margin: 0%;
+}
+
 
 div #community-options{
     grid-area: options;
@@ -56,6 +95,7 @@ div #community-data{
     justify-self: center;
     margin-top: 1em;
 }
+
 
 
 #community-data-options ul {
@@ -77,3 +117,4 @@ div #community-data{
     list-style-position: inside;
   }
   
+
