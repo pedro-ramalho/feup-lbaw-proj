@@ -27,14 +27,15 @@ class MainController extends Controller
                      ->where('user_follow_community.id_follower', Auth::id());
            }))
            ->get();
+           $userFollowCommunities = Auth::user()->follows()->get();
           
         }
         else {
             $posts = array($post=Post::find(1),$post=Post::find(2),$post=Post::find(3),$post=Post::find(5));
+            $userFollowCommunities=[];
         }
         
         $communities = Community::all()->take(5);
-        $userFollowCommunities = Auth::user()->follows()->get();
     
         return view('pages.main', ['communities' => $communities, 'posts' => $posts, 'userFollowCommunities' => $userFollowCommunities]);
     }
