@@ -7,15 +7,12 @@
 }
 #sort form{
    display: flex;
-   justify-content: flex-start;
    align-items: center;
    background-color: #e43e65;
    border-radius: 10px;
-   margin-top: 50px;
    border: 1px solid red;
    padding: 0 12px;
-   width:   50%;
-   margin: auto;
+   width:   60em;
    margin-top: 10px;
    column-gap: 2em;
 }

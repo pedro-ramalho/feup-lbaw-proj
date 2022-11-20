@@ -2,12 +2,9 @@
 #popC{
     display: flex;
     flex-direction: column;
-    width: 15%;
-    margin-left: 5em;
+    width: 20em;
     font-family: 'Poppins', sans-serif;
-
-    
-
+    margin-left: 5em;
 }
 #popC h2{
     background-color: #2b2d42;
@@ -45,5 +42,4 @@
 #linkCommunity button{
     padding: 5px 2em;
     border-radius: 10px;
-    
 }
