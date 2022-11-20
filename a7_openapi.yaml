@@ -290,7 +290,7 @@ paths:
                     founded_date: 2019-12-22
                     tag: tech
 
-  /community/{id}:
+  /community/{name}:
   
     get:
       operationId: R202
@@ -301,9 +301,9 @@ paths:
       
       parameters:
         - in: path 
-          name: id 
+          name: name 
           schema:
-            type: integer
+            type: string
           required: true 
       
       responses:
@@ -600,7 +600,7 @@ paths:
 #M04 - User administration and Static Pages
   #delete user
 
-  /users/{id}:
+  /users/{id}/delete:
     delete:
       operationId: R402
       summary: 'R402: Delete user'
