@@ -98,3 +98,15 @@ header #header-signup-container #header-signin {
 header #header-signup {
   background-color: #54637c;
 }
+
+
+header #header-user-profile {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
+  justify-self: end;
+}

@@ -10,7 +10,7 @@
 
   @if (Auth::check())
   <div id="header-user-profile">
-    <a href="{{ route('logout') }}"></a>
+    <a href="{{ route('logout') }}">Sign Out</a>
   </div>
   @else
   <div id="header-signup-container">
