@@ -11,12 +11,12 @@ class Tag extends Model
 
     protected $fillable = ['id_community', 'name'];
 
-    public function post() {
-        return $this->belongsTo(Post::class);
+    public function posts() {
+        return $this->hasMany(Post::class);
     }
 
     public function community() {
-        return $this->belongsTo(Community::class);
+        return $this->belongsTo(Community::class, 'id_community');
     }
 
     public $timestamps = false;

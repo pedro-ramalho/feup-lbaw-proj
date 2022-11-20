@@ -50,10 +50,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Community::class);
     }
 
-    public function rate() {
-        return $this
-        ->hasMany(Content::class)
-        ->withPivot('liked');
+    public function rated() {
+        return $this->hasMany(Content::class, 'content_rate', 'id_user', 'id_content');
     }
 
     public function reported() {

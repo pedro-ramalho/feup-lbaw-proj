@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Community extends Model
 {
@@ -11,7 +12,7 @@ class Community extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['name', 'description', 'founded', 'icon', 'banner', 'is_deleted'];
+    protected $fillable = ['id', 'name', 'description', 'founded', 'icon', 'banner', 'is_deleted'];
 
     public function posts() {
         return $this->hasMany(Post::class);
@@ -31,6 +32,10 @@ class Community extends Model
 
     public function block() {
         return $this->hasMany(User::class, 'id_blockee');
+    }
+
+    public function user_follow_community() {
+        return DB::table('user_follow_community');
     }
 
     

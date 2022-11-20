@@ -22,8 +22,8 @@ class Comment extends Model
         return $this->belongsTo(Content::class, 'id_parent');
     }
 
-    public function comment() {
-        return $this->belongsTo(Content::class, 'id_parent');
+    public function content() {
+        return $this->belongsTo(Content::class, 'id');
     }
 
     protected $table = 'comment';
