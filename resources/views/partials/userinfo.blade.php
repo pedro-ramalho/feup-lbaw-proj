@@ -44,6 +44,11 @@
     </div>
   </section>
   <article id="user-biography">
-    <p>{{ $user->biography }}</p>
+    @if (Auth::user()->id === $user->id)
+      <a href="{{ route('edit', $user->id) }}">Edit</a>
+      <p>{{ $user->biography }}</p>
+    @else 
+      <p>{{ $user->biography }}</p>
+    @endif
   </article>
 </div>

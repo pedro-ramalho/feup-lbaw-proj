@@ -14,7 +14,9 @@
 Route::get('/', 'Auth\LoginController@home');
 
 // Cards
-Route::get('user/{id}', 'UserController@show');
+Route::get('user/{id}/edit', 'UserController@getEditForm')->name('edit');
+Route::post('user/{id}/edit', 'UserController@processEditForm');
+Route::get('user/{id}', 'UserController@show')->name('user');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
