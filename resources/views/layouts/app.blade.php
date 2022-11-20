@@ -16,6 +16,7 @@
     <link href="{{ asset('css/font.css') }}" rel="stylesheet">
     <link href="{{ asset('css/auth/login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pages/profile.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/previews/preview_post.css') }}" rel="stylesheet">
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951

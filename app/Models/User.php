@@ -45,7 +45,7 @@ class User extends Authenticatable
     public function content() {
         return $this->hasMany(Content::class, 'id_author');
     }
-
+    
     public function moderator() {
         return $this->belongsToMany(Community::class);
     }

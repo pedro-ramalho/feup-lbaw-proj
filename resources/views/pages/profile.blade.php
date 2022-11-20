@@ -6,17 +6,16 @@
   <div id="profile-container">
     <nav id="profile-options">
       <ul>
-        <li>OVERVIEW</li>
-        <li>POSTS</li>
-        <li>COMMENTS</li>
-        <li>LIKED</li>
-        <li>DISLIKED</li>
-        <li>FAVORITES</li>
+        <li id="opt-overview">OVERVIEW</li>
+        <li id="opt-posts">POSTS</li>
+        <li id="opt-comments">COMMENTS</li>
+        <li id="opt-liked">LIKED</li>
+        <li id="opt-disliked">DISLIKED</li>
+        <li id="opt-favorites">FAVORITES</li>
       </ul>
     </nav>
-    <div id="user-data">
-      <p>User Data</p>
-    </div>
+    @include('partials.userdata', ['user' => $user])
     @include('partials.userinfo', ['user' => $user])
   </div>
+
 @endsection

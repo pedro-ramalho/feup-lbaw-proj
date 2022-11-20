@@ -31,6 +31,10 @@ class Content extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function posts() {
+        return $this->hasMany(Post::class);
+    }
+
     public function is_comment(){
         return $this->hasOne(Comment::class);
     }
