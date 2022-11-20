@@ -11,7 +11,7 @@ class Community extends Model
 
     public $timestamps = false;
 
-    protected $fillable = ['name', 'description', 'founded', 'icon', 'banner', 'is_deleted'];
+    protected $fillable = ['name', 'description', 'founded', 'tag', 'icon', 'banner', 'is_deleted'];
 
     public function posts() {
         return $this->hasMany(Post::class);
