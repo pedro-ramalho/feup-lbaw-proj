@@ -1,7 +1,7 @@
 #profile-container {
   display: grid;
   grid-template-areas: "options options"
-                       "data       info";
+                       "data  info";
 }
 
 #signin {
@@ -109,6 +109,10 @@ div #user-info {
   align-items: center;
 }
 
+#user-img-username > img {
+  width: 50%;
+}
+
 #username-rep {
   display: flex;
   flex-direction: column;
@@ -116,7 +120,7 @@ div #user-info {
 }
 
 #username {
-  font-size: 1.5em;
+  font-size: 1.2em;
   font-weight: 600;
 }
 
@@ -135,8 +139,23 @@ div #user-info {
 }
 
 .user-rep-icon-container p {
-  font-size: 1.3em;
+  font-size: 1.2em;
   font-weight: 600;
+}
+
+#user-biography {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1em;
+  align-items: center;
+}
+
+#edit-profile {
+  margin-top: 1em;
+}
+
+#user-biography a {
+  height: fit-content;
 }
 
 .user-rep-icon-container img {
