@@ -61,4 +61,7 @@ class User extends Authenticatable
         ->hasMany(Content::class)
         ->withPivot('reason', 'report_date', 'reviewed');
     }
+    public function follows() {
+        return $this->belongsToMany(Community::class, 'user_follow_community', 'id_follower', 'id_followee');
+    }
 }

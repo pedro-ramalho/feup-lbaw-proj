@@ -24,7 +24,9 @@
     background-color: #8d99ae;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
+    
 }
+
 #PopLoad{
     text-align: center;
     padding: 5px 10px;
@@ -40,6 +42,8 @@
 }
 
 #linkCommunity button{
-    padding: 5px 2em;
+    padding: 5px 0;
     border-radius: 10px;
+    width: 100px;
+    text-align: center;
 }

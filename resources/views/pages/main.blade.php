@@ -3,7 +3,7 @@
 @section('content')
 <nav id= mainContent>
 @include('layouts.sort')
-@include('partials.popCommunities', ['communities' => $communities])
+@include('partials.popCommunities', ['communities' => $communities, 'userFollowCommunities' => $userFollowCommunities])
 <nav id= mainPosts>
 @each('partials.preview_post', $posts, 'post')
 </nav>
