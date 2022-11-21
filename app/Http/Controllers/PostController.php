@@ -6,8 +6,10 @@ use App\Models\Post;
 use App\Models\TextPost;
 use App\Models\ImagePost;
 use App\Models\Content;
+use App\Models\Community;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -26,9 +28,10 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $community = Community::find($id);
+        return view('pages.post_submit', ['community' => $community]);
     }
 
     /**
@@ -37,9 +40,37 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        if (!Auth::check()) {
+            echo 'User not authenticated!';
+            abort(401);
+        }
+        else {
+            $content = Content::create([
+                'id_author' => Auth::id(),
+                'is_post' => true
+            ]);
+
+            $post = Post::insert([
+                'id' => $content->id,
+                'id_community' => $request->input('community-id'),
+                'id_tag' => 11,
+                'title' => $request->input('title'),
+                'is_image' => false
+            ]);
+            if ($request->input('is_image') == 1) {
+                $image_post = ImagePost::create([
+                    'id' => $post->id,
+                    'id_image' => $request->input('id-image')
+                ]); 
+            } else {
+                $text_post = TextPost::insert([
+                    'id' => $content->id,
+                    'text' => $request->input('text')
+                ]);
+            }
+            return redirect(route('post', $content->id));
+        }
     }
 
     /**
@@ -129,6 +160,7 @@ class PostController extends Controller
         abort(401);
     }
     else if (Auth::user()->content->contains(Content::find($id))) {
+        echo "OOOOOOOOOOOOHH MY GAWD";
         $post = Post::find($id);
         $community = $post->community;
         $content = $post->content;
@@ -147,7 +179,8 @@ class PostController extends Controller
         $post->save();
         $content->save();
         
-        return redirect(route('community', $community->name));
+        #return redirect(route('community', $community->name));
+        return redirect(route('post', $post->id));
     } else {
         echo "You don't have permission to remove this post!";
         abort(403);

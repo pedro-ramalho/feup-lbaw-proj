@@ -31,6 +31,8 @@ function date_string($date_string)
     return "1 second ago";
   } else if ($diff->s > 1) {
     return $diff->s . " seconds ago";
+  } else if ($diff->s == 0) {
+    return "0 seconds ago";
   } else {
     return "error while reading dates";
   }
@@ -45,8 +47,10 @@ function date_string($date_string)
       <p id="posted-by">Posted by <a href="#">u/deleted</a> on <a href="{{ '/communities/' . $post->community['name']}}">c/{{ $post->community['name'] }}</a> <?php echo date_string(substr($post->content['created'], 0, 19));?></p>
       @else
         @if (Auth::user()->content->contains(Content::find($post->id)))
-        <form id ="delete-post-form" action="{{ route('delete_post', $post->id) }}" method="delete" >
+        <form id ="delete-post-form" action="{{ route('delete_post', $post->id) }}" method="post" >
           <button id="delete-post-button" type="submit"><i class="fa-solid fa-trash"></i></button>
+          @method('delete')
+          @csrf
         </form>
         <a id="edit-post-button" href="{{ route('edit_post', $post->id) }}"><i class="fa-solid fa-pen"></i></a>  
         @endif

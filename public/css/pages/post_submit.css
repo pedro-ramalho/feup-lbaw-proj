@@ -5,7 +5,7 @@
   font-family: 'Poppins', sans-serif;
 }
 
-form#edit-post {
+form#submit-post {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -13,7 +13,7 @@ form#edit-post {
   flex-direction: column;
 }
 
-form#edit-post #new-post-title {
+form#submit-post #new-post-title {
   width: 100%;
   background-color: transparent;
   border: none;
@@ -22,12 +22,12 @@ form#edit-post #new-post-title {
   font-size: 1.2rem;
 }
 
-form#edit-post #new-post-title:focus {
+form#submit-post #new-post-title:focus {
   outline: none;
   text-decoration: underline;
 }
 
-form#edit-post #new-post-text {
+form#submit-post #new-post-text {
   width: 100%;
   background-color: transparent;
   margin: 0;
@@ -40,11 +40,11 @@ form#edit-post #new-post-text {
   height: fit-content;
 }
 
-form#edit-post #new-post-text:focus {
+form#submit-post #new-post-text:focus {
   outline: none;
 }
 
-form#edit-post button {
+form#submit-post button {
   background-color: #EF233C;
   color: #EDF2F4;
   border-radius: 10px;
@@ -57,11 +57,11 @@ form#edit-post button {
   align-self: flex-end;
 }
 
-form#edit-post button:hover {
+form#submit-post button:hover {
   background-color: #ca002f;
 }
 
-form#edit-post button:focus {
+form#submit-post button:focus {
   color: white;
   background-color: #76001c;
 }
