@@ -7,7 +7,7 @@
       <li>TOP</li>
     </ul>
   </nav>
-  
+  @each('partials.preview_post', $community->posts()->get(), 'post')
 
 
 </div>

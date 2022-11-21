@@ -14,7 +14,7 @@ class Community extends Model
     protected $fillable = ['name', 'description', 'founded', 'tag', 'icon', 'banner', 'is_deleted'];
 
     public function posts() {
-        return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class, 'id_community');
     }
 
     public function owner() {
