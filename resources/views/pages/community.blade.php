@@ -6,10 +6,12 @@
   <div id="community-container">
     @include('partials.communityinfo', ['community' => $community])
     <nav id="community-options">
-      <ul>
-        <li>About</li>
-        <li>Rules</li>
-      </ul>
+      
+        @include('partials.aboutcommunity', ['community' => $community])
+        </br>
+    
+        @include('partials.communityrules', ['community' => $community])    
+  
     </nav>
     <div id="community-data">
       @include('partials.communitydata', ['community' => $community])

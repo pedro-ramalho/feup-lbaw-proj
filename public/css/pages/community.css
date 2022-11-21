@@ -45,10 +45,11 @@ div #community-info{
     background-position: center center;
     background-color: darkslateblue;
     height: 20vh;
+    width: 100vw;
+    max-width: 100vw;
     text-align: center;
     font-size: 45px;
 }
-
 
 
 #community-img-name{
@@ -58,19 +59,18 @@ div #community-info{
 }
 
 #community-img-name > img{
-    grid-area: image;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    border-color: black;
-    border-width: 5em;
+    border: 2px solid #2B2D42;
+    margin: 0px;
 }
 
 #name_com{
     display:flex;
     flex-direction: column;
     align-items: left;
-    margin:0;
+    margin: 1%;
 }
 
 
