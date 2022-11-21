@@ -18,7 +18,7 @@
 #profile-options ul {
   display: flex;
   flex-direction: row;
-  column-gap: 4em;
+  column-gap: 2em;
   margin: 0;
 
   justify-content: center;
@@ -26,7 +26,7 @@
   background-color: #464a72;
   border-bottom: 2px solid #333655;
   color: white;
-  padding: 20px;
+  padding: 10px;
 
   font-size: 1.2em;
 
@@ -35,7 +35,7 @@
 }
 
 #profile-options ul li {
-  font-weight: 700;
+  font-weight: 600;
 }
 
 /* user data styling */
