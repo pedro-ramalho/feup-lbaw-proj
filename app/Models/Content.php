@@ -22,9 +22,7 @@ class Content extends Model
     }
 
     public function liked() {
-        return $this
-        ->belongsToMany(User::class)
-        ->withPivot('liked');
+        return $this->belongsToMany(User::class, 'content_rate', 'id_content', 'id_user')->withPivot('liked');
     }
 
     public function comments() {

@@ -16,6 +16,7 @@ Route::get('/', 'Auth\LoginController@home');
 // Cards
 Route::get('user/{id}', 'UserController@show');
 Route::get('main', 'MainController@show');
+Route::get('main/hot', 'MainController@showHot')->name('hot');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
