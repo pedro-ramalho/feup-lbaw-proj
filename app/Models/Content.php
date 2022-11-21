@@ -39,6 +39,10 @@ class Content extends Model
         return $this->hasOne(Comment::class);
     }
 
+    public function reports() {
+        return $this->hasMany(ReportInformation::class, 'id_content');
+    }
+
     public $timestamps = false;
     protected $table = 'content';
 }

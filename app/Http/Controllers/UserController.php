@@ -39,4 +39,16 @@ class UserController extends Controller
 
         return redirect(route('user', $id));
     }
+
+    public function delete(Request $request) {
+       $user = User::where('username', $request->input('username'))->first();
+        
+       var_dump($user);
+
+       $user->is_deleted = true;
+
+       $user->save();
+
+       return redirect(route('admin'));
+    }
 }
