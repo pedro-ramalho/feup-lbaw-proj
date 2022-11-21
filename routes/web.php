@@ -26,3 +26,6 @@ Route::post('register', 'Auth\RegisterController@register');
 
 //post
 Route::get('post/{id}', 'PostController@show')->name('post');
+Route::get('post/{id}/edit', 'PostController@getEditForm')->name('edit_post');
+Route::delete('post/{id}', 'PostController@destroy')->name('delete_post');
+Route::post('post/{id}/edit', 'PostController@processEditForm');

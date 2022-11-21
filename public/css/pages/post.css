@@ -14,7 +14,7 @@ section#content {
   align-items: center;
   align-content: center;
   width: var(--content-width);
-  place-items: center;
+  place-items: start;
   margin: 0 calc((100vw - var(--content-width)) / 2);
   column-gap: var(--column-separator-width);
   padding-top: 10px;
@@ -29,6 +29,39 @@ section#content {
   overflow-y: scroll;
   max-height: 85vh;
 }
+
+#main-post #edit-post-button, #main-post #delete-post-form {
+  float: right;
+  color: #2B2D42;
+  font-size: 1.2rem;
+  margin: 0 5px;
+}
+
+#main-post #delete-post-form {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+}
+
+#main-post #delete-post-form #delete-post-button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  color: #2B2D42;
+  font-size: 1.2rem;
+  background-color: transparent;
+}
+
+#main-post #delete-post-form #delete-post-button:hover {
+  background-color: transparent;
+}
+
+#main-post #delete-post-form #delete-post-button:focus {
+  background-color: transparent;
+}
+
 
 #content aside {
   width: var(--aside-width);
