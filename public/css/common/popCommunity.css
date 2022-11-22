@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Artifika&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-#popC{
+#pop-c{
     display: flex;
     flex-direction: column;
     width: 20em;
     font-family: 'Poppins', sans-serif;
     margin-left: 5em;
 }
-#popC h2{
+#pop-c h2{
     background-color: #2b2d42;
     color: #edf2f4;
     text-align: center;
@@ -16,32 +16,32 @@
     border-top-left-radius: 15px;
     padding: 5px 5px;
 }
-#linkCommunity a{
+#link-community a{
     color: black;
     font-size: 1.5em;
 }
-#PopBottom {
+#pop-bottom {
     background-color: #8d99ae;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
     
 }
 
-#PopLoad{
+#pop-load{
     text-align: center;
     padding: 5px 10px;
 }
-#PopLoad button{
+#pop-load button{
     padding: 5px 2em;
 }
-#linkCommunity{
+#link-community{
     background-color: #8d99ae;
     display: flex;
     justify-content: space-between;
     padding: 5px 10px;
 }
 
-#linkCommunity button{
+#link-community button{
     padding: 5px 0;
     border-radius: 10px;
     width: 100px;

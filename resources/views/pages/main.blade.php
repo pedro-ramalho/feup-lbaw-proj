@@ -1,12 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<nav id= mainContent>
+<nav id= main-content>
 @include('layouts.sort')
 @include('partials.popCommunities', ['communities' => $communities, 'userFollowCommunities' => $userFollowCommunities])
-<nav id= mainPosts>
+<nav id= main-posts>
 @each('partials.preview_post', $posts, 'post')
 </nav>
-@include('partials.topics')
 </nav>
 @endsection

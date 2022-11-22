@@ -18,14 +18,15 @@
 }
 
 
-#sort button {
+#sort a {
    font-family: 'Poppins', sans-serif;
    font-size: 1.5em;
    padding: 5px 2em;
    border-radius: 20px;
    background-color: #f8f8f8;
+   color: black;
 }
 
-#sort button:hover{
+#sort a:hover{
    background-color:#8D99AE;;
 }

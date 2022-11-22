@@ -8,11 +8,11 @@
     <div class="preview-post-rating">
       <div id="preview-post-like" class="user-data-icon-container">
         <img src="{{ asset('img/icon/like.svg') }}" class="user-data-icon">
-        <p>200</p>
+        <p>{{ $post->likes }}</p>
       </div>
       <div id="preview-post-dislike" class="user-data-icon-container">
         <img src="{{ asset('img/icon/dislike.svg') }}" class="user-data-icon">
-        <p>32</p>
+        <p>{{ $post->dislikes }}</p>
       </div>
     </div>
     <div id="preview-post-comment" class="user-data-icon-container">

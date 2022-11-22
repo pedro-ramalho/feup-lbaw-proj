@@ -28,33 +28,31 @@ class MainController extends Controller
                      ->from('user_follow_community')
                      ->whereColumn('user_follow_community.id_followee', 'post.id_community')
                      ->where('user_follow_community.id_follower', Auth::id());
-           }))
-           ->get();
+                    }))
+                    ->get();
            $userFollowCommunities = Auth::user()->follows()->get();
           
         }
-
-        $ilikes=Post::find(2);
-    
-        if (!is_null($ilikes)){
-        $likes= $ilikes->content()->find(2)->liked()->where('liked', True)->count();
-        }
-        else{
-        $likes=[];
-        }
-        $allposts = Post::all()->take(10);
+        $allposts=$posts;
+        $posts=collect();   
+        $newposts = Post::all()->take(1000);
+        $newposts->each(function($newpost,$key) use ($allposts){
+            $allposts->push($newpost);
+        });
+        $allposts=$allposts->unique();
+        
         $allposts->each(function($allpost,$key) use ($posts){
-            if ($posts->doesntContain($allpost)){
                 $ilikes=Post::find($allpost['id']);
                 if (!is_null($ilikes)){
                     $likes= $ilikes->content()->find($allpost['id'])->liked()->where('liked', True)->count();
-                    $allpost['likes']= $likes;                
-                    
+                    $dislikes= $ilikes->content()->find($allpost['id'])->liked()->where('liked', False)->count();
+                    $allpost['likes']= $likes;   
+                    $allpost['dislikes']= $dislikes;               
                 }
              $posts->push(($allpost));
-            }
         }); 
-            $posts=$posts->sortByDesc('likes');
+
+        $posts=$posts->take(4);
 
         $communities = Community::all()->take(5);
 
@@ -62,6 +60,7 @@ class MainController extends Controller
         return view('pages.main', ['communities' => $communities, 'posts' => $posts, 'userFollowCommunities' => $userFollowCommunities]);
     }
 
+    
     public function showHot() {
         
         $posts=collect();
@@ -73,25 +72,32 @@ class MainController extends Controller
                      ->from('user_follow_community')
                      ->whereColumn('user_follow_community.id_followee', 'post.id_community')
                      ->where('user_follow_community.id_follower', Auth::id());
-           }))
-           ->get();
+                    }))
+                    ->get();
            $userFollowCommunities = Auth::user()->follows()->get();
-
+          
         }
-        
-        $allposts = Post::all()->take(10);
-        $allposts->each(function($allpost,$key) use ($posts){
-            if ($posts->doesntContain($allpost)){
-            $posts->push(($allpost));
-            }
-        });
+        $allposts=$posts;
+        $posts=collect();
+        $allposts=$allposts->unique();
+        $allposts = $posts->concat(Post::all()->take(10));
 
+        $allposts->each(function($allpost,$key) use ($posts){
+                $ilikes=Post::find($allpost['id']);
+                if (!is_null($ilikes)){
+                    $likes= $ilikes->content()->find($allpost['id'])->liked()->where('liked', True)->count();
+                    $dislikes= $ilikes->content()->find($allpost['id'])->liked()->where('liked', False)->count();
+                    $allpost['likes']= $likes;   
+                    $allpost['dislikes']= $dislikes;               
+                }
+             $posts->push(($allpost));
+        }); 
+            $posts=$posts->sortBy([['likes', 'desc'], ['dislikes', 'asc']]);
 
         $communities = Community::all()->take(5);
+        $posts=$posts->take(4);
+
     
         return view('pages.main', ['communities' => $communities, 'posts' => $posts, 'userFollowCommunities' => $userFollowCommunities]);
     }
-
-
-
 }

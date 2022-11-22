@@ -1,4 +1,4 @@
-#mainContent {
+#main-content {
     
     margin-top: 1em;
     margin-left: 10px;
@@ -7,21 +7,21 @@
     justify-content: center;
 }
 
-#mainContent #sort{
+#main-content #sort{
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 2;
 
 }
-#mainContent #popC{
+#main-content #pop-c{
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 1;
     grid-row-end: 3;
     justify-items: center;
 }
-#mainContent #mainPosts{
+#main-content #main-posts{
     margin-top: 20px;
     grid-column-start: 1;
     grid-column-end: 2;
@@ -30,15 +30,4 @@
     display: flex; 
     flex-direction: column;
     row-gap: 2em;
-}
-#mainContent #topics{
-    margin-left: 5em;
-    grid-column-start: 2;
-    grid-column-end: 4;
-    grid-column: 50em;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;    
 }

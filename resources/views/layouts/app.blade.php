@@ -14,7 +14,6 @@
     <link href="{{ asset('css/common/header.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common/popCommunity.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common/preview_post.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/common/dropdown.css') }}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
     <link href="{{ asset('css/common/sort.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

@@ -1,4 +1,4 @@
-<div id="linkCommunity">
+<div id="link-community">
     <a href= "/community/{{ $community->id }}">c/{{ $community->name }} </a>
 
 
