@@ -1,7 +1,8 @@
 #community-container {
     display: grid;
-    grid-template-areas: "banner banner"
-                         "data options";
+    grid-template-areas: "banner"
+                         "body";
+    margin: auto;
     column-gap: 20px;
 }
 
@@ -19,7 +20,9 @@
 }
 
 #community-banner #banner{
-    background-color: violet;
+    background-image: url(https://www.joaorio.com/wp-content/uploads/2012/07/265_895_1_Logo-FEUP_Logo-FEUP.jpg);
+    background-size:contain;
+    background-position: center center;
     border-radius: 0px;
     margin: 0px;
     display: flex;
@@ -40,7 +43,7 @@
     align-items: left;
     align-self: left;
     padding: 1ex;
-    border-top: 2px solid #2B2D42;
+
     border-bottom: 2px solid #2B2D42;
 }
 
@@ -80,12 +83,10 @@
 }
 
 #community-body{
+    grid-area: body;
     margin-top: 1em;
-    margin-left: auto;
-    margin-right: auto;
     display: grid;
     justify-content: center;
-    margin: 0 auto;
 }
 
 
@@ -104,10 +105,6 @@
     margin:auto;
 }
 
-#community-data >*{
-    margin-left: 50px;
-
-}
 
 #community-data #community-data-options{
     grid-column-start: 1;

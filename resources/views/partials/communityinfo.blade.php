@@ -3,7 +3,7 @@ use App\Models\Community;
 ?>
 <div id="community-banner">
   <div id="banner">
-    <p>Banner</p>
+    <p></p>
   </div>
   <section id="community-details">
     <div id="community-img-name">
