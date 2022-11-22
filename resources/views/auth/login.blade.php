@@ -2,7 +2,7 @@
 
 @section('content')
 <section id="signin">
-<form method="POST" action="{{ route('login') }}">
+<form method="POST" action="{{ route('login') }}" class="auth-form">
     {{ csrf_field() }}
 
     <label for="email">E-mail</label>

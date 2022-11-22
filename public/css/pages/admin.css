@@ -1,0 +1,35 @@
+#admin-content {
+  display: grid;
+  grid-template-areas: "posts user"
+                       "comments user";
+  column-gap: 2em;
+}
+
+
+#report-posts {
+  font-size: 1.2em;
+  grid-area: posts;
+  margin-top: 1em;
+}
+
+#report-comments {
+  font-size: 1.2em;
+
+  grid-area: comments;
+}
+
+#manage-users {
+  align-self: center;
+}
+
+table {
+  border-spacing: 1em 0px;
+}
+
+th {
+  font-size: 1.4em;
+}
+
+td {
+  padding: 10px 0;
+}

@@ -28,13 +28,6 @@ CREATE TYPE community_tag AS ENUM ('Sports', 'Gaming', 'News', 'TV', 'Memes', 'T
 -- Create Tables
 -------------------------------------------------------------------
 
-
-CREATE TABLE administrator (
-  id SERIAL PRIMARY KEY,
-  username TEXT,
-  password TEXT
-);
-
 CREATE TABLE users (
   id SERIAL PRIMARY KEY, 
   username TEXT CONSTRAINT user_username UNIQUE NOT NULL,
@@ -43,7 +36,8 @@ CREATE TABLE users (
   register_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
   biography TEXT,
   pfp INTEGER DEFAULT NULL,
-  is_deleted BOOLEAN NOT NULL DEFAULT FALSE 
+  is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
+  is_admin BOOLEAN NOT NULL DEFAULT FALSE 
 );
 
 CREATE TABLE user_follow_user (
@@ -130,7 +124,7 @@ CREATE TABLE favorite_post (
 
 CREATE TABLE platform_block (
   id SERIAL PRIMARY KEY,
-  id_admin INTEGER NOT NULL REFERENCES administrator (id) ON UPDATE CASCADE,
+  id_admin INTEGER NOT NULL REFERENCES users (id) ON UPDATE CASCADE,
   reason TEXT NOT NULL,
   start_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
   end_date TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL
@@ -461,22 +455,8 @@ insert into users (username, password, email, biography, pfp, is_deleted) values
 insert into users (username, password, email, biography, pfp, is_deleted) values ('eculpinr', '5UmNjjDjw', 'fwittierr@addthis.com', 'Sharable didactic hardware', 8104, false);
 insert into users (username, password, email, biography, pfp, is_deleted) values ('jleavys', '4eibtdr3o', 'smacmasters@altervista.org', 'De-engineered logistical matrices', 8531, true);
 insert into users (username, password, email, biography, pfp, is_deleted) values ('wmoggant', 'BahnQZrL', 'pwallerbridget@prweb.com', 'Business-focused directional algorithm', 8761, true);
+insert into users (username, password, email, biography, pfp, is_deleted, is_admin) values('admin', '$2y$10$4x8iE2ItcFYrs1e6SzOaler/MBd50UDPbUVAFfGhFUe7TIFzpzJfK', 'admin@gmail.com', 'I am an administrator', 8762, false, true);
 
-insert into administrator (id, username, password) values (1, 'groncelli0', 'fV29W6J7xRc');
-insert into administrator (id, username, password) values (2, 'jlanning1', 'SruHpRA9');
-insert into administrator (id, username, password) values (3, 'mpepin2', 'qfBKmBR4jrQ');
-insert into administrator (id, username, password) values (4, 'dbaglow3', 'vWE0jC6tOTCI');
-insert into administrator (id, username, password) values (5, 'aridpath4', 'yxCZlNx8');
-insert into administrator (id, username, password) values (6, 'cfust5', 'RnYs1wNTvi');
-insert into administrator (id, username, password) values (7, 'pbestar6', 'EBIjYVkoUaa');
-insert into administrator (id, username, password) values (8, 'rchappell7', 'qEPOT7');
-insert into administrator (id, username, password) values (9, 'emacbrearty8', 'cybeTg6D');
-insert into administrator (id, username, password) values (10, 'ddemanche9', 'qNFV8s2gm');
-insert into administrator (id, username, password) values (11, 'morourkea', 'BpRuGcKqului');
-insert into administrator (id, username, password) values (12, 'cbolusb', 'Xe4sWdwXeuy');
-insert into administrator (id, username, password) values (13, 'jowbrickc', 'EK6UW7N');
-insert into administrator (id, username, password) values (14, 'mhellend', 'MJCyKzWrpa');
-insert into administrator (id, username, password) values (15, 'xstewartsone', 'VpC0LLRLsUI');
 
 insert into community (id_owner, name, description, tag, icon, banner, is_deleted) values (6, 'Rank', 'Balanced asymmetric portal', 'News', 4640, 6121, false);
 insert into community (id_owner, name, description, tag, icon, banner, is_deleted) values (24, 'Ronstring', 'Distributed leading edge parallelism', 'Health and Fitness', 76692, 6386, true);
