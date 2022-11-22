@@ -1,7 +1,7 @@
 <div id="community-data">
   <nav id="community-data-options">
     <ul>
-      <li>Sort by:</li>
+      <h2>Sort by:</h2>
       <li>HOT</li>
       <li>NEW</li>
       <li>TOP</li>
