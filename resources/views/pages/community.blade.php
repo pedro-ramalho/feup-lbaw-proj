@@ -7,16 +7,12 @@ use App\Models\Community;
 
   <div id="community-container">
     @include('partials.communityinfo', ['community' => $community])
-    
-    <nav id="community-options">
-      
-        @include('partials.aboutcommunity', ['community' => $community])
-    
-        @include('partials.communityrules', ['community' => $community])    
-  
-    </nav>
-    <div id="community-data">
-      @include('partials.communitydata', ['community' => $community])
+    <div id="community-body">
+      <nav id="community-options">
+          @include('partials.aboutcommunity', ['community' => $community])
+          @include('partials.communityrules', ['community' => $community])    
+      </nav>
+        @include('partials.communitydata', ['community' => $community])
     </div>
   </div>
 

@@ -2,6 +2,7 @@
     display: grid;
     grid-template-areas: "banner banner"
                          "data options";
+    column-gap: 20px;
 }
 
 #signin {
@@ -78,33 +79,39 @@
 
 }
 
-
-#community-options{
-    
+#community-body{
+    margin-top: 1em;
+    margin-left: 10px;
+    margin-right: 10px;
     display: grid;
-    margin-top: 1em;
-    margin-left: 10px;
-    margin-right: 10px;
     justify-content: center;
-    grid-area: options;
+
 }
 
 
+#community-body #community-options{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    justify-items: center;
+    margin-left: 100px;
+    row-gap: 50px;
 
-#community-data {
-    grid-area: data;
-    align-items: center;
-    justify-content: center;
-    width: 70vw;
-    margin-top: 1em;
-    margin-left: 10px;
-    margin-right: 10px;
 }
 
+#community-data >*{
+    margin-left: 50px;
+
+}
 
 #community-data #community-data-options{
-    background-color: slateblue;
-    color: white;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    background-color: violet;
+    column-gap: 10px;
 }
 
 #community-data #community-data-options ul li{
@@ -120,11 +127,5 @@
     display: flex; 
     flex-direction: column;
     row-gap: 2em;
-
-}
-
-
-#community-options{
-    grid-area: options;
 
 }
