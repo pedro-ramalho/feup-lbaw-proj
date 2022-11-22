@@ -15,7 +15,9 @@ Route::get('/', 'Auth\LoginController@home');
 
 // Cards
 Route::get('user/{id}', 'UserController@show');
-Route::get('community/{id}', 'CommunityController@show');
+Route::get('community/{id}', 'CommunityController@show')->name('community');
+Route::get('community/{id}/edit', 'CommunityController@getEditForm')->name('edit_community');
+Route::post('community/{id}/edit', 'CommunityController@processEditForm');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
