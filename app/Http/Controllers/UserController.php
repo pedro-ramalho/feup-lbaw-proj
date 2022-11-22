@@ -16,9 +16,12 @@ class UserController extends Controller
         return view('pages.profile', ['user' => $user]);
     }
 
-    public function getEditForm() {
+    public function getEditForm(int $id) {
         if (!Auth::check()) {
-            echo 'User not authenticated'; // for debug purposes only
+            abort(401);
+        }
+
+        if (Auth::user()->id !== $id) {
             abort(403);
         }
         
