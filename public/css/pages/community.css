@@ -110,22 +110,40 @@
 
 /* sort bar */
 #community-data #community-data-options{
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    background-color: #e43e65;
-    color: white;
-    column-gap: 10px;
-    padding: 0 12px;
-    border-radius: 10px;
     display: flex;
+    align-items: center;
+    background-color: #e43e65;
+    border-radius: 10px;
+    border: 1px solid red;
+    padding: 0 12px;
+    width:   60em;
+    margin-top: 10px;
+    column-gap: 2em;
+ 
 }
 
 #community-data #community-data-options ul > *{
-    padding: 5px 2em;
     display: inline;
 }
+
+#community-data #community-data-options ul h2{
+    padding: 0px;
+}
+
+#community-data #community-data-options ul li{
+    padding: 5px 2em;
+    display: inline;
+    font-size: 1.5em;
+    border-radius: 20px;
+    background-color: #f8f8f8;
+    color: black;
+ 
+}
+
+#community-data #community-data-options ul li:hover{
+    background-color:#8D99AE;
+}
+
 
 /*community post previews*/
 #community-data #posts{

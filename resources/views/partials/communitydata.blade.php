@@ -2,9 +2,9 @@
   <nav id="community-data-options">
     <ul>
       <h2>Sort by:</h2>
-      <li>HOT</li>
-      <li>NEW</li>
-      <li>TOP</li>
+      <li><i class="fa fa-fire"></i> HOT</li>
+      <li><i class="fa-solid fa-certificate"></i> NEW</li>
+      <li><i class="fa-solid fa-chart-line"></i> TOP</li>
     </ul>
   </nav>
   <div id="posts">
