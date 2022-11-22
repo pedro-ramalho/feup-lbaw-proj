@@ -4,8 +4,8 @@
     @foreach ($communities as $community)
         @include('partials.linkCommunity', ['community' => $community, 'userFollowCommunities' => $userFollowCommunities])
     @endforeach
-        <form id="pop-load">
+        <!--<form id="pop-load">
             <button> Load More </button>
-        </form>
+        </form>-->
     </div>
 </nav>

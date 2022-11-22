@@ -22,18 +22,21 @@
 }
 #pop-bottom {
     background-color: #8d99ae;
-    border-bottom-right-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-radius: 15px;
+}
+#pop-bottom #link-community:last-child {
+    background-color: #8d99ae;
+    border-radius: 15px;
     
 }
 
-#pop-load{
+/*#pop-load{
     text-align: center;
     padding: 5px 10px;
 }
 #pop-load button{
     padding: 5px 2em;
-}
+}*/
 #link-community{
     background-color: #8d99ae;
     display: flex;
