@@ -17,6 +17,7 @@
     <link href="{{ asset('css/auth/login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pages/profile.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pages/community.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/pages/community-edit.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common/aboutcommunity.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common/communityrules.css') }}" rel="stylesheet">
     <link href="{{ asset('css/previews/preview_post.css') }}" rel="stylesheet">

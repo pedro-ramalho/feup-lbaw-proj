@@ -81,11 +81,11 @@
 
 #community-body{
     margin-top: 1em;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: auto;
+    margin-right: auto;
     display: grid;
     justify-content: center;
-
+    margin: 0 auto;
 }
 
 
@@ -98,6 +98,10 @@
     margin-left: 100px;
     row-gap: 50px;
 
+}
+
+#community-data{
+    margin:auto;
 }
 
 #community-data >*{
@@ -127,5 +131,6 @@
     display: flex; 
     flex-direction: column;
     row-gap: 2em;
+    margin-bottom: 10px;
 
 }
