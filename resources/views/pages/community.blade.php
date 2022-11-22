@@ -11,7 +11,6 @@ use App\Models\Community;
     <nav id="community-options">
       
         @include('partials.aboutcommunity', ['community' => $community])
-        </br>
     
         @include('partials.communityrules', ['community' => $community])    
   

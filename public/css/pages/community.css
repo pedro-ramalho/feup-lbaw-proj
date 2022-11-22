@@ -1,6 +1,6 @@
 #community-container {
     display: grid;
-    grid-template-areas: "info info"
+    grid-template-areas: "banner banner"
                          "data options";
 }
 
@@ -10,111 +10,121 @@
   
 /*community info styling*/
 
-div #community-info{
-    grid-area: info;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    background-color: rgb(242, 242, 242);
-    align-items: left;
-
-    border-bottom: 1px solid #d5d5d5;
-  
-}
-
-
-#community-details{
-    display: flex;
-    flex-direction: row;
-  
-    align-items: left;
-    align-content: left;
-    justify-items: left;
-  
-    border-radius: 2px;
-    color: black;
-    padding: 1em;
-    row-gap: 2em;
-    border-bottom: 1px solid #dfdede;
-  
-}
-
 #community-banner{
-    color: white;
-    background-size: cover;
-    background-position: center center;
-    background-color: darkslateblue;
-    height: 20vh;
+    grid-area: banner;
+    align-items: center;
+    justify-content: left;
     width: 100vw;
-    max-width: 100vw;
-    text-align: center;
-    font-size: 45px;
 }
 
+#community-banner #banner{
+    background-color: violet;
+    border-radius: 0px;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+    height: 10vw;
+    
+}
 
 #community-img-name{
+    background-color: #8d99ae;
+    color: azure;
     display: flex;
     flex-direction: row;
+    column-gap: 10px;
     align-items: left;
+    align-self: left;
+    padding: 1ex;
+    border-top: 2px solid #2B2D42;
+    border-bottom: 2px solid #2B2D42;
 }
 
 #community-img-name > img{
-    width: 80px;
-    height: 80px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     border: 2px solid #2B2D42;
     margin: 0px;
 }
 
-#name_com{
-    display:flex;
+#community-img-name #name_com{
     flex-direction: column;
-    align-items: left;
-    margin: 1%;
+    column-gap: 0px;
+}
+
+#community-img-name #name_com > p{
+    margin: 0px;
+}
+
+#community-img-name #name_com > p:first-child{
+    font-weight: bold;
+    font-size: 150%;
+}
+
+#community-img-name #name_com > p:nth-child(2){
+    font-size: 90%;
+}
+
+#community-container #community-data, #community-container #community-options{
+    margin-top: 1em;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: grid;
+    justify-content: center;
+
 }
 
 
-#name{
-    font-size: 1.8em;
-    font-weight: 600;
-    margin: 0%;
-}
-
-#c_slash{
-    font-weight: 300;
-    margin: 0%;
-}
-
-
-div #community-options{
+#community-options{
+    
+    display: grid;
+    margin-top: 1em;
+    margin-left: 10px;
+    margin-right: 10px;
+    justify-content: center;
     grid-area: options;
 }
 
-div #community-data{
+
+
+#community-data {
     grid-area: data;
-    justify-self: center;
+    align-items: center;
+    justify-content: center;
+    width: 70vw;
     margin-top: 1em;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 
-
-#community-data-options ul {
-    display: flex;
-    flex-direction: row;
-    column-gap: 2em;
-    margin: 0;
-  
-    justify-content: flex-start;
-  
-    background-color: #DF2C56;
-    border-bottom: 2px solid #c0002d;
+#community-data #community-data-options{
+    background-color: slateblue;
     color: white;
-    padding: 20px;
-  
-    font-size: 1.2em;
-  
-    list-style-type: none;
-    list-style-position: inside;
-  }
-  
+}
 
+#community-data #community-data-options ul li{
+    display: inline;
+}
+
+#community-data #posts{
+    margin-top: 20px;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 6;  
+    display: flex; 
+    flex-direction: column;
+    row-gap: 2em;
+
+}
+
+
+#community-options{
+    grid-area: options;
+
+}
