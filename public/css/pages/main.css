@@ -1,0 +1,33 @@
+#main-content {
+    
+    margin-top: 1em;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: grid;
+    justify-content: center;
+}
+
+#main-content #sort{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+
+}
+#main-content #pop-c{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    justify-items: center;
+}
+#main-content #main-posts{
+    margin-top: 20px;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 6;  
+    display: flex; 
+    flex-direction: column;
+    row-gap: 2em;
+}

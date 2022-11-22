@@ -39,7 +39,7 @@ class User extends Authenticatable
     }
 
     public function community() {
-        return $this->hasMany(Community::class);
+        return $this->hasMany(Community::class, 'id_owner');
     }
 
     public function content() {
@@ -60,5 +60,8 @@ class User extends Authenticatable
         return $this
         ->hasMany(Content::class)
         ->withPivot('reason', 'report_date', 'reviewed');
+    }
+    public function follows() {
+        return $this->belongsToMany(Community::class, 'user_follow_community', 'id_follower', 'id_followee');
     }
 }

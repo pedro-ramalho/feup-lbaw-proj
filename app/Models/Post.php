@@ -31,12 +31,12 @@ class Post extends Model
     }
 
     public function content() {
-        return $this->belongsTo(Content::class);
+        return $this->belongsTo(Content::class, 'id');
     }
 
     public function favorite() {
         return $this->belongsToMany(User::class);
     }
-    
+    protected $appends= ['likes'];
     protected $table = 'post';
 }

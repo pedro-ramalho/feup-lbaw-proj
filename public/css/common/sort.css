@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Artifika&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+#sort form h2{
+   font-family: 'Poppins', sans-serif;
+   font-size: 1.5em;
+   font-weight: normal;
+}
+#sort form{
+   display: flex;
+   align-items: center;
+   background-color: #e43e65;
+   border-radius: 10px;
+   border: 1px solid red;
+   padding: 0 12px;
+   width:   60em;
+   margin-top: 10px;
+   column-gap: 2em;
+}
+
+
+#sort a {
+   font-family: 'Poppins', sans-serif;
+   font-size: 1.5em;
+   padding: 5px 2em;
+   border-radius: 20px;
+   background-color: #f8f8f8;
+   color: black;
+}
+
+#sort a:hover{
+   background-color:#8D99AE;;
+}
