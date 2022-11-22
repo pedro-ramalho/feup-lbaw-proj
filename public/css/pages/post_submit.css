@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Artifika&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+  --main-content-width: 575px;
+  font-family: 'Poppins', sans-serif;
+}
+
+form#submit-post {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+form#submit-post #new-post-title {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+form#submit-post #new-post-title:focus {
+  outline: none;
+  text-decoration: underline;
+}
+
+form#submit-post #new-post-text {
+  width: 100%;
+  background-color: transparent;
+  margin: 0;
+  margin: 8px 0px 15px 0px;
+  font-weight: 300;
+  border: 1px solid #2B2D42;
+  font-size: 1rem;
+  resize: vertical;
+  overflow-y: scroll;
+  height: fit-content;
+}
+
+form#submit-post #new-post-text:focus {
+  outline: none;
+}
+
+form#submit-post button {
+  background-color: #EF233C;
+  color: #EDF2F4;
+  border-radius: 10px;
+  outline: 0px solid transparent;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  box-shadow: none;
+  padding: 5px 10px;
+  transition: all 0.3s;
+  align-self: flex-end;
+}
+
+form#submit-post button:hover {
+  background-color: #ca002f;
+}
+
+form#submit-post button:focus {
+  color: white;
+  background-color: #76001c;
+}

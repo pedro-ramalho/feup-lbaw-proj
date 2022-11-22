@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Community extends Model
 {
@@ -35,6 +36,11 @@ class Community extends Model
     public function followed() {
         return $this->belongsToMany(User::class, 'user_follow_community', 'id_followee', 'id_follower');
     }
+
+    public function user_follow_community() {
+        return DB::table('user_follow_community');
+    }
+
     
     protected $table = 'community';
 }

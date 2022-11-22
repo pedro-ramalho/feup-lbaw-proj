@@ -38,4 +38,5 @@
       <a class="button button-outline" href="{{ route('login') }}">Login</a>
     </div>
 </form>
+</section>
 @endsection

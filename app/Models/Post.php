@@ -17,17 +17,12 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-
     public function tag() {
-        return $this->hasOne(Tag::class);
+        return $this->belongsTo(Tag::class, 'id_tag');
     }
 
     public function community() {
-        return $this->belongsTo(Community::class);
-    }
-
-    public function owner() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Community::class, 'id_community');
     }
 
     public function content() {

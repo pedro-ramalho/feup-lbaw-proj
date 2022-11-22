@@ -1,0 +1,36 @@
+.comment-info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 5px;
+}
+
+.comment-content {
+  margin-top: 1px;
+  margin-left: 15px;
+  padding-left: 10px;
+  border-left: 3px solid #8D99AE;
+}
+
+.comment-text {
+  margin: 0 0 3px 10px;
+  font-size: 0.9rem;
+}
+
+.comment-interactables {
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
+  margin-bottom: 10px;
+}
+
+.comment-name {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.comment-time {
+  font-weight: 300;
+  font-size: small;
+  color: grey;
+}

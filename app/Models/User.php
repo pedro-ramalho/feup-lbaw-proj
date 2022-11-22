@@ -56,6 +56,10 @@ class User extends Authenticatable
         ->withPivot('id_author');
     }
 
+    public function rated() {
+        return $this->hasMany(Content::class, 'content_rate', 'id_user', 'id_content');
+    }
+    
     public function reported() {
         return $this
         ->hasMany(Content::class)
