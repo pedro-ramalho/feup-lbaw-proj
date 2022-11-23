@@ -26,6 +26,9 @@ Route::get('user/{id}', 'UserController@show')->name('user');
 // Admin
 Route::get('admin', 'AdministratorController@show')->name('admin');
 Route::post('admin', 'UserController@delete');
+Route::get('community/{id}', 'CommunityController@show')->name('community');
+Route::get('community/{id}/edit', 'CommunityController@getEditForm')->name('edit_community');
+Route::post('community/{id}/edit', 'CommunityController@processEditForm');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

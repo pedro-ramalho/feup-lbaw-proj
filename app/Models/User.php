@@ -8,7 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use Notifiable;
-
     // Don't add create and update timestamps in database.
     public $timestamps  = false;
 

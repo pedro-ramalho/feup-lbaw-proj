@@ -1,0 +1,160 @@
+#community-container {
+    display: grid;
+    grid-template-areas: "banner"
+                         "body";
+    margin: auto;
+    column-gap: 20px;
+}
+
+#signin {
+    margin: 0;
+  }
+  
+/*community banner*/
+
+#community-banner{
+    grid-area: banner;
+    align-items: center;
+    justify-content: left;
+    width: 100vw;
+}
+
+#community-banner #banner{
+    background-image: url(https://www.joaorio.com/wp-content/uploads/2012/07/265_895_1_Logo-FEUP_Logo-FEUP.jpg);
+    background-size:contain;
+    background-position: center center;
+    border-radius: 0px;
+    margin: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+    height: 10vw;
+    
+}
+
+/*community header*/
+#community-img-name{
+    background-color: #8d99ae;
+    color: azure;
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    align-items: left;
+    align-self: left;
+    padding: 2em;
+
+    border-bottom: 2px solid #2B2D42;
+}
+
+#community-img-name > img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #2B2D42;
+    margin: 0px;
+}
+
+#community-img-name #name_com{
+    flex-direction: column;
+    column-gap: 0px;
+}
+
+#community-img-name #name_com > p{
+    margin: 0px;
+}
+
+#community-img-name #name_com > p:first-child{
+    font-weight: bold;
+    font-size: 200%;
+}
+
+#community-img-name #name_com > p:nth-child(2){
+    font-size: 120%;
+}
+
+#community-container #community-data, #community-container #community-options{
+    margin-top: 1em;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: grid;
+    justify-content: center;
+
+}
+
+/*page without header*/
+#community-body{
+    grid-area: body;
+    margin-top: 1em;
+    display: grid;
+    justify-content: center;
+}
+
+/*about community and community rules*/
+#community-body #community-options{
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    justify-items: center;
+    margin-left: 100px;
+    row-gap: 50px;
+
+}
+
+/*community posts and sort bar*/
+#community-data{
+    margin:auto;
+}
+
+/* sort bar */
+#community-data #community-data-options{
+    display: flex;
+    align-items: center;
+    background-color: #e43e65;
+    border-radius: 10px;
+    border: 1px solid red;
+    padding: 0 12px;
+    width:   60em;
+    margin-top: 10px;
+    column-gap: 2em;
+ 
+}
+
+#community-data #community-data-options ul > *{
+    display: inline;
+}
+
+#community-data #community-data-options ul h2{
+    padding: 0px;
+}
+
+#community-data #community-data-options ul li{
+    padding: 5px 2em;
+    display: inline;
+    font-size: 1.5em;
+    border-radius: 20px;
+    background-color: #f8f8f8;
+    color: black;
+ 
+}
+
+#community-data #community-data-options ul li:hover{
+    background-color:#8D99AE;
+}
+
+
+/*community post previews*/
+#community-data #posts{
+    margin-top: 20px;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 6;  
+    display: flex; 
+    flex-direction: column;
+    row-gap: 2em;
+    margin-bottom: 10px;
+
+}

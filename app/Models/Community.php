@@ -40,7 +40,6 @@ class Community extends Model
     public function user_follow_community() {
         return DB::table('user_follow_community');
     }
-
     
     protected $table = 'community';
 }

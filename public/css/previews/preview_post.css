@@ -5,6 +5,7 @@
   padding-right: 1em;
   background-color: #FFFFFF;
   border-radius: 8px;
+  width: 60em;
 }
 
 
@@ -43,7 +44,7 @@
   display: flex;
   flex-direction: row;
 
-  column-gap: 10em;
+  column-gap: 6em;
 }
 
 .preview-post-rating {
