@@ -4,7 +4,7 @@
   </div>
   <div id="community-image-name">
     <img src="{{ asset('img/icon/carrot.svg') }}" alt="community icon">
-    <a href="{{ '/community/' . $community->name }}"> c/{{ $community->name }}</a>
+    <a href="{{ route('community', $community->id) }}"> c/{{ $community->name }}</a>
   </div>
   <p id="community-description"> {{ $community['description']}}</p>
   <div id="created-members">
@@ -17,5 +17,20 @@
       <p> {{ $community->user_follow_community()->where('id_followee', $community->id)->get()->count()}}</p>
     </div>
   </div>
-  <button class="follow-community-button">Follow</button>
+  @auth
+    @if (Auth::user()->follows->contains($community))
+      <form action="{{ route('unfollow', $community->id) }}" method="post" class="form-button">
+        {{ csrf_field() }}
+        <button class="unfollow-community-button" type="submit">Unfollow</button>
+      </form>
+    @else
+      <form action="{{ route('follow', $community->id) }}" method="post" class="form-button">
+        {{ csrf_field() }}
+        <button class="follow-community-button" type="submit">Follow</button>
+      </form>
+    @endif
+  @endauth
+  @guest
+    <a class="follow-community-button" href="{{ route('login') }}">Follow</a>
+  @endguest
 </section>

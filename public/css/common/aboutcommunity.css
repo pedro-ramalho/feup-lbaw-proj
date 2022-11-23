@@ -82,6 +82,12 @@
   margin: 0;
 }
 
+#about-community form {
+  width: 70%;
+  margin: 0;
+  align-self: center;
+}
+
 #about-community button {
   background-color: #EF233C;
   color: #EDF2F4;
@@ -92,8 +98,8 @@
   box-shadow: none;
   padding: 3px 10px;
   transition: all 0.3s;
-  align-self: center;
-  width: 70%;
+  width: 100%;
+  margin: 0;
 }
 
 #about-community button:hover {

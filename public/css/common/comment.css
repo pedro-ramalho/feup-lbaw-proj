@@ -3,6 +3,7 @@
   flex-direction: row;
   align-items: center;
   column-gap: 5px;
+  color: #2B2D42;
 }
 
 .comment-content {

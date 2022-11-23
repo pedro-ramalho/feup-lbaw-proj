@@ -44,7 +44,7 @@ function date_string($date_string)
   <main>
     <div id="main-post">
       @if ($post->content->is_deleted)
-      <p id="posted-by">Posted by <a href="#">u/deleted</a> on <a href="{{ '/communities/' . $post->community['name']}}">c/{{ $post->community['name'] }}</a> <?php echo date_string(substr($post->content['created'], 0, 19));?></p>
+      <p id="posted-by">Posted by <a href="#">u/deleted</a> on <a href="{{ route('community', $post->community->id) }}">c/{{ $post->community['name'] }}</a> <?php echo date_string(substr($post->content['created'], 0, 19));?></p>
       @else
         @if (Auth::user()->content->contains(Content::find($post->id)))
         <form id ="delete-post-form" action="{{ route('delete_post', $post->id) }}" method="post" >
@@ -54,7 +54,7 @@ function date_string($date_string)
         </form>
         <a id="edit-post-button" href="{{ route('edit_post', $post->id) }}"><i class="fa-solid fa-pen"></i></a>  
         @endif
-      <p id="posted-by">Posted by <a href="{{ '/user/' . $post->content->owner['id']}}">u/{{ $post->content->owner['username'] }}</a> on <a href="{{ '/communities/' . $post->community['name']}}">c/{{ $post->community['name'] }}</a> <?php echo date_string(substr($post->content['created'], 0, 19));?></p>
+      <p id="posted-by">Posted by <a href="{{ route('user', $post->content->owner->id)}}">u/{{ $post->content->owner['username'] }}</a> on <a href="{{ route('community', $post->community->id) }}">c/{{ $post->community['name'] }}</a> <?php echo date_string(substr($post->content['created'], 0, 19));?></p>
       @endif
       <h1 id="post-title">
         {{$post['title']}}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -53,5 +54,26 @@ class UserController extends Controller
        $user->save();
 
        return redirect(route('admin'));
+    }
+
+    public function follow_community(int $id) {
+        if (Auth::check()) {
+        DB::table('user_follow_community')->insert([
+            'id_follower' => Auth::id(),
+            'id_followee' => $id
+        ]);
+        return redirect(route('community', $id));
+        } else {
+            return redirect(route('login'));
+        }
+    }
+    
+    public function unfollow_community(int $id) {
+        if (Auth::check()) {
+            DB::table('user_follow_community')->where('id_followee', $id)->where('id_follower', Auth::id())->delete();
+            return redirect(route('community', $id));
+        } else {
+            return redirect(route('login'));
+        }
     }
 }

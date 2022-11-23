@@ -26,9 +26,13 @@ Route::get('user/{id}', 'UserController@show')->name('user');
 // Admin
 Route::get('admin', 'AdministratorController@show')->name('admin');
 Route::post('admin', 'UserController@delete');
+
+// Community
 Route::get('community/{id}', 'CommunityController@show')->name('community');
 Route::get('community/{id}/edit', 'CommunityController@getEditForm')->name('edit_community');
 Route::post('community/{id}/edit', 'CommunityController@processEditForm');
+Route::post('community/{id}/follow', 'UserController@follow_community')->name('follow');
+Route::post('community/{id}/unfollow', 'UserController@unfollow_community')->name('unfollow');
 
 // Authentication
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -38,7 +42,7 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register');
 
 
-//post
+// Post
 Route::get('post/{id}', 'PostController@show')->name('post');
 Route::get('post/{id}/edit', 'PostController@getEditForm')->name('edit_post');
 Route::delete('post/{id}', 'PostController@destroy')->name('delete_post');

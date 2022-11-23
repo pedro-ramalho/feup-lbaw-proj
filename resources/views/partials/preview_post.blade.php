@@ -1,7 +1,9 @@
 <section class="preview-post">
   <div id="preview-post-header">
     <h1>{{ $post->title }}</h1>
-    <img src="{{ asset('img/icon/expand.svg') }}" class="user-data-icon">
+    <a href="{{ route('post', $post->id) }}">
+      <img src="{{ asset('img/icon/expand.svg') }}" class="user-data-icon">
+    </a>
   </div>
   <p class="preview-post-tag">TAG</p>
   <div class="preview-post-actions">

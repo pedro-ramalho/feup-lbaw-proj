@@ -32,6 +32,7 @@
     <link href="{{ asset('css/pages/post_submit.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pages/search.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pages/profile_edit.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/common/footer.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.css" integrity="sha512-FA9cIbtlP61W0PRtX36P6CGRy0vZs0C2Uw26Q1cMmj3xwhftftymr0sj8/YeezDnRwL9wtWw8ZwtCiTDXlXGjQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="{{ asset('css/pages/community.css') }}" rel="stylesheet">
@@ -49,9 +50,10 @@
     <script src={{ asset('js/dropdown.js') }} defer> </script>
   </head>
   <body>
+    @include('layouts.header')
     <main>
-      @include('layouts.header')
         @yield('content')
     </main>
+    @include('partials.footer')
   </body>
 </html>

@@ -11,10 +11,12 @@ use App\Models\Community;
       <div id="name_com">
         <p id="name">{{ $community->name }}</p>
         <p id="c_slash">c/{{ $community->name }}</p>
-        @if (Auth::user()->community->contains(Community::find($community->id)))
-        <a id="edit-community-button" href="{{ route('edit_community', $community->id) }}"><i class="fa-solid fa-pen"></i> Edit community</a>
-        @endif
       </div>
+      @auth
+        @if (Auth::user()->community->contains(Community::find($community->id)))
+          <a id="edit-community-button" href="{{ route('edit_community', $community->id) }}"><i class="fa-solid fa-pen"></i> Edit community</a>
+        @endif
+      @endauth
     </div>
   </section>
 </div>
