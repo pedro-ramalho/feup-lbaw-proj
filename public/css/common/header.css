@@ -44,12 +44,20 @@ header > #search-bar-container > form {
   justify-content: center;
 }
 
+header > #search-bar-container > form i {
+  position: absolute;
+  left: 20px;
+  color: #2B2D42;
+  font-size: 1rem;
+}
+
 /* search bar in itself */
 
 header #search-bar input {
   border-radius: 20px;
   height: 100%;
   width: 100%;
+  padding-left: 30px;
 }
 
 /* sign in/up container */

@@ -52,6 +52,7 @@ section#content {
   color: #2B2D42;
   font-size: 1.2rem;
   background-color: transparent;
+  cursor: pointer;
 }
 
 #main-post #delete-post-form #delete-post-button:hover {

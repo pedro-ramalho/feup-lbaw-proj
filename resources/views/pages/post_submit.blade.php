@@ -12,7 +12,7 @@
       <input type="text" name="title" id="new-post-title" placeholder="An interesting title..." required>
       <p id="tag">Advertisement</p>
       <textarea name="text" id="new-post-text" required">An interesting post text</textarea>
-      <button type="submit">Save</button>
+      <button type="submit">Submit</button>
     </form>
   </main>
   <aside>

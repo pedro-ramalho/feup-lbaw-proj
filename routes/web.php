@@ -42,3 +42,6 @@ Route::delete('post/{id}', 'PostController@destroy')->name('delete_post');
 Route::post('post/{id}/edit', 'PostController@processEditForm');
 Route::get('community/{id}/submit', 'PostController@create')->name('submit_post');
 Route::post('community/{id}/submit', 'PostController@store');
+
+// Search
+Route::get('search', 'SearchController@show')->name('search');

@@ -1,10 +1,11 @@
 <header>
 <div id="logo-container">
-    <a id="logo" href="#">Rabbit</a>
+    <a id="logo" href="/">Rabbit</a>
   </div>
   <div id="search-bar-container">
-    <form id="search-bar" autocomplete="off">
-      <input type="search" name="query" id="query" placeholder="Search..." autocomplete="off">
+    <form id="search-bar" autocomplete="off" method="get" action="{{ route('search') }}">
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <input type="search" name="q" id="query" placeholder="Search Rabbit..." autocomplete="off">
     </form>
   </div>
 

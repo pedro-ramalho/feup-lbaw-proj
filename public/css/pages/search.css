@@ -1,0 +1,15 @@
+#search-section {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 20px;
+}
+
+#search-section .pu-display-results {
+  padding-left: 15px;
+  display:flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+

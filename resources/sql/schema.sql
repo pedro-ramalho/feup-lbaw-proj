@@ -202,6 +202,8 @@ ALTER TABLE post
 ADD COLUMN tsvectors TSVECTOR; 
 
 CREATE FUNCTION post_search_update() RETURNS TRIGGER AS $$
+declare
+record1 record;
 BEGIN 
   IF TG_OP = 'INSERT' THEN 
     NEW.tsvectors = (
@@ -209,9 +211,11 @@ BEGIN
     );
   END IF;
   IF TG_OP = 'UPDATE' THEN
-    IF (NEW.title <> OLD.title) THEN 
+    IF (NEW.title <> OLD.title) THEN
+      SELECT * into record1 FROM text_post WHERE text_post.id = NEW.id;
       NEW.tsvectors = (
-        setweight(to_tsvector('english', NEW.title), 'A')
+        setweight(to_tsvector('english', NEW.title), 'A') || 
+        setweight(to_tsvector('english', record1.text),'B')
       );
     END IF;
   END IF;
@@ -232,21 +236,25 @@ CREATE INDEX post_search ON post USING GIN (tsvectors);
 
 -- Index to improve the performance when searching for a text post by its content
 
-ALTER TABLE text_post 
-ADD COLUMN tsvectors TSVECTOR;
-
 CREATE FUNCTION text_post_search_update() RETURNS TRIGGER AS $$
 BEGIN 
   IF TG_OP = 'INSERT' THEN 
-    NEW.tsvectors = (
-      setweight(to_tsvector('english', NEW.text), 'A') 
-    );
+    UPDATE post 
+    SET tsvectors = (
+      setweight(to_tsvector('english', title), 'A') ||
+      setweight(to_tsvector('english', NEW.text), 'B')
+    )
+    WHERE post.id = NEW.id;
   END IF;
   IF TG_OP = 'UPDATE' THEN
     IF (NEW.text <> OLD.text) THEN 
-      NEW.tsvectors = (
-        setweight(to_tsvector('english', NEW.text), 'A')
-      );
+    UPDATE post 
+    SET tsvectors = (
+      setweight(to_tsvector('english', title), 'A') ||
+      setweight(to_tsvector('english', NEW.text), 'B')
+    )
+    WHERE post.id = NEW.id;
+
     END IF;
   END IF;
   RETURN NEW;
@@ -258,29 +266,28 @@ CREATE TRIGGER text_post_search_update
   FOR EACH ROW 
   EXECUTE PROCEDURE text_post_search_update();
 
-CREATE INDEX text_post_search ON text_post USING GIN (tsvectors);
-
 
 -------------------------------------
 
 
 -- Index to improve the perfomance when searching for a comment 
 
-ALTER TABLE COMMENT
-ADD COLUMN tsvectors TSVECTOR;
-
 CREATE FUNCTION comment_search_update() RETURNS TRIGGER AS $$
 BEGIN
   IF TG_OP = 'INSERT' THEN
-    NEW.tsvectors = (
-      setweight(to_tsvector('english', NEW.text), 'A')
-    );
+    UPDATE post 
+    SET tsvectors = (
+      post.tsvectors || setweight(to_tsvector('english', NEW.text), 'C')
+    )
+    WHERE post.id = NEW.id_parent;
   END IF;
   IF TG_OP = 'UPDATE' THEN
     IF (NEW.text <> OLD.text) THEN
-      NEW.tsvectors = (
-        setweight(to_tsvector('english', NEW.text), 'A')
-      );
+      UPDATE post 
+    SET tsvectors = (
+      post.tsvectors || setweight(to_tsvector('english', NEW.text), 'C')
+    )
+      WHERE post.id = NEW.id_parent;
     END IF;
   END IF;
   RETURN NEW; 
@@ -291,8 +298,6 @@ CREATE TRIGGER comment_search_update
   BEFORE INSERT OR UPDATE ON comment
   FOR EACH ROW
   EXECUTE PROCEDURE comment_search_update();
-
-CREATE INDEX comment_search ON comment USING GIN(tsvectors);
 
 
 -------------------------------------
@@ -528,25 +533,6 @@ insert into moderator (id_mod, id_community) values (1, 3);
 insert into moderator (id_mod, id_community) values (1, 8);
 insert into moderator (id_mod, id_community) values (1, 14);
 
-insert into comment (id, id_parent, text) values (4, 10, 'Reverse-engineered bi-directional budgetary management');
-insert into comment (id, id_parent, text) values (5, 8, 'Vision-oriented systematic standardization');
-insert into comment (id, id_parent, text) values (6, 15, 'Up-sized 6th generation utilisation');
-insert into comment (id, id_parent, text) values (7, 5, 'Open-architected demand-driven toolset');
-insert into comment (id, id_parent, text) values (9, 5, 'Function-based clear-thinking artificial intelligence');
-insert into comment (id, id_parent, text) values (10, 2, 'Inverse cohesive function');
-insert into comment (id, id_parent, text) values (11, 19, 'Adaptive optimizing interface');
-insert into comment (id, id_parent, text) values (12, 2, 'Face to face client-server hardware');
-insert into comment (id, id_parent, text) values (13, 10, 'Self-enabling coherent analyzer');
-insert into comment (id, id_parent, text) values (14, 3, 'Devolved tangible capability');
-insert into comment (id, id_parent, text) values (15, 7, 'Synergistic foreground flexibility');
-insert into comment (id, id_parent, text) values (17, 19, 'Progressive discrete paradigm');
-insert into comment (id, id_parent, text) values (20, 2, 'Seamless global approach');
-insert into comment (id, id_parent, text) values (21, 8, 'Monitored static parallelism');
-insert into comment (id, id_parent, text) values (22, 2, 'Versatile encompassing groupware');
-insert into comment (id, id_parent, text) values (23, 12, 'Synchronised well-modulated complexity');
-insert into comment (id, id_parent, text) values (27, 4, 'Programmable human-resource customer loyalty');
-insert into comment (id, id_parent, text) values (28, 19, 'Reactive local secured line');
-
 insert into tag (id_community, name) values (2, 'Discussion');
 insert into tag (id_community, name) values (4, 'Mod Post');
 insert into tag (id_community, name) values (7, 'Soccer');
@@ -595,6 +581,25 @@ insert into text_post (id, text) values (13, 'Persistent human-resource extranet
 insert into text_post (id, text) values (1, 'Visionary zero tolerance data-warehouse');
 insert into text_post (id, text) values (12, 'Diverse scalable functionalities');
 insert into text_post (id, text) values (6, 'Fundamental non-volatile capability');
+
+insert into comment (id, id_parent, text) values (4, 10, 'Reverse-engineered bi-directional budgetary management');
+insert into comment (id, id_parent, text) values (5, 8, 'Vision-oriented systematic standardization');
+insert into comment (id, id_parent, text) values (6, 15, 'Up-sized 6th generation utilisation');
+insert into comment (id, id_parent, text) values (7, 5, 'Open-architected demand-driven toolset');
+insert into comment (id, id_parent, text) values (9, 5, 'Function-based clear-thinking artificial intelligence');
+insert into comment (id, id_parent, text) values (10, 2, 'Inverse cohesive function');
+insert into comment (id, id_parent, text) values (11, 19, 'Adaptive optimizing interface');
+insert into comment (id, id_parent, text) values (12, 2, 'Face to face client-server hardware');
+insert into comment (id, id_parent, text) values (13, 10, 'Self-enabling coherent analyzer');
+insert into comment (id, id_parent, text) values (14, 3, 'Devolved tangible capability');
+insert into comment (id, id_parent, text) values (15, 7, 'Synergistic foreground flexibility');
+insert into comment (id, id_parent, text) values (17, 19, 'Progressive discrete paradigm');
+insert into comment (id, id_parent, text) values (20, 2, 'Seamless global approach');
+insert into comment (id, id_parent, text) values (21, 8, 'Monitored static parallelism');
+insert into comment (id, id_parent, text) values (22, 2, 'Versatile encompassing groupware');
+insert into comment (id, id_parent, text) values (23, 12, 'Synchronised well-modulated complexity');
+insert into comment (id, id_parent, text) values (27, 4, 'Programmable human-resource customer loyalty');
+insert into comment (id, id_parent, text) values (28, 19, 'Reactive local secured line');
 
 insert into image_post (id, id_image) values (1, 22);
 insert into image_post (id, id_image) values (2, 14);

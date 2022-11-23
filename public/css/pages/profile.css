@@ -156,6 +156,7 @@ div #user-info {
 
 #user-biography a {
   height: fit-content;
+  color: #2B2D42;
 }
 
 .user-rep-icon-container img {

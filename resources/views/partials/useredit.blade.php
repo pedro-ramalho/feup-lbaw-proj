@@ -1,6 +1,8 @@
 <form method="POST" action="{{ route('edit', $user->id) }}" id="edit-profile">
   {{ csrf_field() }}
-  <label for="biography">Biography</label>
-  <input id="biography" type="text" name="biography" value="{{ $user->biography }}" required autofocus>
-  <button type="submit">Edit</button>
+    <div id="ue-bio">
+      <label for="biography">Biography</label>
+      <textarea id="biography" name="biography" required autofocus> {{ $user->biography }} </textarea>
+    </div>
+    <button type="submit">Save</button>
 </form>
