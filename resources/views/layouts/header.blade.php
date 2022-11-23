@@ -4,7 +4,7 @@
   </div>
   <div id="search-bar-container">
     <form id="search-bar" autocomplete="off">
-      <input type="search" id="query" placeholder="Search..." autocomplete="off">
+      <input type="search" name="query" id="query" placeholder="Search..." autocomplete="off">
     </form>
   </div>
 
