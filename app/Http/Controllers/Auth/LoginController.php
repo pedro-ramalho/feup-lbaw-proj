@@ -61,7 +61,7 @@ class LoginController extends Controller
         $user = User::find($id);
         
         $redirect = $user->is_admin ? 'admin' 
-                                    : 'user/' . $id;
+                                    : 'main';
 
         return $redirect;
     }

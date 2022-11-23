@@ -11,6 +11,7 @@
   @if (Auth::check())
   <div id="header-user-profile">
     <a href="{{ route('logout') }}">Sign Out</a>
+    <a href="{{ route('user', Auth::id()) }}">Profile</a>
   </div>
   @else
   <div id="header-signup-container">

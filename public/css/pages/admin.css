@@ -68,11 +68,15 @@ td {
   border-radius: 15px;
   padding: 8px;
   border: 1px solid black;
-  background-color: #ffffffd3;
+  background-color: #ffffffff;
   transition: all 0.3s;
   font-family: 'PT Sans', sans-serif;
   font-size: 1em;
   font-weight: normal;  
+}
+
+#manage-users > form > input:focus {
+  background-color: white;
 }
 
 #manage-users > form > button {
