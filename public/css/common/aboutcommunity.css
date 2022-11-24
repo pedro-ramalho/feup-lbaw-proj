@@ -4,7 +4,7 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  row-gap: 5px;
+  row-gap: 8px;
   padding-bottom: 10px;
 }
 
@@ -50,9 +50,10 @@
 }
 
 #about-community #community-description {
-  width: 90%;
+  width: fit-content;
   font-size: 0.9rem;
   font-weight: 300;
+  align-self: center;
 }
 
 #about-community #created-members {

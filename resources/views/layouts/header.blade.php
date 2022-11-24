@@ -11,6 +11,9 @@
 
   @if (Auth::check())
   <div id="header-user-profile">
+    @if (Auth::User()->is_admin)
+      <a href="{{ route('admin') }}">Admin</a>
+    @endif
     <a href="{{ route('logout') }}">Sign Out</a>
     <a href="{{ route('user', Auth::id()) }}">Profile</a>
   </div>

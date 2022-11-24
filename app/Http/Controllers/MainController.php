@@ -35,7 +35,7 @@ class MainController extends Controller
         }
         $allposts=$posts;
         $posts=collect();   
-        $newposts = Post::all()->take(1000);
+        $newposts = Post::all();
         $newposts->each(function($newpost,$key) use ($allposts){
             $allposts->push($newpost);
         });
@@ -52,7 +52,7 @@ class MainController extends Controller
              $posts->push(($allpost));
         }); 
 
-        $posts=$posts->take(4);
+        $posts=$posts->take(10);
 
         $communities = Community::all()->take(5);
 

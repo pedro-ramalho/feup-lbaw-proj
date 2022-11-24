@@ -4,7 +4,7 @@
   background-color: white;
   display: flex;
   flex-direction: column;
-  row-gap: 5px;
+  row-gap: 8px;
   padding-bottom: 10px;
 }
 
@@ -28,4 +28,11 @@
 
 #community-rules ol {
   padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+}
+
+#community-rules ol li {
+  font-size: 1.1rem;
 }

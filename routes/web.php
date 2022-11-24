@@ -26,6 +26,7 @@ Route::get('user/{id}', 'UserController@show')->name('user');
 // Admin
 Route::get('admin', 'AdministratorController@show')->name('admin');
 Route::post('admin', 'UserController@delete');
+Route::post('admin/CreateUser', 'AdministratorController@handleCreateUser')->name('handleAdminCreateUser');
 
 // Community
 Route::get('community/{id}', 'CommunityController@show')->name('community');

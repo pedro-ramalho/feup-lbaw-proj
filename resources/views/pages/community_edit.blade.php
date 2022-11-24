@@ -4,7 +4,7 @@
 @section('content')
     <form action="{{ route('edit_community', $community->id) }}" method="post" id="edit-community">
         {{ csrf_field() }}
-        <p>Edit community:</p>
+        <p id="header">Edit community:</p>
         <p id="name">Name</p>
         <input type="text" name="new-community-name" id="new-community-name" value="{{$community['name']}}" required>
         <p id="description">Description</p>

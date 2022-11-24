@@ -1,76 +1,91 @@
 form#edit-community{
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
-    padding: 10;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding: 10;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: 2px solid #2B2D42;
+
+}
+
+form#edit-community #header{
+  font-weight: bold;
 }
 
 form#edit-community #name, form#edit-community #description{
-    margin: 0;
-    font-size: 0.8em;
-    justify-content: left;
+  margin: 0;
+  font-size: 0.8em;
+  justify-content: left;
 }
 
 form#edit-community #new-community-name {
-    width: 100%;
-    background-color: transparent;
-    border: none;
-    margin: 0;
-    border: 1px solid #2B2D42;
-    font-weight: 400;
-    font-size: 1.2rem;
+  width: 70%;
+  background-color: transparent;
+  margin: 0;
+  margin: 8px 0px 15px 0px;
+  font-weight: 300;
+  border: 1px solid #2B2D42;
+  border-radius: 5px;
+  font-size: 1rem;
+  resize: vertical;
+  overflow-y: scroll;
+  height: fit-content;
 }
+
 
 
 form#edit-community #new-community-name:focus {
-    outline: none;
-    text-decoration: underline;
+  outline: none;
+  text-decoration: underline;
 }
-  
+
 
 
 form#edit-community #new-community-description {
-    width: 100%;
-    background-color: transparent;
-    margin: 0;
-    margin: 8px 0px 15px 0px;
-    font-weight: 300;
-    border: 1px solid #2B2D42;
-    font-size: 1rem;
-    resize: vertical;
-    overflow-y: scroll;
-    height: fit-content;
-  }
-  
-  form#edit-community #new-community-description:focus {
-    outline: none;
-  }
-  
-  form#edit-community button {
-    background-color: #EF233C;
-    color: #EDF2F4;
-    border-radius: 10px;
-    outline: 0px solid transparent;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    box-shadow: none;
-    padding: 5px 10px;
-    transition: all 0.3s;
-    align-self: flex-end;
-  }
-  
-  form#edit-community button:hover {
-    background-color: #ca002f;
-  }
-  
-  form#edit-community button:focus {
-    color: white;
-    background-color: #76001c;
-  }
-  
+  width: 70%;
+  background-color: transparent;
+  margin: 0;
+  margin: 8px 0px 15px 0px;
+  font-weight: 300;
+  border: 1px solid #2B2D42;
+  border-radius: 5px;
+  font-size: 1rem;
+  resize: vertical;
+  overflow-y: scroll;
+  height: fit-content;
+}
+
+form#edit-community #new-community-description:focus {
+  outline: none;
+  text-decoration: underline;
+}
+
+form#edit-community button {
+  background-color: #EF233C;
+  color: #EDF2F4;
+  border-radius: 10px;
+  outline: 0px solid transparent;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  box-shadow: none;
+  padding: 5px 10px;
+  transition: all 0.3s;
+  align-self: flex-end;
+  width: 100px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+form#edit-community button:hover {
+  background-color: #ca002f;
+}
+
+form#edit-community button:focus {
+  color: white;
+  background-color: #76001c;
+}

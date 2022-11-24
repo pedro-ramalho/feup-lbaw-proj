@@ -1,0 +1,133 @@
+
+div#community-banner {
+  width: 100vw;
+}
+
+div#community-banner #banner {
+  background-image: url(https://www.joaorio.com/wp-content/uploads/2012/07/265_895_1_Logo-FEUP_Logo-FEUP.jpg);
+  background-size:contain;
+  background-position: center center;
+  border-radius: 0px;
+  margin: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+  height: 150px;
+}
+
+
+
+div#community-banner section#community-details #community-img-name {
+  background-color: #8d99ae;
+  color: azure;
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 2px solid #2B2D42;
+  height: fit-content;
+}
+
+div#community-banner section#community-details #community-img-name > img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #2B2D42;
+  margin: 0px;
+}
+
+div#community-banner section#community-details #community-img-name #name-com {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0px;
+  align-items: center;
+}
+
+div#community-banner section#community-details  #community-img-name #name-com > p {
+  margin: 0px;
+  line-height: 2rem;
+}
+
+div#community-banner section#community-details #community-img-name #name-com > p:first-child {
+  font-weight: bold;
+  font-size: 200%;
+}
+
+div#community-banner section#community-details #community-img-name #name-com > p:nth-child(2) {
+  font-size: 120%;
+}
+
+section#content-c2 > main > div#main-posts {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 100%;
+}
+
+:root {
+  --main-content-width: 1000px;
+  --aside-width: 300px;
+  --column-separator-width: 20px;
+  --content-width: calc(var(--main-content-width) + var(--aside-width) + var(--column-separator-width));
+}
+
+section#content-c2 {
+  display: grid;
+  grid-template-columns: var(--main-content-width) var(--aside-width);
+  align-items: center;
+  align-content: center;
+  width: var(--content-width);
+  place-items: start;
+  margin: 0 calc((100vw - var(--content-width)) / 2);
+  column-gap: var(--column-separator-width);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+section#content-c2 main nav#sort {
+  margin-bottom: 15px;
+}
+
+#content-c2 main {
+  background-color: #f8f8f8;
+  border: 2px solid #8D99AE;
+  border-radius: 10px;
+  width: var(--main-content-width);
+  padding: 10px 15px;
+  max-height: 65vh;
+  padding-bottom: 15px;
+  overflow-y: scroll;
+}
+
+#content-c2 aside {
+  width: var(--aside-width);
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+#content-c2 aside > a {
+  background-color: #EF233C;
+  color: #EDF2F4;
+  border-radius: 10px;
+  outline: 0px solid transparent;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  box-shadow: none;
+  padding: 8px 10px;
+  transition: all 0.3s;
+  width: 100%;
+  text-align: center;
+}
+
+#content-c2 aside > a:hover {
+  background-color: #ca002f;
+}
+
+#content-c2 aside > a:focus {
+  color: white;
+  background-color: #76001c;
+}

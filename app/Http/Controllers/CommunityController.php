@@ -13,7 +13,7 @@ class CommunityController extends Controller
     public function show($id){
         $community = Community::find($id);
      
-        return view('pages.community', ['community' => $community]);
+        return view('pages.community2', ['community' => $community]);
     }
 
     public function getEditForm(int $id){

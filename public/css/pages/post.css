@@ -66,6 +66,9 @@ section#content {
 
 #content aside {
   width: var(--aside-width);
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
 }
 
 #main-post {

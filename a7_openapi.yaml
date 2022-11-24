@@ -19,22 +19,22 @@ paths:
 
 # M01 - User Authentication and Individual Profiles
 
-  /signin:
+  /login:
 
     get:
       operationId: R101  
       summary: 'R101 Login Form'
-      description: 'Provide Sign In form. Access: PUB'
+      description: 'Provide Login form. Access: PUB'
       tags:
         - 'M01: Authentication and Individual Profile'
       responses:
         '200':
-          description: 'Ok. Show Sign In UI'
+          description: 'Ok. Show Login UI'
 
     post: 
       operationId: R102
       summary: 'R102: Login Action'
-      description: 'Processes the Sign In form submission. Access: PUB'
+      description: 'Processes the Login form submission. Access: PUB'
       tags:
         - 'M01: Authentication and Individual Profile'
       
@@ -45,17 +45,17 @@ paths:
             schema:
               type: object
               properties:
-                username:
+                email:
                   type: string
                 password:
                   type: string
                 required:
-                  - username
+                  - email
                   - password
 
       responses:
         '302':
-          description: 'Redirect after processing the Sign In credentials.'
+          description: 'Redirect after processing the Log in credentials.'
           headers:
             Location:
               schema:
@@ -63,33 +63,33 @@ paths:
               examples:
                 302Success:
                   description: 'Successful authentication. Redirect to homepage.'
-                  value: '/feed'
+                  value: '/main'
                 302Error:
-                  description: 'Failed authentication. Redirect to Sign In form.'
-                  value: '/signin' 
+                  description: 'Failed authentication. Redirect to Log in form.'
+                  value: '/login' 
 
-  /signout:
+  /logout:
     
     post: 
       operationId: R103
-      summary: 'R103: Sign Out Action'
-      description: 'Sign Out the current authenticated user. Access: USR, ADM'
+      summary: 'R103: Logout Action'
+      description: 'Logout the current authenticated user. Access: USR, ADM'
       tags: 
         - 'M01: Authentication and Individual Profile'
 
       responses:
         '302':
-          description: 'Redirect after processing Sign Out.'
+          description: 'Redirect after processing Logout.'
           headers:
             Location:
               schema:
                 type: string
               examples:
                 302Success:
-                  description: 'Sucessful Sign Out. Redirect to homepage.'
-                  value: '/feed'
+                  description: 'Sucessful Logout. Redirect to homepage.'
+                  value: '/login'
 
-  /signup:
+  /register:
     
     get:
       operationId: R104
@@ -100,11 +100,11 @@ paths:
 
       responses:
         '200':
-          description: 'Ok. Show Sign Up UI'
+          description: 'Ok. Show Register UI'
       
-    post: 
+    put: 
       operationId: R105
-      summary: 'R105: Sign Up Action'
+      summary: 'R105: Register Action'
       description: 'Process the new user registration form submission. Acess: PUB'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -136,13 +136,13 @@ paths:
                 type: string
               examples:
                 302Success:
-                  description: 'Successful authentication. Redirect to Sign In form.'
-                  value: '/signin'
+                  description: 'Successful authentication. Redirect to Log In form.'
+                  value: '/login'
                 302Failure:
-                  description: 'Failed authentication. Redirect to Sign Up form.'
-                  value: '/signup'
+                  description: 'Failed authentication. Redirect to registration form.'
+                  value: '/register'
 
-  /users/{id}:
+  /user/{id}:
 
     get:
       operationId: R106
@@ -164,11 +164,11 @@ paths:
         '404':
           description: 'Error. User not found'
     
-  /users/{id}/edit:
+  /user/{id}/edit:
 
     get:
-      operationId: R106
-      summary: 'R106: Edit user profile'
+      operationId: R107
+      summary: 'R107: View Edit user profile'
       description: 'Provide Edit Profile Form. Access: USR'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -186,9 +186,9 @@ paths:
         '404':
           description: 'Error. User not found'  
 
-    put:
-      operationId: R107
-      summary: 'R107: Edit user profile'
+    post:
+      operationId: R108
+      summary: 'R108: Edit user profile action'
       description: 'Process the user profile editing form submission. Access: USR'
       tags:
         - 'M01: Authentication and Individual Profile'
@@ -217,8 +217,12 @@ paths:
       responses:
         '201':
           description: 'Ok. Profile edited successfully.'
+        '401':
+          description: 'Error. Unauthenticated user.'
+        '403':
+          description: 'Error. Forbidden action.'
         '404':
-          description: 'Error. User not found'
+          description: 'Error. User not found.'
 
 
 # M02 - Communities
@@ -290,7 +294,7 @@ paths:
                     founded_date: 2019-12-22
                     tag: tech
 
-  /community/{name}:
+  /community/{id}:
   
     get:
       operationId: R202
@@ -301,9 +305,9 @@ paths:
       
       parameters:
         - in: path 
-          name: name 
+          name: id
           schema:
-            type: string
+            type: integer
           required: true 
       
       responses:
@@ -312,14 +316,75 @@ paths:
         '404':
           description: 'Error. Community not found'
 
+  
+  /community/{id}/edit:
+
+    get:
+      operationId: R203
+      summary: 'R203: View edit community page'
+      description: 'Show the edit community page. Access: CUWN'
+      tags:
+        - 'M02: Communities'
+      
+      parameters:
+        - in: path 
+          name: id
+          schema:
+            type: integer
+          required: true 
+      
+      responses:
+        '200':
+          description: 'Ok. Show edit community UI.'
+        '403':
+          description: 'Unauthorized action.'
+        '404':
+          description: 'Error. Community not found.'
+
+    post:
+      operationId: R204
+      summary: 'R204: Edit community action'
+      description: 'Process the community editing form submission. Access: CUWN'
+      tags:
+        - 'M02: Communities'
+
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                description:
+                  type: string
+  
+      responses:
+        '201':
+          description: 'Ok. Community edited successfully.'
+        '401':
+          description: 'Error. Unauthenticated user.'
+        '403':
+          description: 'Error. Forbidden action.'
+        '404':
+          description: 'Error. Community not found.'
+
 
 # M03 - Posts 
 
   /community/{id}/submit:
     get:
       operationId: R301
-      summary: 'R301: Create post form'
-      description: 'Provides the create a post form. Access: USR'
+      summary: 'R301: View create post form'
+      description: 'Provides the form that allows the creation of a post. Access: USR'
       tags:
         - 'M03: Posts'
 
@@ -336,7 +401,7 @@ paths:
         '404':
           description: 'Error. Community not found'
 
-    post:
+    put:
       operationId: R302
       summary: 'R302: Create post action'
       description: 'Processes the create a post form sub. Access: USR'
@@ -377,10 +442,10 @@ paths:
               examples:
                 302Success:
                   description: 'Successful submit of the post. Redirect to the post page.'
-                  value: '/post/{pid}/'
+                  value: '/post/{id}/'
                 302Failure:
                   description: 'Failed post creation. Redirect to the create post page.'
-                  value: '/community/{cid}/submit/'
+                  value: '/community/{id}/submit/'
 
   post/{id}:
     get:
@@ -428,7 +493,7 @@ paths:
   /post/{id}/edit:
     get:
       operationId: R305
-      summmary: 'R305: Edit Post Form'
+      summmary: 'R305: View Edit Post Form'
       description: 'Provide edit post form. Access: POWN'
       tags:
       - 'M03: Posts'
@@ -449,21 +514,16 @@ paths:
           description: 'Error. Post not found'
 
 
-    put:
+    post:
       operationId: R306
       summary: 'R306: Edit Post Action'
-      description: 'Processes the edit post form submission. Access: POWN'
+      description: 'Processes the edit post form submission. Access: PWN'
       tags:
         - 'M03: Posts'
 
       parameters:
         - in: path 
-          name: cid
-          schema:
-            type: integer
-          required: true
-        - in: path 
-          name: pid
+          name: id
           schema:
             type: integer
           required: true
@@ -495,10 +555,10 @@ paths:
               examples:
                 302Success:
                   description: 'Successful edit of the post. Redirect to the post page.'
-                  value: '/post/{pid}/'
+                  value: '/post/{id}/'
                 302Failure:
                   description: 'Failed edit of the post. Redirect to the same page.'
-                  value: '/post/{pid}/'
+                  value: '/post/{id}/'
 
   /api/posts:
     get:
@@ -585,80 +645,101 @@ paths:
                     image: 72
                     is_edited: true
 
-  /feed:
+  /main:
     get:
       operationId: R308
-      summary: 'R308: View feed'
-      description: 'Provides the feed view. Access: PUB'
+      summary: 'R308: View main'
+      description: 'Provides the homepage view. Access: PUB'
       tags:
         - 'M03: Posts'
 
       responses:
         '200':
-          description: 'Ok. Show feed UI.'
+          description: 'Ok. Show homepage UI.'
+  
+  /main/hot:
+    get:
+      operationId: R309
+      summary: 'R309: View hot'
+      description: 'Provides the Hot page view. Access: PUB'
+      tags:
+        - 'M03: Posts'
+
+      responses:
+        '200':
+          description: 'Ok. Show Hot page UI.'
+
 
 #M04 - User administration and Static Pages
   #delete user
 
-  /users/{id}/delete:
-    delete:
-      operationId: R402
-      summary: 'R402: Delete user'
-      description: 'Deletes a user from the platform, making all of their data anonymous. Access: ADM'
-      tags:
-        - 'M04: User Administration and Static pages'
+  /admin:
+      get:
+        operationId: R401
+        summary: 'R401: View Admin Page'
+        description: 'Provides the Admin page View. Access: ADM'
+        tags:
+          - 'M04: User administration and Static Pages'
 
-      parameters:
-        - in: path 
-          name: id 
-          schema:
-            type: integer
-          required: true 
-
-      responses:
-        '200':
-          description: 'Ok. User deleted.'
-
-  /users/{id}/block:
-    post:
-      operationId: R403
-      summary: 'R403: Platform block user'
-      description: 'Blocks a user from the platform, preventing them from further submitting content. Access: ADM'
-      tags:
-        - 'M04: User Administration and Static pages'
+        responses:
+          '200':
+            description: 'Ok. Show Admin Page UI.'
       
-      parameters:
-        - in: path 
-          name: id 
-          schema:
-            type: integer
+      put: 
+        operationId: R402
+        summary: 'R402: Create User Action'
+        description: 'Process the creation of a user form submission. Acess: ADM'
+        tags:
+          - 'M04: User administration and Static Pages'
+        
+        requestBody:
           required: true
-      
-      requestBody:
-        required: true
-        content:
-          application/x-www-form-urlencoded:
-            schema:
-              type: object
-              properties:
-                user:
-                  type: integer
-                reason: 
-                  type: string
-                start_date:
-                  type: string
-                end_date:
-                  type: string
+          content:
+            application/x-www-form-urlencoded:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  email:
+                    type: string
+                  password:
+                    type: string
                 required:
-                  - user
-                  - reason
-                  - start_date
+                  - username
+                  - email
+                  - password
+        
+        responses:
+          '302': 
+            description: 'Redirect after processing the new user information.'
+            headers:
+              Location:
+                schema:
+                  type: string
+                examples:
+                  302Success:
+                    description: 'Successful creation. Redirect to Admin page.'
+                    value: '/admin'
+                  302Failure:
+                    description: 'Failed creation. Redirect to Admin page.'
+                    value: '/admin'
 
+      delete:
+        operationId: R403
+        summary: 'R403: Delete user'
+        description: 'Deletes a user from the platform, making all of their data anonymous. Access: ADM'
+        tags:
+          - 'M04: User Administration and Static pages'
 
-      responses:
-        '200':
-          description: 'Ok. Platform Block created.'
-        '403':
-          description: 'Error. Insufficient permissions'
-        '404':
-          description: 'Error. User not found'
+        parameters:
+          - in: path 
+            name: id 
+            schema:
+              type: integer
+            required: true 
+
+        responses:
+          '200':
+            description: 'Ok. User deleted.'
+

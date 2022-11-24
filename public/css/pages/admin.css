@@ -79,11 +79,38 @@ td {
   background-color: white;
 }
 
-#manage-users > form > button {
-  border: 2px solid #e43e65;
-  background-color: #f65b7f;
-  color: white;
+#manage-users > form button {
   font-family: 'PT Sans', sans-serif;
   padding: 8px;
   width: 70px;
+
+  background-color: #EF233C;
+  color: #EDF2F4;
+  border-radius: 10px;
+  outline: 0px solid transparent;
+  font-weight: 700;
+  box-shadow: none;
+  transition: all 0.3s;
+  align-self: flex-end;
 }
+
+#manage-users form.auth-form button {
+  font-size: 1.5rem;
+  width: 150px;
+}
+
+#manage-users > form button:hover {
+  background-color: #ca002f;
+  color: white;
+  background-color: #76001c;
+}
+
+#manage-users > form button:focus {
+}
+
+#manage-users > form.auth-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+

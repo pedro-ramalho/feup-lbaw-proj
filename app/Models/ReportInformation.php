@@ -25,4 +25,8 @@ class ReportInformation extends Model
     public function content() {
         return $this->belongsTo(Content::class, 'id_content');
     }
+
+    public function user() {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

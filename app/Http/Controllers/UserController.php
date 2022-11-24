@@ -76,4 +76,8 @@ class UserController extends Controller
             return redirect(route('login'));
         }
     }
+
+    public function reports() {
+        return $this->hasMany(ReportInformation::class, 'id_content');
+    }
 }
