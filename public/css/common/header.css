@@ -7,10 +7,9 @@ header {
   font-family: 'Poppins', sans-serif;
   font-size: 1.5em;
 
-  position: fixed;
+  position: sticky;
   height: 60.8px;
   width: 100vw;
-  padding: 10px 0;
   
 }
 
