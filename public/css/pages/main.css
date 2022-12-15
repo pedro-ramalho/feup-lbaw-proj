@@ -1,10 +1,12 @@
 #main-content {
-    
-    margin-top: 1em;
+    position:relative;
+    margin-top: 0em;
     margin-left: 10px;
     margin-right: 10px;
     display: grid;
     justify-content: center;
+    padding-top: 5em;
+    z-index: -2;
 }
 
 #main-content #sort{

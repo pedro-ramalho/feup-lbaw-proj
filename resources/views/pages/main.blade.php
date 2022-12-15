@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <nav id= main-content>
   @include('layouts.sort')
   @include('partials.popCommunities', ['communities' => $communities, 'userFollowCommunities' => $userFollowCommunities])
