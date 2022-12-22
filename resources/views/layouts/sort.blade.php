@@ -1,17 +1,16 @@
 <nav id="sort">
-   <form> 
-        <h2>Sort by:</h2>
-            <a href="{{ route('hot') }}"> 
-                <i class="fa fa-fire"></i>
-                    Hot
-            </a>
-            <a href="{{ route('hot') }}"> 
-                <i class="fa-solid fa-certificate"></i>
-                    New
-            </a>
-            <a href="{{ route('hot') }}"> 
-                <i class="fa-solid fa-chart-line"></i>
-                    Top
-            </a>
-    </form>
+	<form class="flex bg-gray-500 rounded-md text-xl text-white p-4 gap-x-12 w-auto border border-gray-600 font-semibold"> 
+		<a href="{{ route('hot') }}" class="flex gap-x-3 items-center p-2 hover:bg-gray-700 rounded-md"> 
+			<i class="fa fa-fire"></i>
+			<p>Hot</p>
+		</a>
+		<a href="{{ route('hot') }}" class="flex gap-x-3 items-center p-2 hover:bg-gray-700 rounded-md"> 
+			<i class="fa-solid fa-certificate"></i>
+			<p>New</p>
+		</a>
+		<a href="{{ route('hot') }}" class="flex gap-x-3 items-center p-2 hover:bg-gray-700 rounded-md"> 
+			<i class="fa-solid fa-chart-line"></i>
+			<p>Top</p>
+		</a>
+	</form>
 </nav>

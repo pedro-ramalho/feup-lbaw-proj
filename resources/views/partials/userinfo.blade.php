@@ -1,4 +1,4 @@
-<div id="user-info" class="mt-4 flex flex-col items-center gap-y-4">
+<div id="user-info" class="mt-8 flex flex-col items-center gap-y-4">
   <div id="user-img-username" class="flex flex-col items-center gap-y-2">
     <i class="fa-sharp fa-solid fa-user text-8xl"></i>
     <p id="username" class="text-xl font-semibold">{{ $user->username }}</p>
