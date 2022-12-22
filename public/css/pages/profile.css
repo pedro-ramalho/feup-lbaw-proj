@@ -1,39 +1,13 @@
 #profile-container {
   display: grid;
   grid-template-areas: "options options"
-                       "data  info";
+                       "info data";
 }
-
-#signin {
-  margin: 0;
-}
-
 
 /* profile options styling */
 
 #profile-options {
   grid-area: options;
-}
-
-#profile-options ul {
-  display: flex;
-  flex-direction: row;
-  column-gap: 2em;
-  margin: 0;
-
-  justify-content: center;
-
-  color: white;
-  padding: 10px;
-
-  font-size: 1.2em;
-
-  list-style-type: none;
-  list-style-position: inside;
-}
-
-#profile-options ul li {
-  font-weight: 600;
 }
 
 /* user data styling */
@@ -43,7 +17,6 @@ div #user-data {
 
   justify-self: center;
 
-  margin-top: 1em;
 
   display: flex;
   flex-direction: column;
@@ -73,131 +46,6 @@ div #user-data {
 
 div #user-info {
   grid-area: info;
-  display: flex;
-  flex-direction: column;
-  background-color: rgb(242, 242, 242);
-
-  margin-top: 1em;
-
-  justify-self: center;
-  align-items: center;
-
-  border: 1px solid #d5d5d5;
-  border-radius: 5px;
 }
 
-#user-details {
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  align-content: center;
-  justify-items: center;
-
-  border-radius: 2px;
-  color: black;
-  padding: 1em;
-  row-gap: 2em;
-  border-bottom: 1px solid #dfdede;
-}
-
-#user-img-username {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#user-img-username > img {
-  width: 50%;
-}
-
-#username-rep {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#username {
-  font-size: 1.2em;
-  font-weight: 600;
-}
-
-#reputation-icon-container {
-  display: flex;
-  flex-direction: column;
-  row-gap: 0;
-  align-items: center;
-}
-
-.user-rep-icon-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  column-gap: 5px;
-}
-
-.user-rep-icon-container p {
-  font-size: 1.2em;
-  font-weight: 600;
-}
-
-#user-biography {
-  display: flex;
-  flex-direction: row;
-  column-gap: 1em;
-  align-items: center;
-}
-
-#edit-profile {
-  margin-top: 1em;
-}
-
-#user-biography a {
-  height: fit-content;
-  color: #2B2D42;
-}
-
-.user-rep-icon-container img {
-  width: 3em;
-}
-
-#reputation-icon-container > p {
-
-}
-
-#user-misc {
-  display: flex;
-  flex-direction: row;
-
-  column-gap: 2em;
-}
-
-.user-misc-info-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.user-misc-info-container p {
-  margin: 0;
-  font-size: 1.2em;
-}
-
-.user-info-icon-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  
-  column-gap: 5px;
-}
-
-.user-info-icon-container {
-  font-weight: 550;
-  margin-bottom: 5px;
-}
-
-.user-profile-icon {
-  width: 2em;
-  filter: invert(0%) sepia(90%) saturate(7459%) hue-rotate(59deg) brightness(105%) contrast(111%);
-}
 

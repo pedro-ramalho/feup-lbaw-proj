@@ -50,7 +50,7 @@
     <script src={{ asset('js/dropdown.js') }} defer> </script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
+  <body class="bg-white font-sans"> 
     @include('layouts.header')
     <main>
         @yield('content')

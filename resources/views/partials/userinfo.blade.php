@@ -1,54 +1,40 @@
-<div id="user-info">
-  <section id="user-details">
-    <div id="user-img-username">
-      <img src="{{ asset('img/icon/profile.svg') }}">
-      <div id="username-rep">
-        <p id="username">{{ $user->username }}</p>
-        <div id="reputation-icon-container">
-          <div class="user-rep-icon-container">
-            <img class="user-profile-icon" src="{{asset('img/icon/star.svg')}}">
-            <p>10 Reputation</p>
-          </div>
-        </div> 
-      </div>
+<div id="user-info" class="mt-4 flex flex-col items-center gap-y-4">
+  <div id="user-img-username" class="flex flex-col items-center gap-y-2">
+    <i class="fa-sharp fa-solid fa-user text-8xl"></i>
+    <p id="username" class="text-xl font-semibold">{{ $user->username }}</p>
+  </div>
+  <div id="cday-rep-container" class="flex gap-x-6 justify-between text-xl">
+    <div id="carrot-day" class="flex items-center gap-x-2">
+      <i class="fa-solid fa-calendar"></i>
+      <p><span>{{ date('Y-m-d', strtotime($user->register_date))}}</span></p>
     </div>
-    <div id="user-misc">
-      <div id="user-num-posts" class="user-misc-info-container">
-        <div id="posts-icon-container" class="user-info-icon-container">
-          <img class="user-profile-icon" src="{{asset('img/icon/post.svg')}}">
-          <p>Posts</p>
-        </div>
-        <p>{{ $user->content()->where('is_post', TRUE)->get()->count() }}</p>
-      </div>
-      <div id="user-num-comments" class="user-misc-info-container">
-        <div id="comments-icon-container" class="user-info-icon-container">
-          <img class="user-profile-icon" src="{{asset('img/icon/comment.svg')}}">
-          <p>Comments</p>
-        </div>
-        <p>{{ $user->content()->where('is_post', FALSE)->get()->count() }}</p>
-      </div>
-      <div id="user-num-followers" class="user-misc-info-container">
-        <div id="follower-icon-container" class="user-info-icon-container">
-          <img class="user-profile-icon" src="{{asset('img/icon/user.svg')}}">
-          <p>Followers</p>
-        </div>
-        <p>20</p>
-      </div>
-      <div id="user-carrot-day" class="user-misc-info-container">
-        <div id="calendar-icon-container" class="user-info-icon-container">
-          <img class="user-profile-icon" src="{{asset('img/icon/calendar.svg')}}">
-          <p>Carrot Day</p>
-        </div>
-        <p>{{ date('Y-m-d', strtotime($user->register_date))}}</p>
-      </div>
+    <div id="reputation" class="flex items-center gap-x-2">
+      <i class="fa-solid fa-trophy text-lg"></i>
+      <p><span class="font-semibold text-green-500">30</span> reputation</p>
     </div>
-  </section>
+  </div>
   <article id="user-biography">
     @if (Auth::user()->id === $user->id)
-      <p>{{ $user->biography }}</p>
-      <a href="{{ route('edit', $user->id) }}"><i class="fa-solid fa-pen"></i></a>
+      <div class="flex items-center gap-x-2 text-lg">
+        <p class="text-left">{{ $user->biography }}</p>
+        <a href="{{ route('edit', $user->id) }}"><i class="fa-solid fa-pen"></i></a>
+      </div>
     @else 
-      <p>{{ $user->biography }}</p>
+      <p class="text-left">{{ $user->biography }}</p>
     @endif
   </article>
+  <div id="user-misc" class="flex gap-x-4 text-lg">
+    <div id="user-num-followers" class="flex items-center gap-x-2">
+      <i class="fa-solid fa-users text-gray-500"></i>
+      <p class="font-light"><span class="font-medium">20</span> followers</p>
+    </div>
+    <div id="user-num-posts" class="flex items-center gap-x-2">
+      <i class="fa-solid fa-message text-gray-500"></i>
+      <p class="font-light"><span class="font-medium">{{ $user->content()->where('is_post', TRUE)->get()->count() }}</span> posts</p>
+    </div>
+    <div id="user-num-comments" class="flex items-center gap-x-2">
+      <i class="fa-solid fa-comment text-gray-500"></i>
+      <p class="font-light"><span class="font-medium">{{ $user->content()->where('is_post', FALSE)->get()->count() }}</span> comments</p>
+    </div>
+  </div>
 </div>
