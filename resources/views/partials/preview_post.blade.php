@@ -1,33 +1,28 @@
-<section class="preview-post">
-  <div id="preview-post-header">
-    <h1>{{ $post->title }}</h1>
-    <a href="{{ route('post', $post->id) }}">
-      <img src="{{ asset('img/icon/expand.svg') }}" class="user-data-icon">
-    </a>
-  </div>
-  <p class="preview-post-tag">TAG</p>
-  <div class="preview-post-actions">
+<section class="preview-post flex flex-col gap-y-4 p-4 border-2 border-gray-200">
+  <h2 class="text-2xl font-medium self-start"><a href="{{ route('post', $post->id) }}">{{ $post->title }}</a></h2>
+  <p class="p-2 font-medium bg-green-500 rounded-md text-center w-fit text-white">TAG</p>
+  <div class="flex gap-x-24">
     <div class="preview-post-rating">
-      <div id="preview-post-like" class="user-data-icon-container">
-        <img src="{{ asset('img/icon/like.svg') }}" class="user-data-icon">
-        <p>{{ $post->likes }}</p>
+      <div id="preview-post-like" class="flex gap-x-2 items-center">
+        <i class="fa-solid fa-thumbs-up text-gray-500 text-3xl"></i>
+        <p class="font-normal"><span>{{ $post->likes }}</span></p>
       </div>
-      <div id="preview-post-dislike" class="user-data-icon-container">
-        <img src="{{ asset('img/icon/dislike.svg') }}" class="user-data-icon">
-        <p>{{ $post->dislikes }}</p>
+      <div id="preview-post-dislike" class="flex gap-x-2 items-center">
+        <i class="fa-solid fa-thumbs-down text-gray-500 text-3xl"></i>
+        <p><span>{{ $post->dislikes }}</span></p>
       </div>
     </div>
-    <div id="preview-post-comment" class="user-data-icon-container">
-      <img src="{{ asset('img/icon/comment.svg') }}" class="user-data-icon">
-      <p>17</p>
+    <div id="preview-post-comment" class="flex gap-x-2 items-center">
+      <i class="fa-solid fa-comment text-gray-500 text-3xl"></i>
+      <p class="font-medium">17 comments</p>
     </div>
-    <div id="preview-post-favorite" class="user-data-icon-container">
-      <img src="{{ asset('img/icon/favorite.svg') }}" class="user-data-icon">
-      <p>Add to favorites</p>
+    <div id="preview-post-favorite" class="flex gap-x-2 items-center">
+      <i class="fa-solid fa-heart text-gray-500 text-3xl"></i>
+      <p class="font-medium">Add to favorites</p>
     </div>
-    <div id="preview-post-report" class="user-data-icon-container">
-      <img src="{{ asset('img/icon/report.svg') }}" class="user-data-icon">
-      <p>Report post</p>
+    <div id="preview-post-report" class="flex gap-x-2 items-center">
+      <i class="fa-solid fa-flag text-gray-500 text-3xl"></i>
+      <p class="font-medium">Report post</p>
     </div>
   </div>
 </section>

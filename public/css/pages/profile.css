@@ -10,39 +10,15 @@
   grid-area: options;
 }
 
-/* user data styling */
-
 div #user-data {
   grid-area: data;
 
   justify-self: center;
 
-
   display: flex;
   flex-direction: column;
   row-gap: 2em;
 }
-
-#user-data-options ul {
-  display: flex;
-  flex-direction: row;
-  column-gap: 2em;
-  margin: 0;
-
-  justify-content: flex-start;
-
-  background-color: #DF2C56;
-  border-bottom: 2px solid #c0002d;
-  color: white;
-  padding: 20px;
-
-  font-size: 1.2em;
-
-  list-style-type: none;
-  list-style-position: inside;
-}
-
-/* user info styling */
 
 div #user-info {
   grid-area: info;
