@@ -4,7 +4,7 @@
 @section('content')
 
   <div id="profile-container">
-    <nav id="profile-options">
+    <nav id="profile-options" class="bg-gray-900">
       <ul>
         <li id="opt-overview">OVERVIEW</li>
         <li id="opt-posts">POSTS</li>
