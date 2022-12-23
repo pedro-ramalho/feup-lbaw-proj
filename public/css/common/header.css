@@ -20,5 +20,6 @@ header > #search-bar-container > form {
   justify-content: center;
 }
 
-
-
+.show {
+  visibility: hidden;
+}
