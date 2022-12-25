@@ -1,42 +1,14 @@
-<section class="preview-post flex flex-col gap-y-4 p-4 border-2 border-gray-200 max-w-4xl">
+<section class="preview-post flex flex-col gap-y-4 p-4 border-2 border-gray-200">
   <h2 class="text-2xl font-medium self-start"><a href="{{ route('post', $post->id) }}">{{ $post->title }}</a></h2>
   <p class="p-2 font-medium bg-green-500 rounded-md text-center w-fit text-white">TAG</p>
   <div class="flex gap-x-24">
     <div class="preview-post-rating">
       <div id="preview-post-like" class="flex gap-x-2 items-center">
-      @if ($post->content->likers->contains(Auth::user()))
-        <form action="{{ route('remove_like_post', $post->id) }}" method="post" class="form-button">
-          {{ csrf_field() }}
-          <button class="remove-like-post-button" type="submit">
-            <i class="fa-solid fa-thumbs-up text-black text-3xl"></i>
-          </button>
-        </form>
-      @else
-        <form action="{{ route('like_post', $post->id) }}" method="post" class="form-button">
-          {{ csrf_field() }}
-          <button class="like-post-button" type="submit">
-            <i class="fa-solid fa-thumbs-up text-gray-500 text-3xl"></i>
-          </button>
-        </form>
-      @endif
+        <i class="fa-solid fa-thumbs-up text-gray-500 text-3xl"></i>
         <p class="font-normal"><span>{{ $post->likes }}</span></p>
       </div>
       <div id="preview-post-dislike" class="flex gap-x-2 items-center">
-      @if ($post->content->dislikers->contains(Auth::user()))
-        <form action="{{ route('remove_dislike_post', $post->id) }}" method="post" class="form-button">
-          {{ csrf_field() }}
-          <button class="remove-dislike-post-button" type="submit">
-            <i class="fa-solid fa-thumbs-down text-black text-3xl"></i>
-          </button>
-        </form>
-      @else
-        <form action="{{ route('dislike_post', $post->id) }}" method="post" class="form-button">
-          {{ csrf_field() }}
-          <button class="dislike-post-button" type="submit">
-            <i class="fa-solid fa-thumbs-down text-gray-500 text-3xl"></i>
-          </button>
-        </form>
-      @endif
+        <i class="fa-solid fa-thumbs-down text-gray-500 text-3xl"></i>
         <p><span>{{ $post->dislikes }}</span></p>
       </div>
     </div>
