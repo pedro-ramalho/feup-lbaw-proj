@@ -4,11 +4,39 @@
   <div class="flex gap-x-24">
     <div class="preview-post-rating">
       <div id="preview-post-like" class="flex gap-x-2 items-center">
-        <i class="fa-solid fa-thumbs-up text-gray-500 text-3xl"></i>
+      @if ($post->content->likers->contains(Auth::user()))
+        <form action="{{ route('remove_like_post', $post->id) }}" method="post" class="form-button">
+          {{ csrf_field() }}
+          <button class="remove-like-post-button" type="submit">
+            <i class="fa-solid fa-thumbs-up text-black text-3xl"></i>
+          </button>
+        </form>
+      @else
+        <form action="{{ route('like_post', $post->id) }}" method="post" class="form-button">
+          {{ csrf_field() }}
+          <button class="like-post-button" type="submit">
+            <i class="fa-solid fa-thumbs-up text-gray-500 text-3xl"></i>
+          </button>
+        </form>
+      @endif
         <p class="font-normal"><span>{{ $post->likes }}</span></p>
       </div>
       <div id="preview-post-dislike" class="flex gap-x-2 items-center">
-        <i class="fa-solid fa-thumbs-down text-gray-500 text-3xl"></i>
+      @if ($post->content->dislikers->contains(Auth::user()))
+        <form action="{{ route('remove_dislike_post', $post->id) }}" method="post" class="form-button">
+          {{ csrf_field() }}
+          <button class="remove-dislike-post-button" type="submit">
+            <i class="fa-solid fa-thumbs-down text-black text-3xl"></i>
+          </button>
+        </form>
+      @else
+        <form action="{{ route('dislike_post', $post->id) }}" method="post" class="form-button">
+          {{ csrf_field() }}
+          <button class="dislike-post-button" type="submit">
+            <i class="fa-solid fa-thumbs-down text-gray-500 text-3xl"></i>
+          </button>
+        </form>
+      @endif
         <p><span>{{ $post->dislikes }}</span></p>
       </div>
     </div>

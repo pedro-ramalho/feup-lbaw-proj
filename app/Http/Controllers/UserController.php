@@ -80,4 +80,6 @@ class UserController extends Controller
     public function reports() {
         return $this->hasMany(ReportInformation::class, 'id_content');
     }
+
+
 }
