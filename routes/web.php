@@ -46,6 +46,10 @@ Route::post('register', 'Auth\RegisterController@register');
 // Post
 Route::get('post/{id}', 'PostController@show')->name('post');
 Route::get('post/{id}/edit', 'PostController@getEditForm')->name('edit_post');
+Route::post('post/{id}/like', 'PostController@likePost')->name('like_post');
+Route::post('post/{id}/remLike', 'PostController@removeLikePost')->name('remove_like_post');
+Route::post('post/{id}/dislike', 'PostController@dislikePost')->name('dislike_post');
+Route::post('post/{id}/remDislike', 'PostController@removeDislikePost')->name('remove_dislike_post');
 Route::delete('post/{id}', 'PostController@destroy')->name('delete_post');
 Route::post('post/{id}/edit', 'PostController@processEditForm');
 Route::get('community/{id}/submit', 'PostController@create')->name('submit_post');
