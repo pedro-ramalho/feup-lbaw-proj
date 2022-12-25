@@ -1,5 +1,5 @@
-<nav id="sort">
-	<form class="flex bg-gray-500 rounded-md text-xl text-white p-4 gap-x-12 w-auto border border-gray-600 font-semibold"> 
+<nav id="sort" class="sort">
+	<form class="flex bg-gray-500 rounded-md text-xl text-white p-4 gap-x-12 border border-gray-600 font-semibold"> 
 		<a href="{{ route('hot') }}" class="flex gap-x-3 items-center p-2 hover:bg-gray-700 rounded-md"> 
 			<i class="fa fa-fire"></i>
 			<p>Hot</p>

@@ -23,3 +23,9 @@ header > #search-bar-container > form {
 .show {
   visibility: hidden;
 }
+
+/* temporary class to test the sizing of the navbar */
+.sort {
+  width: 896px;
+  max-width: 896px;
+}

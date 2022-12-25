@@ -32,6 +32,7 @@ class Post extends Model
     public function favorite() {
         return $this->belongsToMany(User::class);
     }
+    
     protected $appends= ['likes'];
     protected $table = 'post';
 }

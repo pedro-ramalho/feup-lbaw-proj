@@ -46,7 +46,8 @@
         // See: http://stackoverflow.com/questions/18943276/html-5-autofocus-messes-up-css-loading/18945951#18945951
     </script>
     <script type="text/javascript" src={{ asset('js/app.js') }} defer> </script>
-    <script src={{ asset('js/dropdown.js') }} defer> </script>
+    <script src={{ asset('js/dropdown.js') }} defer></script>
+    <script src={{ asset('js/profile.js') }} defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-white font-sans"> 
