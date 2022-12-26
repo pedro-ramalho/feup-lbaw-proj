@@ -35,7 +35,7 @@
 
     <div id="signin-signup-container" class="flex flex-col items-center gap-y-2 mt-2">
         <button type="submit" class="p-1 bg-green-500 border border-green-600 hover:bg-green-600 hover:cursor-pointer rounded-md w-full font-semibold text-white">Sign in</button>
-        <a class="button button-outline p-1 border-2 border-gray-300 rounded-md text-base text-center w-full" href="{{ route('register') }}">New to Rabbit? <span class="text-sky-600">Create an account.</span></a>
+        <a class="button button-outline p-1 text-base text-center w-full" href="{{ route('register') }}">New to Rabbit? <span class="text-sky-600">Create an account.</span></a>
     </div>
 </form>
 </section>

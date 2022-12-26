@@ -42,8 +42,8 @@
   </div>
   @else
   <div id="header-signup-container" class="flex justify-center gap-x-4">
-    <a href="{{ route('login') }}" id="header-signin" class="p-1 font-medium">Sign in</a>
-    <a href="{{ route('register') }}" id="header-signup" class="p-1 border border-2-white rounded-lg font-medium">Sign up</a>
+    <a href="{{ route('login') }}" id="header-signin" class="p-1 font-medium hover:text-gray-300 hover:cursor-pointer">Sign in</a>
+    <a href="{{ route('register') }}" id="header-signup" class="p-1 border border-2-white rounded-lg font-medium hover:text-gray-300 hover:border-gray-300 hover:cursor-pointer">Sign up</a>
   </div>
   @endif
 </header>
