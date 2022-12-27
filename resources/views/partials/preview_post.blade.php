@@ -5,17 +5,17 @@
     <div class="preview-post-rating">
       <div id="preview-post-like" class="flex gap-x-2 items-center">
         @if ($post->content->likers->contains(Auth::user()))
-            <button data-id="{{ $post->id}} " class="like-post-button" type="submit">
-              <i class="fa-solid fa-thumbs-up text-black text-3xl"></i>
+            <button id="post{{$post->id}}" data-id="{{$post->id}} " class="like-post-button" type="submit">
+            <i id="post{{$post->id}}symb" class="fa-solid fa-thumbs-up text-black text-3xl"></i>
             </button>
           </form>
         @else
-            <button data-id="{{ $post->id}} " class="like-post-button" type="submit">
-              <i class="fa-solid fa-thumbs-up text-gray-500 text-3xl"></i>
+            <button id="post{{$post->id}}" data-id="{{$post->id}}" class="like-post-button" type="submit">
+              <i id="post{{$post->id}}symb" class="fa-solid fa-thumbs-up text-gray-500 text-3xl"></i>
             </button>
           </form>
         @endif
-        <p class="font-normal"><span>{{ $post->likes }}</span></p>
+        <p class="font-normal" id="post{{$post->id}}likes"> <span>{{ $post->likes }}</span></p>
       </div>
       <div id="preview-post-dislike" class="flex gap-x-2 items-center">
         @if ($post->content->dislikers->contains(Auth::user()))

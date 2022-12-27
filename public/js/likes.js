@@ -1,31 +1,51 @@
 const likeButtons = document.querySelectorAll(".like-post-button");
 const dislikeButtons = document.querySelectorAll(".dislike-post-button");
+const csrfToken = document.querySelector("[name='csrf-token']").content
 
 likeButtons.forEach(function(currentBtn){
-    currentBtn.addEventListener("click", ajaxLike);
+    currentBtn.addEventListener("click", ajaxLike.bind(this, currentBtn.getAttribute('data-id')));
 })
 
 
+function ajaxLike(post_id){
 
 
+    fetch("/post/"+parseInt(post_id)+"/like", {
 
-function ajaxLike(){
+    method: 'POST',
+ 
 
-    var post_id = $(this).data('id');
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        "X-CSRF-Token": csrfToken
+    }
 
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }).then((response) => response.json())
+    .then(response => {
+
+
+    var like = document.getElementById("post"+parseInt(post_id)+"likes").textContent;
+
+    if(response.wasLiked){
+
+        document.getElementById("post"+parseInt(post_id)+"symb").classList = "fa-solid fa-thumbs-up text-gray-500 text-3xl";
+        document.getElementById("post"+parseInt(post_id)+"likes").innerHTML=parseInt(like)-1;
+    }
+    else{
+        document.getElementById("post"+parseInt(post_id)+"symb").classList = "fa-solid fa-thumbs-up text-black text-3xl";
+        document.getElementById("post"+parseInt(post_id)+"likes").innerHTML=parseInt(like)+1;
         }
-    });
 
-    $.ajax({
-        type:'Post',
-        url:'/post/like',
-        data:{post_id:post_id},
-        success:function(data){
-            console.log(data);
-        }
-    });
+    console.log(response);
+    
+
+}).catch((error) => {
+
+    console.log(error)
+
+})
+
+
 }
 
