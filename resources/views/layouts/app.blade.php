@@ -48,7 +48,9 @@
     <script type="text/javascript" src={{ asset('js/app.js') }} defer> </script>
     <script src={{ asset('js/dropdown.js') }} defer></script>
     <script src={{ asset('js/profile.js') }} defer></script>
+    <script src={{ asset('js/likes.js') }} defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
   </head>
   <body class="bg-white font-sans"> 
     @include('layouts.header')

@@ -186,22 +186,21 @@ class PostController extends Controller
         abort(403);
     }
     }
-    public function likePost(int $id){
+    public function likePost(Request $request){
+        
         if (Auth::check()) {
-        DB::table('content_rate')->where('id_content', $id)->where('id_user', Auth::id())->where('liked', FALSE)->delete();
-        DB::table('content_rate')->insert([
-                'id_content'=> $id,
-                'id_user'=> Auth::id(),
-                'liked'=> TRUE
-            ]);
-        }
-        return redirect(route('main'));
-    }
-    public function removeLikePost(int $id){
-        if (Auth::check()){
-            DB::table('content_rate')->where('id_content', $id)->where('id_user', Auth::id())->where('liked', TRUE)->delete();
-        }
-        return redirect(route('main'));
+            if(Content::find($request->post_id)->likers->contains(Auth::user())){
+                DB::table('content_rate')->where('id_content', $request->post_id)->where('id_user', Auth::id())->where('liked', TRUE)->delete();
+            }
+            else{
+                DB::table('content_rate')->where('id_content', $request->post_id)->where('id_user', Auth::id())->where('liked', FALSE)->delete();
+                DB::table('content_rate')->insert([
+                    'id_content'=> $request->post_id,
+                    'id_user'=> Auth::id(),
+                    'liked'=> TRUE]);
+                }
+            }
+            return response()->json(['status' => 'success']);
     }
     public function dislikePost(int $id){
         if (Auth::check()) {
