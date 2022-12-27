@@ -5,7 +5,9 @@ const csrfToken = document.querySelector("[name='csrf-token']").content
 likeButtons.forEach(function(currentBtn){
     currentBtn.addEventListener("click", ajaxLike.bind(this, currentBtn.getAttribute('data-id')));
 })
-
+dislikeButtons.forEach(function(currentBtn){
+    currentBtn.addEventListener("click", ajaxDislike.bind(this, currentBtn.getAttribute('data-id')));
+})
 
 function ajaxLike(post_id){
 
@@ -29,11 +31,11 @@ function ajaxLike(post_id){
 
     if(response.wasLiked){
 
-        document.getElementById("post"+parseInt(post_id)+"symb").classList = "fa-solid fa-thumbs-up text-gray-500 text-3xl";
+        document.getElementById("like-post"+parseInt(post_id)+"-symb").classList = "fa-solid fa-thumbs-up text-gray-500 text-3xl";
         document.getElementById("post"+parseInt(post_id)+"likes").innerHTML=parseInt(like)-1;
     }
     else{
-        document.getElementById("post"+parseInt(post_id)+"symb").classList = "fa-solid fa-thumbs-up text-black text-3xl";
+        document.getElementById("like-post"+parseInt(post_id)+"-symb").classList = "fa-solid fa-thumbs-up text-black text-3xl";
         document.getElementById("post"+parseInt(post_id)+"likes").innerHTML=parseInt(like)+1;
         }
 
@@ -45,7 +47,44 @@ function ajaxLike(post_id){
     console.log(error)
 
 })
-
-
 }
 
+function ajaxDislike(post_id){
+
+
+    fetch("/post/"+parseInt(post_id)+"/dislike", {
+
+    method: 'POST',
+ 
+
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        "X-CSRF-Token": csrfToken
+    }
+
+    }).then((response) => response.json())
+    .then(response => {
+
+
+    var dislike = document.getElementById("post"+parseInt(post_id)+"dislikes").textContent;
+
+    if(response.wasDisliked){
+
+        document.getElementById("dislike-post"+parseInt(post_id)+"-symb").classList = "fa-solid fa-thumbs-down text-gray-500 text-3xl";
+        document.getElementById("post"+parseInt(post_id)+"dislikes").innerHTML=parseInt(dislike)-1;
+    }
+    else{
+        document.getElementById("dislike-post"+parseInt(post_id)+"-symb").classList = "fa-solid fa-thumbs-down text-black text-3xl";
+        document.getElementById("post"+parseInt(post_id)+"dislikes").innerHTML=parseInt(dislike)+1;
+        }
+
+    console.log(response.wasDisliked);
+    
+
+}).catch((error) => {
+
+    console.log(error)
+
+})
+}

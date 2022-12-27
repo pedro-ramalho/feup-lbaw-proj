@@ -5,35 +5,31 @@
     <div class="preview-post-rating">
       <div id="preview-post-like" class="flex gap-x-2 items-center">
         @if ($post->content->likers->contains(Auth::user()))
-            <button id="post{{$post->id}}" data-id="{{$post->id}} " class="like-post-button" type="submit">
-            <i id="post{{$post->id}}symb" class="fa-solid fa-thumbs-up text-black text-3xl"></i>
+            <button id="like-post{{$post->id}}" data-id="{{$post->id}} " class="like-post-button" type="submit">
+            <i id="like-post{{$post->id}}-symb" class="fa-solid fa-thumbs-up text-black text-3xl"></i>
             </button>
           </form>
         @else
-            <button id="post{{$post->id}}" data-id="{{$post->id}}" class="like-post-button" type="submit">
-              <i id="post{{$post->id}}symb" class="fa-solid fa-thumbs-up text-gray-500 text-3xl"></i>
+            <button id="like-post{{$post->id}}" data-id="{{$post->id}}" class="like-post-button" type="submit">
+              <i id="like-post{{$post->id}}-symb" class="fa-solid fa-thumbs-up text-gray-500 text-3xl"></i>
             </button>
           </form>
         @endif
         <p class="font-normal" id="post{{$post->id}}likes"> <span>{{ $post->likes }}</span></p>
       </div>
       <div id="preview-post-dislike" class="flex gap-x-2 items-center">
-        @if ($post->content->dislikers->contains(Auth::user()))
-          <form action="{{ route('remove_dislike_post', $post->id) }}" method="post" class="form-button">
-            {{ csrf_field() }}
-            <button class="dislike-post-button" type="submit">
-              <i class="fa-solid fa-thumbs-down text-black text-3xl"></i>
+      @if ($post->content->dislikers->contains(Auth::user()))
+            <button id="dislike-post{{$post->id}}" data-id="{{$post->id}} " class="dislike-post-button" type="submit">
+            <i id="dislike-post{{$post->id}}-symb" class="fa-solid fa-thumbs-down text-black text-3xl"></i>
             </button>
           </form>
         @else
-          <form action="{{ route('dislike_post', $post->id) }}" method="post" class="form-button">
-            {{ csrf_field() }}
-            <button class="dislike-post-button" type="submit">
-              <i class="fa-solid fa-thumbs-down text-gray-500 text-3xl"></i>
+            <button id="dislike-post{{$post->id}}" data-id="{{$post->id}}" class="dislike-post-button" type="submit">
+              <i id="dislike-post{{$post->id}}-symb" class="fa-solid fa-thumbs-down text-gray-500 text-3xl"></i>
             </button>
           </form>
         @endif
-        <p><span>{{ $post->dislikes }}</span></p>
+        <p class="font-normal" id="post{{$post->id}}dislikes"> <span>{{$post->dislikes}}</span></p>
       </div>
     </div>
     <div id="preview-post-comment" class="flex gap-x-2 items-center">
