@@ -33,10 +33,21 @@ function ajaxLike(post_id){
 
         document.getElementById("like-post"+parseInt(post_id)+"-symb").classList = "fa-solid fa-thumbs-up text-gray-500 text-3xl";
         document.getElementById("post"+parseInt(post_id)+"likes").innerHTML=parseInt(like)-1;
+        document.getElementById("like-post"+parseInt(post_id)).setAttribute("data-likepressed","0");
     }
     else{
+        if(document.getElementById("dislike-post"+parseInt(post_id)).getAttribute("data-dislikepressed")== "1"){
+            
+            var dislike = document.getElementById("post"+parseInt(post_id)+"dislikes").textContent;
+            document.getElementById("dislike-post"+parseInt(post_id)+"-symb").classList = "fa-solid fa-thumbs-down text-gray-500 text-3xl";
+            document.getElementById("post"+parseInt(post_id)+"dislikes").innerHTML=parseInt(dislike)-1;
+            document.getElementById("dislike-post"+parseInt(post_id)).setAttribute("data-dislikepressed","0");
+            
+        }
+        
         document.getElementById("like-post"+parseInt(post_id)+"-symb").classList = "fa-solid fa-thumbs-up text-black text-3xl";
         document.getElementById("post"+parseInt(post_id)+"likes").innerHTML=parseInt(like)+1;
+        document.getElementById("like-post"+parseInt(post_id)).setAttribute("data-likepressed","1");
         }
 
     console.log(response);
@@ -73,10 +84,21 @@ function ajaxDislike(post_id){
 
         document.getElementById("dislike-post"+parseInt(post_id)+"-symb").classList = "fa-solid fa-thumbs-down text-gray-500 text-3xl";
         document.getElementById("post"+parseInt(post_id)+"dislikes").innerHTML=parseInt(dislike)-1;
+        document.getElementById("dislike-post"+parseInt(post_id)).setAttribute("data-dislikepressed","0");
     }
     else{
+
+        if(document.getElementById("like-post"+parseInt(post_id)).getAttribute("data-likepressed")== "1"){
+
+            var like = document.getElementById("post"+parseInt(post_id)+"likes").textContent;
+            document.getElementById("like-post"+parseInt(post_id)+"-symb").classList = "fa-solid fa-thumbs-up text-gray-500 text-3xl";
+            document.getElementById("post"+parseInt(post_id)+"likes").innerHTML=parseInt(like)-1;
+            document.getElementById("like-post"+parseInt(post_id)).setAttribute("data-likepressed","0");
+            
+        }
         document.getElementById("dislike-post"+parseInt(post_id)+"-symb").classList = "fa-solid fa-thumbs-down text-black text-3xl";
         document.getElementById("post"+parseInt(post_id)+"dislikes").innerHTML=parseInt(dislike)+1;
+        document.getElementById("dislike-post"+parseInt(post_id)).setAttribute("data-dislikepressed","1");
         }
 
     console.log(response.wasDisliked);
