@@ -4,17 +4,11 @@
 
     @if (Auth::check())
         @if( $userFollowCommunities->contains($community) )
-        <form>
-            <button> Followed </button>
-        </form>
+            <button id="follow-button-{{$community->id}}" class="follow-button" data-id="{{$community->id}}"> Followed </button>
         @else
-        <form>
-            <button> Follow </button>
-        </form>
+            <button id="follow-button-{{$community->id}}" class="follow-button" data-id="{{$community->id}}"> Follow </button>
         @endif
     @else
-        <form>
             <button> Follow </button>
-        </form>
     @endif
 </div>

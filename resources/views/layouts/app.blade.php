@@ -48,6 +48,8 @@
     <script type="text/javascript" src={{ asset('js/app.js') }} defer> </script>
     <script src={{ asset('js/dropdown.js') }} defer></script>
     <script src={{ asset('js/profile.js') }} defer></script>
+    <script src={{ asset('js/like_dislike.js') }} defer></script>
+    <script src={{ asset('js/popular_communities.js') }} defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-white font-sans"> 

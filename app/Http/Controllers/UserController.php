@@ -58,10 +58,10 @@ class UserController extends Controller
 
     public function follow_community(int $id) {
         if (Auth::check()) {
-        DB::table('user_follow_community')->insert([
-            'id_follower' => Auth::id(),
-            'id_followee' => $id
-        ]);
+            DB::table('user_follow_community')->insert([
+                'id_follower' => Auth::id(),
+                'id_followee' => $id
+            ]);
         return redirect(route('community', $id));
         } else {
             return redirect(route('login'));
