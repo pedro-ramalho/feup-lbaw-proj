@@ -5,11 +5,11 @@
     <div class="preview-post-rating">
       <div id="preview-post-like" class="flex gap-x-2 items-center">
         <i class="fa-solid fa-thumbs-up text-gray-500 text-3xl"></i>
-        <p class="font-normal"><span>{{ $post->likes }}</span></p>
+        <p class="font-normal"><span>5</span></p>
       </div>
       <div id="preview-post-dislike" class="flex gap-x-2 items-center">
         <i class="fa-solid fa-thumbs-down text-gray-500 text-3xl"></i>
-        <p><span>{{ $post->dislikes }}</span></p>
+        <p><span>2</span></p>
       </div>
     </div>
     <div id="preview-post-comment" class="flex gap-x-2 items-center">

@@ -56,7 +56,7 @@ class User extends Authenticatable
     }
 
     public function rated() {
-        return $this->hasMany(Content::class, 'content_rate', 'id_user', 'id_content');
+        return $this->belongsToMany(Content::class, 'content_rate', 'id_user', 'id_content')->withPivot('liked');
     }
     
     public function reported() {
