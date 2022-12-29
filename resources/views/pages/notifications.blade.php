@@ -13,7 +13,18 @@ function get_like_notifications(int $id) {
   return $notifs;
 }
 
+function get_reply_notifications(int $id) {
+  $notifs = DB::table('users')
+            ->join('reply_notification', 'users.id', '=', 'reply_notification.id_received')
+            ->join('content', 'content.id', '=', 'reply_notification.id_comment')
+            ->where('users.id', '=', $id)
+            ->get();
+  
+  return $notifs;
+}
+
 $like_notifs = get_like_notifications($user->id);
+$reply_notifs = get_reply_notifications($user->id);
 
 ?>
 
@@ -37,8 +48,14 @@ $like_notifs = get_like_notifications($user->id);
       @include('partials.notification_like', ['notif' => $notif])
     @endforeach
   </div>
-  <div id="reply-notifications">
-    @include('partials.notification_reply', ['user' => $user])
+  <div id="reply-notifications" class="hidden flex-col gap-y-2">
+    <div id="preview-comment-like" class="flex gap-x-2 items-center justify-center p-4">
+      <i class="fa-solid fa-comment text-gray-900 text-3xl"></i>
+      <h1 class="text-2xl">Reply notifications</h1>
+    </div>
+    @foreach ($reply_notifs as $notif)
+      @include('partials.notification_reply', ['notif' => $notif])
+    @endforeach
   </div>
   <div id="follow-notifications">
     @include('partials.notification_follow', ['user' => $user])
