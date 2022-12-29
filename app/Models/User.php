@@ -68,4 +68,8 @@ class User extends Authenticatable
     public function follows() {
         return $this->belongsToMany(Community::class, 'user_follow_community', 'id_follower', 'id_followee');
     }
+
+    public function like_notification() {
+        return $this->belongsToMany(Content::class, 'like_notification', 'id_received', 'id_content')->withPivot('id_triggered');
+    }
 }

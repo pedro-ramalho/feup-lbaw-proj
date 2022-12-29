@@ -736,7 +736,7 @@ insert into content_rate (id_content, id_user, liked) values (19, 10, false);
 insert into content_rate (id_content, id_user, liked) values (26, 3, true);
 insert into content_rate (id_content, id_user, liked) values (11, 20, true);
 insert into content_rate (id_content, id_user, liked) values (24, 9, false);
-insert into content_rate (id_content, id_user, liked) values (2, 3, false);
+insert into content_rate (id_content, id_user, liked) values (2, 3, true);
 insert into content_rate (id_content, id_user, liked) values (6, 23, false);
 insert into content_rate (id_content, id_user, liked) values (7, 13, true);
 insert into content_rate (id_content, id_user, liked) values (8, 23, false);

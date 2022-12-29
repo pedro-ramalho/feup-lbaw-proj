@@ -16,7 +16,7 @@
       <a href="{{ route('admin') }}">Admin</a>
     @endif
     <a href="/"><i class="fa-solid fa-circle-info"></i></a>
-    <a href="/"><i class="fa-solid fa-bell"></i></a>
+    <a href="{{ route('notifications', Auth::id()) }}"><i class="fa-solid fa-bell"></i></a>
     <a href="/"><i class="fa-solid fa-plus"></i></a>
     <div id="user-section">
       <a href="{{ route('user', Auth::id()) }}"><i class="fa-sharp fa-solid fa-user"></i></a>
