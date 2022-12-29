@@ -23,8 +23,18 @@ function get_reply_notifications(int $id) {
   return $notifs;
 }
 
+function get_follow_notifications(int $id) {
+  $notifs = DB::table('users')
+            ->join('follow_notification', 'users.id', '=', 'follow_notification.id_received')
+            ->where('users.id', '=', $id)
+            ->get();
+  
+  return $notifs;
+}
+
 $like_notifs = get_like_notifications($user->id);
 $reply_notifs = get_reply_notifications($user->id);
+$follow_notifs = get_follow_notifications($user->id);
 
 ?>
 
@@ -40,7 +50,7 @@ $reply_notifs = get_reply_notifications($user->id);
     </ul>
   </nav>
   <div id="like-notifications" class="flex flex-col gap-y-2">
-    <div id="preview-comment-like" class="flex gap-x-2 items-center justify-center p-4">
+    <div class="flex gap-x-2 items-center justify-center p-4">
       <i class="fa-solid fa-thumbs-up text-gray-900 text-3xl"></i>
       <h1 class="text-2xl">Like notifications</h1>
     </div>
@@ -49,7 +59,7 @@ $reply_notifs = get_reply_notifications($user->id);
     @endforeach
   </div>
   <div id="reply-notifications" class="hidden flex-col gap-y-2">
-    <div id="preview-comment-like" class="flex gap-x-2 items-center justify-center p-4">
+    <div class="flex gap-x-2 items-center justify-center p-4">
       <i class="fa-solid fa-comment text-gray-900 text-3xl"></i>
       <h1 class="text-2xl">Reply notifications</h1>
     </div>
@@ -57,8 +67,14 @@ $reply_notifs = get_reply_notifications($user->id);
       @include('partials.notification_reply', ['notif' => $notif])
     @endforeach
   </div>
-  <div id="follow-notifications">
-    @include('partials.notification_follow', ['user' => $user])
+  <div id="follow-notifications" class="hidden flex-col gap-y-2">
+    <div class="flex gap-x-2 items-center justify-center p-4">
+      <i class="fa-solid fa-users text-gray-900 text-3xl"></i>
+      <h1 class="text-2xl">Reply notifications</h1>
+    </div>
+    @foreach ($follow_notifs as $notif)
+      @include('partials.notification_follow', ['notif' => $notif])
+    @endforeach
   </div>
 
 </section>
