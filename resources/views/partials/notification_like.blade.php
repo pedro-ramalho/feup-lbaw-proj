@@ -49,7 +49,14 @@ function date_string($date_string) {
     <i class="fa-sharp fa-solid fa-user text-3xl text-gray-700"></i>
     <p class="text-black font-medium"><?= get_username($notif->id_triggered) ?></p>
   </a>
-  <p class="text-gray-900 font-light">liked your <a href="{{ route('post', $notif->id_content) }}" class="text-sky-500">post</a> <?php echo date_string(substr($notif->created, 0, 19)) ?> </p>
+  <p class="text-gray-900 font-light">liked your
+    @if($notif->is_post)
+      <a href="{{ route('post', $notif->id_content) }}" class="text-sky-500">post</a> 
+    @else
+      <a href="{{ route('post', $notif->id_content) }}" class="text-sky-500">comment</a>
+    @endif
+      <?php echo date_string(substr($notif->created, 0, 19)) ?> 
+  </p>
   <i class="fa-solid fa-trash ml-auto text-red-600"></i>
 </article>
 
