@@ -40,17 +40,17 @@ function get_favorite_posts(int $id) {
 }
 ?>
 
-<div id="user-data" class="mt-8 w-px-896 max-w-4xl">
+<div id="user-data" class="mt-8 w-px-896 max-w-4xl flex flex-col gap-y-2">
   @include('layouts.sort')
 
-  <div id="profile-posts" class="flex flex-col gap-y-2 w-px-896 max-w-4xl">
+  <div id="profile-posts" class="flex flex-col w-px-896 max-w-4xl mt-4 gap-y-2">
     @each('partials.preview_post', $user->content()->where('is_post', TRUE)->join('post', 'content.id', '=', 'post.id')->get(), 'post')
   </div>
-  <div id="profile-comments" class="flex flex-col gap-y-2 w-px-896 max-w-4xl">
+  <div id="profile-comments" class="flex flex-col w-px-896 max-w-4xl gap-y-2">
     @each('partials.preview_comment', $user->content()->where('is_post', FALSE)->join('comment', 'content.id', '=', 'comment.id')->get(), 'comment')
   </div>
 
-  <div id="liked-content" class="flex flex-col gap-y-2 w-px-896 max-w-4xl">
+  <div id="liked-content" class="flex flex-col w-px-896 max-w-4xl gap-y-2">
     @if (!get_rated_posts($user->id, TRUE)->isEmpty())
       @each('partials.preview_post', get_rated_posts($user->id, TRUE), 'post')
     @endif
@@ -60,7 +60,7 @@ function get_favorite_posts(int $id) {
     @endif
   </div>
 
-  <div id="disliked-content" class="flex flex-col gap-y-2 w-px-896 max-w-4xl">
+  <div id="disliked-content" class="flex flex-col w-px-896 max-w-4xl gap-y-2">
     @if (!get_rated_posts($user->id, FALSE)->isEmpty())
       @each('partials.preview_post', get_rated_posts($user->id, FALSE), 'post')
     @endif
@@ -70,7 +70,7 @@ function get_favorite_posts(int $id) {
     @endif
   </div>
 
-  <div id="favorited-content" class="flex flex-col gap-y-2 w-px-896 max-w-4xl">
+  <div id="favorited-content" class="flex flex-col w-px-896 max-w-4xl gap-y-2">
     @if (!get_favorite_posts($user->id)->isEmpty())
       @each('partials.preview_post', get_favorite_posts($user->id), 'post')
     @endif

@@ -1,4 +1,4 @@
-<article class="preview-comment max-w-4xl w-full flex flex-col gap-y-4 p-4 border-2 border-gray-200 rounded-md">
+<article class="preview-comment max-w-4xl w-full flex flex-col gap-y-4 p-4 border-2 border-gray-300 rounded-sm">
   <div id="comment-header" class="flex gap-x-2 items-center pb-2 border-b">
     <i class="fa-sharp fa-solid fa-user text-xl"></i>
     <p class="text-sm"><span class="font-semibold">User</span> <span class="font-light">commented on</span><span class="font-semibold italic">c/community</span><span class="font-light"> 8 days ago</span></p>

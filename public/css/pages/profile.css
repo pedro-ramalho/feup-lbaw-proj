@@ -17,7 +17,6 @@ div #user-data {
 
   display: flex;
   flex-direction: column;
-  row-gap: 2em;
 }
 
 div #user-info {
