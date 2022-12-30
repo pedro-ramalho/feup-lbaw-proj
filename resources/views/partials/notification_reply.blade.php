@@ -11,5 +11,5 @@
     @endif
       <?php echo date_string(substr($notif->created, 0, 19)) ?> 
   </p>
-  <i class="fa-solid fa-trash ml-auto text-red-600"></i>
+  <i class="delete-notification fa-solid fa-trash ml-auto text-red-600 hover:cursor-pointer"></i>
 </article>

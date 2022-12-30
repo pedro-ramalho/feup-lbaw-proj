@@ -32,3 +32,24 @@ function showSingle(selected, opt) {
 optionLikes.addEventListener("click", showSingle.bind(this, likes, optionLikes));
 optionReplies.addEventListener("click", showSingle.bind(this, replies, optionReplies));
 optionFollows.addEventListener("click", showSingle.bind(this, follows, optionFollows));
+
+const deleteBtn = document.querySelectorAll(".delete-notification");
+const csrf = document.querySelector("[name='csrf-token']").content;
+
+deleteBtn.forEach.call(deleteBtn, function(deleter) {
+  deleter.addEventListener('click', deleteNotificationRequest)
+});
+
+function deleteNotificationRequest(userID) {
+  let id = this.closest('article').getAttribute('data-id');
+
+  sendAjaxRequest('delete', '/user/' + 2 + '/notifications', null, notificationDeletedHandler);
+}
+
+function notificationDeletedHandler() {
+  if (this.status != 200) window.location = '/';
+  let notification = JSON.parse(this.responseText);
+  let article = document.querySelector('article.notification[data-id="' + notification.id + '"]');
+
+  article.remove();
+}

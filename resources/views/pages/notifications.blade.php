@@ -35,7 +35,6 @@ function get_follow_notifications(int $id) {
 $like_notifs = get_like_notifications($user->id);
 $reply_notifs = get_reply_notifications($user->id);
 $follow_notifs = get_follow_notifications($user->id);
-
 ?>
 
 
@@ -55,7 +54,9 @@ $follow_notifs = get_follow_notifications($user->id);
       <h1 class="text-2xl">Like notifications</h1>
     </div>
     @foreach ($like_notifs as $notif)
-      @include('partials.notification_like', ['notif' => $notif])
+      @if(!$notif->read)
+        @include('partials.notification_like', ['notif' => $notif])
+      @endif
     @endforeach
   </div>
   <div id="reply-notifications" class="hidden flex-col gap-y-2">
@@ -64,7 +65,9 @@ $follow_notifs = get_follow_notifications($user->id);
       <h1 class="text-2xl">Reply notifications</h1>
     </div>
     @foreach ($reply_notifs as $notif)
-      @include('partials.notification_reply', ['notif' => $notif])
+      @if(!$notif->read)
+        @include('partials.notification_reply', ['notif' => $notif])
+      @endif
     @endforeach
   </div>
   <div id="follow-notifications" class="hidden flex-col gap-y-2">
@@ -73,7 +76,9 @@ $follow_notifs = get_follow_notifications($user->id);
       <h1 class="text-2xl">Reply notifications</h1>
     </div>
     @foreach ($follow_notifs as $notif)
-      @include('partials.notification_follow', ['notif' => $notif])
+      @if(!$notif->read)
+        @include('partials.notification_follow', ['notif' => $notif])
+      @endif      
     @endforeach
   </div>
 
