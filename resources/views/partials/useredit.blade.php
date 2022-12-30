@@ -23,5 +23,6 @@
         <textarea id="biography" class="p-2 bg-gray-200 border border-gray-300 rounded-md " name="biography" required autofocus> {{ $user->biography }} </textarea>
       </div>
       <button class="p-1 bg-green-500 border border-green-600 hover:bg-green-600 hover:cursor-pointer rounded-md w-full font-semibold text-white" type="submit">Save</button>
+      <a href="{{ route('delete', Auth::id()) }}" class="p-1 bg-red-500 border border-red-600 hover:bg-red-600 hover:cursor-pointer rounded-md w-full font-semibold text-white text-center">Delete your account</a>
   </form>
 </div>

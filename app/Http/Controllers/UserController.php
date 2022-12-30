@@ -29,6 +29,10 @@ class UserController extends Controller
         return view('pages.profile_edit', ['user' => Auth::user()]);
     }
 
+    public function getDeleteForm(int $id) {
+        return view('pages.profile_delete', ['user' => Auth::user()]);
+    }
+
     public function getNotifications(int $id) {
         // if (!Auth::check()) {
         //     abort(401);
@@ -54,6 +58,28 @@ class UserController extends Controller
         $user->save();
 
         return redirect(route('user', $id));
+    }
+
+    public function processDeleteForm(Request $request, int $id) {
+        if (Auth::user()->id !== $id) {
+            abort(403);
+        }
+
+        $pw = $request->input('password');
+        $cpw = $request->input('confirm-password');
+
+        // password field and confirm password field did not match
+        if ($pw !== $cpw) {
+            abort(403);
+        }
+
+        $user = User::findOrFail($id);
+
+        $user->is_deleted = TRUE;
+
+        $user->save();
+
+        return redirect(route('logout'));
     }
 
     public function delete(Request $request) {
