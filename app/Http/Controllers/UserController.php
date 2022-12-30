@@ -18,10 +18,6 @@ class UserController extends Controller
     }
 
     public function getEditForm(int $id) {
-        if (!Auth::check()) {
-            abort(401);
-        }
-
         if (Auth::user()->id !== $id) {
             abort(403);
         }
@@ -30,17 +26,17 @@ class UserController extends Controller
     }
 
     public function getDeleteForm(int $id) {
+        if (Auth::user()->id !== $id) {
+            abort(403);
+        }
+
         return view('pages.profile_delete', ['user' => Auth::user()]);
     }
 
     public function getNotifications(int $id) {
-        // if (!Auth::check()) {
-        //     abort(401);
-        // }
-
-        // if (Auth::user()->id !== $id) {
-        //     abort(403);
-        // }
+        if (Auth::user()->id !== $id) {
+            abort(403);
+        }
 
         return view('pages.notifications', ['user' => Auth::user()]);
     }

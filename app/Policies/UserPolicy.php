@@ -14,6 +14,10 @@ class UserPolicy
         return ($user->id) === (auth()->user()->id);
     }
 
+    public function edit(User $user) {
+        return ($user->id) === (Auth::user()->id);
+    }
+
     /**
      * Determine whether the user can view any models.
      *
