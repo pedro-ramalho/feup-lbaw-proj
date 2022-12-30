@@ -19,6 +19,8 @@ Route::get('/', function() {
 // Cards
 Route::get('main', 'MainController@show')->name('main');
 Route::get('main/hot', 'MainController@showHot')->name('hot');
+Route::get('main/new', 'MainController@showNew')->name('new');
+Route::get('main/top', 'MainController@showTop')->name('top');
 Route::get('user/{id}/edit', 'UserController@getEditForm')->name('edit');
 Route::post('user/{id}/edit', 'UserController@processEditForm');
 Route::get('user/{id}', 'UserController@show')->name('user');
