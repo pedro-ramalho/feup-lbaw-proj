@@ -20,7 +20,10 @@ Route::get('/', function() {
 Route::get('main', 'MainController@show')->name('main');
 Route::get('main/hot', 'MainController@showHot')->name('hot');
 Route::get('user/{id}/edit', 'UserController@getEditForm')->name('edit');
+Route::get('user/{id}/delete', 'UserController@getDeleteForm')->name('delete');
+Route::post('user/{id}/delete', 'UserController@processDeleteForm');
 Route::post('user/{id}/edit', 'UserController@processEditForm');
+Route::get('user/{id}/notifications', 'UserController@getNotifications')->name('notifications');
 Route::get('user/{id}', 'UserController@show')->name('user');
 
 // Admin

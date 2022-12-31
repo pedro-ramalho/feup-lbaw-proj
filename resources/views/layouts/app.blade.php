@@ -40,6 +40,8 @@
     <link href="{{ asset('css/common/aboutcommunity.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common/communityrules.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pages/community_edit.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/common/notifications.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/pages/search.css') }}" rel="stylesheet">
 
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
@@ -50,6 +52,9 @@
     <script src={{ asset('js/profile.js') }} defer></script>
     <script src={{ asset('js/like_dislike.js') }} defer></script>
     <script src={{ asset('js/popular_communities.js') }} defer></script>
+    <script src={{ asset('js/search.js') }} defer></script>
+    <script src={{ asset('js/notifications.js') }} defer></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-white font-sans"> 

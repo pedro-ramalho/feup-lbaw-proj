@@ -16,7 +16,7 @@
       <a href="{{ route('admin') }}">Admin</a>
     @endif
     <a href="/"><i class="fa-solid fa-circle-info"></i></a>
-    <a href="/"><i class="fa-solid fa-bell"></i></a>
+    <a href="{{ route('notifications', Auth::id()) }}"><i class="fa-solid fa-bell"></i></a>
     <a href="/"><i class="fa-solid fa-plus"></i></a>
     <div id="user-section">
       <a href="{{ route('user', Auth::id()) }}"><i class="fa-sharp fa-solid fa-user"></i></a>
@@ -41,9 +41,9 @@
     </div>
   </div>
   @else
-  <div id="header-signup-container">
-    <a href="{{ route('login') }}" id="header-signin">Sign in</a>
-    <a href="{{ route('register') }}" id="header-signup">Sign up</a>
+  <div id="header-signup-container" class="flex justify-center gap-x-4">
+    <a href="{{ route('login') }}" id="header-signin" class="p-1 font-medium hover:text-gray-300 hover:cursor-pointer">Sign in</a>
+    <a href="{{ route('register') }}" id="header-signup" class="p-1 border border-2-white rounded-lg font-medium hover:text-gray-300 hover:border-gray-300 hover:cursor-pointer">Sign up</a>
   </div>
   @endif
 </header>

@@ -2,6 +2,10 @@
     'root' => array(
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
+<<<<<<< HEAD
+=======
+        'reference' => '9a1a83d496acb2ad4220d63ae480f339bac5a948',
+>>>>>>> page/profile
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -56,8 +60,14 @@
             'dev_requirement' => false,
         ),
         'egulias/email-validator' => array(
+<<<<<<< HEAD
             'pretty_version' => '3.2.1',
             'version' => '3.2.1.0',
+=======
+            'pretty_version' => '3.2.2',
+            'version' => '3.2.2.0',
+            'reference' => '1ac0be80b32ea829009257934ecfd5ab20f24ba5',
+>>>>>>> page/profile
             'type' => 'library',
             'install_path' => __DIR__ . '/../egulias/email-validator',
             'aliases' => array(),
@@ -322,6 +332,10 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
+<<<<<<< HEAD
+=======
+            'reference' => '9a1a83d496acb2ad4220d63ae480f339bac5a948',
+>>>>>>> page/profile
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -540,8 +554,14 @@
             'dev_requirement' => false,
         ),
         'ramsey/collection' => array(
+<<<<<<< HEAD
             'pretty_version' => '1.2.2',
             'version' => '1.2.2.0',
+=======
+            'pretty_version' => '1.3.0',
+            'version' => '1.3.0.0',
+            'reference' => 'ad7475d1c9e70b190ecffc58f2d989416af339b4',
+>>>>>>> page/profile
             'type' => 'library',
             'install_path' => __DIR__ . '/../ramsey/collection',
             'aliases' => array(),
@@ -573,8 +593,14 @@
             'dev_requirement' => true,
         ),
         'spatie/flare-client-php' => array(
+<<<<<<< HEAD
             'pretty_version' => '1.3.1',
             'version' => '1.3.1.0',
+=======
+            'pretty_version' => '1.3.2',
+            'version' => '1.3.2.0',
+            'reference' => '609903bd154ba3d71f5e23a91c3b431fa8f71868',
+>>>>>>> page/profile
             'type' => 'library',
             'install_path' => __DIR__ . '/../spatie/flare-client-php',
             'aliases' => array(),
@@ -591,8 +617,14 @@
             'dev_requirement' => true,
         ),
         'spatie/laravel-ignition' => array(
+<<<<<<< HEAD
             'pretty_version' => '1.6.2',
             'version' => '1.6.2.0',
+=======
+            'pretty_version' => '1.6.3',
+            'version' => '1.6.3.0',
+            'reference' => '2db918babd96f87b73fc26e4195f5a19328dd123',
+>>>>>>> page/profile
             'type' => 'library',
             'install_path' => __DIR__ . '/../spatie/laravel-ignition',
             'aliases' => array(),
@@ -600,8 +632,14 @@
             'dev_requirement' => true,
         ),
         'symfony/console' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v6.2.2',
             'version' => '6.2.2.0',
+=======
+            'pretty_version' => 'v6.2.3',
+            'version' => '6.2.3.0',
+            'reference' => '0f579613e771dba2dbb8211c382342a641f5da06',
+>>>>>>> page/profile
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/console',
             'aliases' => array(),
@@ -609,8 +647,14 @@
             'dev_requirement' => false,
         ),
         'symfony/css-selector' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v6.2.0',
             'version' => '6.2.0.0',
+=======
+            'pretty_version' => 'v6.2.3',
+            'version' => '6.2.3.0',
+            'reference' => 'ab1df4ba3ded7b724766ba3a6e0eca0418e74f80',
+>>>>>>> page/profile
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/css-selector',
             'aliases' => array(),
@@ -627,8 +671,14 @@
             'dev_requirement' => false,
         ),
         'symfony/error-handler' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v6.2.2',
             'version' => '6.2.2.0',
+=======
+            'pretty_version' => 'v6.2.3',
+            'version' => '6.2.3.0',
+            'reference' => '0926124c95d220499e2baf0fb465772af3a4eddb',
+>>>>>>> page/profile
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/error-handler',
             'aliases' => array(),
@@ -660,8 +710,14 @@
             ),
         ),
         'symfony/finder' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v6.2.0',
             'version' => '6.2.0.0',
+=======
+            'pretty_version' => 'v6.2.3',
+            'version' => '6.2.3.0',
+            'reference' => '81eefbddfde282ee33b437ba5e13d7753211ae8e',
+>>>>>>> page/profile
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/finder',
             'aliases' => array(),
@@ -678,8 +734,14 @@
             'dev_requirement' => false,
         ),
         'symfony/http-kernel' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v6.2.2',
             'version' => '6.2.2.0',
+=======
+            'pretty_version' => 'v6.2.4',
+            'version' => '6.2.4.0',
+            'reference' => '74f2e638ec3fa0315443bd85fab7fc8066b77f83',
+>>>>>>> page/profile
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/http-kernel',
             'aliases' => array(),
@@ -795,8 +857,14 @@
             'dev_requirement' => false,
         ),
         'symfony/routing' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v6.2.0',
             'version' => '6.2.0.0',
+=======
+            'pretty_version' => 'v6.2.3',
+            'version' => '6.2.3.0',
+            'reference' => '35fec764f3e2c8c08fb340d275c84bc78ca7e0c9',
+>>>>>>> page/profile
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/routing',
             'aliases' => array(),
@@ -822,8 +890,14 @@
             'dev_requirement' => false,
         ),
         'symfony/translation' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v6.2.2',
             'version' => '6.2.2.0',
+=======
+            'pretty_version' => 'v6.2.3',
+            'version' => '6.2.3.0',
+            'reference' => 'a2a15404ef4c15d92c205718eb828b225a144379',
+>>>>>>> page/profile
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/translation',
             'aliases' => array(),
@@ -855,8 +929,14 @@
             'dev_requirement' => false,
         ),
         'symfony/var-dumper' => array(
+<<<<<<< HEAD
             'pretty_version' => 'v6.2.2',
             'version' => '6.2.2.0',
+=======
+            'pretty_version' => 'v6.2.3',
+            'version' => '6.2.3.0',
+            'reference' => 'fdbadd4803bc3c96ef89238c9c9e2ebe424ec2e0',
+>>>>>>> page/profile
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/var-dumper',
             'aliases' => array(),

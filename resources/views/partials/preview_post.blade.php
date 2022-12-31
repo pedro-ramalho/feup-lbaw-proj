@@ -1,8 +1,8 @@
-<section class="preview-post flex flex-col gap-y-4 p-4 border-2 border-gray-200 max-w-4xl">
+<section class="preview-post flex flex-col gap-y-4 p-4 border-2 border-gray-300 max-w-4xl rounded-sm">
   <h2 class="text-2xl font-medium self-start"><a href="{{ route('post', $post->id) }}">{{ $post->title }}</a></h2>
   <p class="p-2 font-medium bg-green-500 rounded-md text-center w-fit text-white">TAG</p>
   <div class="flex gap-x-24">
-    <div class="preview-post-rating">
+    <div class="preview-post-rating flex gap-x-4">
       <div id="preview-post-like" class="flex gap-x-2 items-center">
         @auth
           @if ($post->content->likers->contains(Auth::user()))
