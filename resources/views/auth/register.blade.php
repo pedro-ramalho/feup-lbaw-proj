@@ -43,7 +43,7 @@
         <i class="fa-solid fa-lock"></i>
         <label for="password" >Confirm Password</label>
     </div>
-    <input class="p-1 border-b-2 text-base w-80 bg-white focus:bg-gray-100 focus:outline-none" id="password" type="password" name="password" required>
+    <input class="p-1 border-b-2 text-base w-80 bg-white focus:bg-gray-100 focus:outline-none" id="password-confirm" type="password" name="password_confirmation" required>
     @if ($errors->has('password'))
         <span class="error">
             {{ $errors->first('password') }}

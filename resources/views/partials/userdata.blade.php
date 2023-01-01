@@ -3,6 +3,19 @@
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Post;
+use App\Models\Content;
+
+function get_posts(){
+  $contents=Auth::user()->content()->where('is_post', TRUE)->get();
+  $posts=[];
+  foreach($contents as $content){
+    array_push($posts, Post::find($content->id));
+  }
+  return $posts;
+}
+
+
 
 function get_rated_posts(int $id, bool $liked) {
   $rated = DB::table('users')
@@ -44,7 +57,7 @@ function get_favorite_posts(int $id) {
   @include('layouts.sort')
 
   <div id="profile-posts" class="flex flex-col w-px-896 max-w-4xl gap-y-2">
-    @each('partials.preview_post', $user->content()->where('is_post', TRUE)->join('post', 'content.id', '=', 'post.id')->get(), 'post')
+    @each('partials.preview_post', get_posts(), 'post')
   </div>
   <div id="profile-comments" class="flex flex-col w-px-896 max-w-4xl gap-y-2">
     @each('partials.preview_comment', $user->content()->where('is_post', FALSE)->join('comment', 'content.id', '=', 'comment.id')->get(), 'comment')
