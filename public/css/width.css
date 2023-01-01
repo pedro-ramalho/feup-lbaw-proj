@@ -1,0 +1,8 @@
+#pop-c {
+  width: 256px;
+  max-width: 384px;
+}
+
+.follow-button {
+  justify-self: flex-end;
+}

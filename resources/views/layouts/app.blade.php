@@ -42,6 +42,7 @@
     <link href="{{ asset('css/pages/community_edit.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common/notifications.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pages/search.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/width.css') }}" rel="stylesheet">
 
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
