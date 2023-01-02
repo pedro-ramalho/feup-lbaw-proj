@@ -8,6 +8,6 @@
             <button id="follow-button-{{$community->id}}" class="follow-button p-2 mr-0 ml-auto rounded-lg text-sm bg-emerald-500 hover:cursor-pointer hover:bg-emerald-600 font-medium" data-id="{{$community->id}}"> Follow </button>
         @endif
     @else
-            <button class="border-2 self-end"> Follow </button>
+            <button class="follow-button p-2 mr-0 ml-auto rounded-lg text-sm bg-emerald-500 hover:cursor-pointer hover:bg-emerald-600 font-medium"> Follow </button>
     @endif
 </div>

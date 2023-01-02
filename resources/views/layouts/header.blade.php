@@ -34,7 +34,7 @@
             <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="/">About Us</a></li>
             <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="/">Help</a></li>
           </div>
-          <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="/">Sign Out</a></li>
+          <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="{{ route('logout') }}">Sign Out</a></li>
           
         </ul>
       </nav>

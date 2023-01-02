@@ -18,7 +18,7 @@
         @guest
           <i class="fa-solid fa-thumbs-up text-gray-500 text-3xl"></i>
         @endguest
-        <p class="font-normal" id="post{{$post->id}}likes"> <span>{{ $post->likes }}</span></p>
+        <p class="font-normal" id="post{{$post->id}}likes"> <span><?= get_rating($post->id, TRUE) ?></span></p>
       </div>
       <div id="preview-post-dislike" class="flex gap-x-2 items-center">
         @auth
@@ -35,12 +35,12 @@
         @guest
           <i class="fa-solid fa-thumbs-down text-gray-500 text-3xl"></i>
         @endguest
-        <p class="font-normal" id="post{{$post->id}}dislikes"> <span>{{$post->dislikes}}</span></p>
+        <p class="font-normal" id="post{{$post->id}}dislikes"> <span><?= get_rating($post->id, FALSE) ?></span></p>
       </div>
     </div>
     <div id="preview-post-comment" class="flex gap-x-2 items-center">
       <i class="fa-solid fa-comment text-gray-500 text-3xl"></i>
-      <p class="font-medium">17 comments</p>
+      <p class="font-medium"><?= get_num_comments($post->id) ?></p>
     </div>
     <div id="preview-post-favorite" class="flex gap-x-2 items-center">
       <i class="fa-solid fa-heart text-gray-500 text-3xl"></i>
