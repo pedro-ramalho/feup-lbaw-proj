@@ -27,7 +27,7 @@ function ajaxLike(post_id){
     .then(response => {
 
 
-    var like = document.getElementById("post"+parseInt(post_id)+"likes").textContent;
+    let like = document.getElementById("post"+parseInt(post_id)+"likes").textContent;
 
     if(response.wasLiked){
 
@@ -38,7 +38,7 @@ function ajaxLike(post_id){
     else{
         if(document.getElementById("dislike-post"+parseInt(post_id)).getAttribute("data-dislikepressed")== "1"){
             
-            var dislike = document.getElementById("post"+parseInt(post_id)+"dislikes").textContent;
+            let dislike = document.getElementById("post"+parseInt(post_id)+"dislikes").textContent;
             document.getElementById("dislike-post"+parseInt(post_id)+"-symb").classList = "fa-solid fa-thumbs-down text-gray-500 text-3xl";
             document.getElementById("post"+parseInt(post_id)+"dislikes").innerHTML=parseInt(dislike)-1;
             document.getElementById("dislike-post"+parseInt(post_id)).setAttribute("data-dislikepressed","0");
@@ -78,7 +78,7 @@ function ajaxDislike(post_id){
     .then(response => {
 
 
-    var dislike = document.getElementById("post"+parseInt(post_id)+"dislikes").textContent;
+    let dislike = document.getElementById("post"+parseInt(post_id)+"dislikes").textContent;
 
     if(response.wasDisliked){
 
@@ -90,7 +90,7 @@ function ajaxDislike(post_id){
 
         if(document.getElementById("like-post"+parseInt(post_id)).getAttribute("data-likepressed")== "1"){
 
-            var like = document.getElementById("post"+parseInt(post_id)+"likes").textContent;
+            let like = document.getElementById("post"+parseInt(post_id)+"likes").textContent;
             document.getElementById("like-post"+parseInt(post_id)+"-symb").classList = "fa-solid fa-thumbs-up text-gray-500 text-3xl";
             document.getElementById("post"+parseInt(post_id)+"likes").innerHTML=parseInt(like)-1;
             document.getElementById("like-post"+parseInt(post_id)).setAttribute("data-likepressed","0");

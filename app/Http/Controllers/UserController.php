@@ -115,5 +115,21 @@ class UserController extends Controller
         return $this->hasMany(ReportInformation::class, 'id_content');
     }
 
+    public function deleteLikeNotification(int $id){
+    
+        DB::table('like_notification')->where('id', '=', $id)->delete();
+    
+    }
 
+    public function deleteFollowNotification(int $id){
+
+        DB::table('follow_notification')->where('id', '=', $id)->delete();
+    }
+    
+    public function deleteReplyNotification(int $id){
+    
+       
+       DB::table('reply_notification')->where('id', '=', $id)->delete();
+
+    }
 }

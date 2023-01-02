@@ -24,6 +24,9 @@ Route::get('user/{id}/delete', 'UserController@getDeleteForm')->name('delete');
 Route::post('user/{id}/delete', 'UserController@processDeleteForm');
 Route::post('user/{id}/edit', 'UserController@processEditForm');
 Route::get('user/{id}/notifications', 'UserController@getNotifications')->name('notifications');
+Route::post('likeNotification/{id}/delete', 'UserController@deleteLikeNotification')->name('deleteLikeNotification');
+Route::post('followNotification/{id}/delete', 'UserController@deleteFollowNotification')->name('deleteFollowNotification');
+Route::post('replyNotification/{id}/delete', 'UserController@deleteReplyNotification')->name('deleteReplyNotification');
 Route::get('user/{id}', 'UserController@show')->name('user');
 
 // Admin
