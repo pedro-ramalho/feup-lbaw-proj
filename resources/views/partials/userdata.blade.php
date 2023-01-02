@@ -35,12 +35,16 @@ function get_rated_posts(int $id, bool $liked) {
 
   foreach($rated as $content){
     $allpost=Post::find($content->id);
+    if($allpost->content->owner!= User::find($id)){
+  
     $likes= $allpost->content()->find($allpost['id'])->liked()->where('liked', True)->count();
     $dislikes= $allpost->content()->find($allpost['id'])->liked()->where('liked', False)->count();
                     $allpost['likes']= $likes;   
                     $allpost['dislikes']= $dislikes;      
     array_push($posts, $allpost);
   }
+}
+  
   return $posts;
 }
 
