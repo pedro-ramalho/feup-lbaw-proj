@@ -51,7 +51,7 @@ $follow_notifs = get_follow_notifications($user->id);
   <div id="like-notifications" class="flex flex-col gap-y-2">
     <div class="flex gap-x-2 items-center justify-center p-4">
       <i class="fa-solid fa-thumbs-up text-gray-900 text-3xl"></i>
-      <h1 class="text-2xl">Like notifications</h1>
+      <h1 class="text-2xl"><?= print_r($like_notifs) ?>Like notifications</h1>
     </div>
     @foreach ($like_notifs as $notif)
       @if(!$notif->read)

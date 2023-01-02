@@ -26,7 +26,7 @@
   <div id="user-misc" class="flex gap-x-4 text-lg">
     <div id="user-num-followers" class="flex items-center gap-x-2">
       <i class="fa-solid fa-users text-gray-500"></i>
-      <p class="font-light"><span class="font-medium">20</span> followers</p>
+      <p class="font-light"><span class="font-medium"><?= get_num_followers($user->id) ?></span> followers</p>
     </div>
     <div id="user-num-posts" class="flex items-center gap-x-2">
       <i class="fa-solid fa-message text-gray-500"></i>

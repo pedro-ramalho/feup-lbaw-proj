@@ -90,4 +90,11 @@ function get_comment_community(int $comment_id) : string {
     return 'c/' . strval($q[0]->name);
 }
 
+function get_num_followers(int $id) : int {
+  $num_followers = DB::table('user_follow_user')
+                   ->where('id_followee', '=', $id)
+                   ->count();
+  
+  return $num_followers;
+}
 ?>
