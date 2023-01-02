@@ -43,27 +43,81 @@ function date_string($date_string) {
   }
 }
 
+
+use App\Models\User;
+
+
+function get_username(int $id) {
+  return User::find($id)->username;
+}
+
+function date_string($date_string) {
+  $date_created = date_create_from_format("Y-m-d H:i:s", $date_string);
+  $now = new DateTime("now");
+  $diff = $now->diff($date_created);
+  if ($diff->y === 1) {
+    return "1 year ago";
+  } else if ($diff->y > 1) {
+    return $diff->y . " years ago";
+  } else if ($diff->m === 1) {
+    return "1 month ago";
+  } else if ($diff->m > 1) {
+    return $diff->m . " months ago";
+  } else if ($diff->d === 1) {
+    return "1 day ago";
+  } else if ($diff->d > 1) {
+    return $diff->d . " days ago";
+  } else if ($diff->h === 1) {
+    return "1 hour ago";
+  } else if ($diff->h > 1) {
+    return $diff->h . " hours ago";
+  } else if ($diff->d === 1) {
+    return "1 minute ago";
+  } else if ($diff->i > 1) {
+    return $diff->i . " minutes ago";
+  } else if ($diff->s === 1) {
+    return "1 second ago";
+  } else if ($diff->s > 1) {
+    return $diff->s . " seconds ago";
+  } else if ($diff->s == 0) {
+    return "0 seconds ago";
+  } else {
+    return "error while reading dates";
+  }
+}
+
+
+
 function get_like_notifications(int $id) {
-  $notifs = DB::table('users')
-            ->join('like_notification', 'users.id', '=', 'like_notification.id_received')
-            ->join('content', 'content.id', '=', 'like_notification.id_content')
-            ->where('users.id', '=', $id)
-            ->get();
-  
-  return $notifs;
+
+ 
+  $notif = DB::table('like_notification')
+  ->where('id_received', '=', Auth::id())
+  ->join('content', 'content.id', '=', 'like_notification.id_content')
+  ->select('like_notification.*', 'content.is_post')
+  ->get();
+
+
+      return $notif;
 }
 
 function get_reply_notifications(int $id) {
-  $notifs = DB::table('users')
-            ->join('reply_notification', 'users.id', '=', 'reply_notification.id_received')
-            ->join('content', 'content.id', '=', 'reply_notification.id_comment')
-            ->where('users.id', '=', $id)
-            ->get();
+
+
+
+
+  $notifs = DB::table('reply_notification')
+  ->where('id_received', '=', Auth::id())
+  ->join('content', 'content.id', '=', 'reply_notification.id_comment')
+  ->select('reply_notification.*')
+  ->get();
   
+ 
   return $notifs;
 }
 
 function get_follow_notifications(int $id) {
+
   $notifs = DB::table('users')
             ->join('follow_notification', 'users.id', '=', 'follow_notification.id_received')
             ->where('users.id', '=', $id)
@@ -113,7 +167,7 @@ $follow_notifs = get_follow_notifications($user->id);
   <div id="follow-notifications" class="hidden flex-col gap-y-2">
     <div class="flex gap-x-2 items-center justify-center p-4">
       <i class="fa-solid fa-users text-gray-900 text-3xl"></i>
-      <h1 class="text-2xl">Reply notifications</h1>
+      <h1 class="text-2xl">Follow notifications</h1>
     </div>
     @foreach ($follow_notifs as $notif)
       @if(!$notif->read)

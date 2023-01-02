@@ -1,4 +1,5 @@
-<article class="notification flex text-xl items-center border-2 p-4 rounded-sm">
+
+<article id="reply-notification-{{$notif->id}}" class="notification flex text-xl items-center border-2 p-4 rounded-sm">
   <a href="{{ route('user', $notif->id_triggered) }}" id="user-field" class="flex items-center gap-x-2 mr-1">
     <i class="fa-sharp fa-solid fa-user text-3xl text-gray-700"></i>
     <p class="text-black font-medium"><?= get_username($notif->id_triggered) ?></p>
@@ -11,5 +12,5 @@
     @endif
       <?php echo date_string(substr($notif->created, 0, 19)) ?> 
   </p>
-  <i class="delete-notification fa-solid fa-trash ml-auto text-red-600 hover:cursor-pointer"></i>
+  <i class="delete-reply-notification fa-solid fa-trash ml-auto text-red-600 hover:cursor-pointer" data-id="{{$notif->id}}"></i>
 </article>

@@ -6,6 +6,7 @@ const likes = document.querySelector("#like-notifications");
 const replies = document.querySelector("#reply-notifications");
 const follows = document.querySelector("#follow-notifications");
 
+
 const notificationsOpts = [optionLikes, optionReplies, optionFollows];
 const notificationsContent = [likes, replies, follows];
 
@@ -33,23 +34,99 @@ optionLikes.addEventListener("click", showSingle.bind(this, likes, optionLikes))
 optionReplies.addEventListener("click", showSingle.bind(this, replies, optionReplies));
 optionFollows.addEventListener("click", showSingle.bind(this, follows, optionFollows));
 
-const deleteBtn = document.querySelectorAll(".delete-notification");
+const deleteLikeNotifBtn = document.querySelectorAll(".delete-like-notification");
+const deleteFollowNotifBtn = document.querySelectorAll(".delete-follow-notification");
+const deleteReplyNotifBtn = document.querySelectorAll(".delete-reply-notification");
+
+
+
 const csrf = document.querySelector("[name='csrf-token']").content;
 
-deleteBtn.forEach.call(deleteBtn, function(deleter) {
-  deleter.addEventListener('click', deleteNotificationRequest)
+deleteLikeNotifBtn.forEach.call(deleteLikeNotifBtn, function(deleter) {
+  deleter.addEventListener('click', deleteLikeNotificationRequest.bind(this, deleter.getAttribute('data-id')))
 });
 
-function deleteNotificationRequest(userID) {
-  let id = this.closest('article').getAttribute('data-id');
+deleteFollowNotifBtn.forEach.call(deleteFollowNotifBtn, function(deleter) {
+  deleter.addEventListener('click', deleteFollowNotificationRequest.bind(this, deleter.getAttribute('data-id')))
+});
 
-  sendAjaxRequest('delete', '/user/' + 2 + '/notifications', null, notificationDeletedHandler);
+deleteReplyNotifBtn.forEach.call(deleteReplyNotifBtn, function(deleter) {
+  deleter.addEventListener('click', deleteReplyNotificationRequest.bind(this, deleter.getAttribute('data-id')))
+});
+
+
+function deleteLikeNotificationRequest(id) {
+
+  fetch("/likeNotification/"+parseInt(id)+"/delete",{
+    
+    method: 'POST',
+ 
+
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        "X-CSRF-Token": csrfToken
+    }
+  }).then((response) => {
+
+    document.getElementById("like-notification-"+parseInt(id)).remove();
+
+}).catch((error) => {
+
+    console.log(error)
+
+}) 
+
+
 }
 
-function notificationDeletedHandler() {
-  if (this.status != 200) window.location = '/';
-  let notification = JSON.parse(this.responseText);
-  let article = document.querySelector('article.notification[data-id="' + notification.id + '"]');
+function deleteFollowNotificationRequest(id) {
 
-  article.remove();
+  fetch("/followNotification/"+parseInt(id)+"/delete",{
+    
+    method: 'POST',
+ 
+
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        "X-CSRF-Token": csrfToken
+    }
+  }).then((response) => {
+
+    document.getElementById("follow-notification-"+parseInt(id)).remove();
+
+}).catch((error) => {
+
+    console.log(error)
+
+}) 
+
+
 }
+
+function deleteReplyNotificationRequest(id) {
+
+  fetch("/replyNotification/"+parseInt(id)+"/delete",{
+    
+    method: 'POST',
+ 
+
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        "X-CSRF-Token": csrfToken
+    }
+  }).then((response) => {
+
+    document.getElementById("reply-notification-"+parseInt(id)).remove();
+
+}).catch((error) => {
+
+    console.log(error)
+
+}) 
+
+
+}
+
