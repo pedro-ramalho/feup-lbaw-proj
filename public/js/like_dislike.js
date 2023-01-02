@@ -12,7 +12,7 @@ dislikeButtons.forEach(function(currentBtn){
 function ajaxLike(post_id){
 
 
-    fetch("post/"+parseInt(post_id)+"/like", {
+    fetch("/post/"+parseInt(post_id)+"/like", {
 
     method: 'POST',
  
