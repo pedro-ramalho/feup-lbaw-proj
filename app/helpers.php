@@ -70,9 +70,24 @@ function get_num_comments(int $post_id) {
   return $count;
 }
 
+function get_comment_author(int $comment_id) : string {
+  $q = DB::table('content')
+       ->join('users', 'content.id_author', '=', 'users.id')
+       ->where('content.id', '=', $comment_id)
+       ->get();
 
-function hi() {
-  echo 'hi';
+  return strval($q[0]->username);
+}
+
+function get_comment_community(int $comment_id) : string {
+  $post_id = get_parent_post($comment_id);
+
+  $q = DB::table('post')
+       ->join('community', 'community.id', '=', 'post.id_community')
+       ->where('post.id', '=', $post_id)
+       ->get();
+
+    return 'c/' . strval($q[0]->name);
 }
 
 ?>
