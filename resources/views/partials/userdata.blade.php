@@ -10,7 +10,12 @@ function get_posts(){
   $contents=Auth::user()->content()->where('is_post', TRUE)->get();
   $posts=[];
   foreach($contents as $content){
-    array_push($posts, Post::find($content->id));
+    $allpost=Post::find($content->id);
+    $likes= $allpost->content()->find($allpost['id'])->liked()->where('liked', True)->count();
+    $dislikes= $allpost->content()->find($allpost['id'])->liked()->where('liked', False)->count();
+                    $allpost['likes']= $likes;   
+                    $allpost['dislikes']= $dislikes;      
+    array_push($posts, $allpost);
   }
   return $posts;
 }
@@ -26,8 +31,21 @@ function get_rated_posts(int $id, bool $liked) {
          ->where('content.is_post', '=', TRUE)
          ->where('content_rate.liked', '=', $liked)
          ->get();
+  $posts=[];
+
+  foreach($rated as $content){
+    $allpost=Post::find($content->id);
+    if($allpost->content->owner!= User::find($id)){
   
-  return $rated;
+    $likes= $allpost->content()->find($allpost['id'])->liked()->where('liked', True)->count();
+    $dislikes= $allpost->content()->find($allpost['id'])->liked()->where('liked', False)->count();
+                    $allpost['likes']= $likes;   
+                    $allpost['dislikes']= $dislikes;      
+    array_push($posts, $allpost);
+  }
+}
+  
+  return $posts;
 }
 
 function get_rated_comments(int $id, bool $liked) {
@@ -48,8 +66,18 @@ function get_favorite_posts(int $id) {
                ->join('favorite_post', 'post.id', '=', 'favorite_post.id_post')
                ->where('favorite_post.id_user', '=', $id)
                ->get();
-  
-  return $fav_posts;
+  $posts=[];
+
+  foreach($fav_posts as $content){
+    $allpost=Post::find($content->id);
+    $likes= $allpost->content()->find($allpost['id'])->liked()->where('liked', True)->count();
+    $dislikes= $allpost->content()->find($allpost['id'])->liked()->where('liked', False)->count();
+                    $allpost['likes']= $likes;   
+                    $allpost['dislikes']= $dislikes;      
+    array_push($posts, $allpost);
+  }
+  return $posts;
+               
 }
 ?>
 
@@ -64,7 +92,7 @@ function get_favorite_posts(int $id) {
   </div>
 
   <div id="liked-content" class="flex flex-col w-px-896 max-w-4xl gap-y-2">
-    @if (!get_rated_posts($user->id, TRUE)->isEmpty())
+    @if (!empty(get_rated_posts($user->id, TRUE)))
       @each('partials.preview_post', get_rated_posts($user->id, TRUE), 'post')
     @endif
 
@@ -74,7 +102,7 @@ function get_favorite_posts(int $id) {
   </div>
 
   <div id="disliked-content" class="flex flex-col w-px-896 max-w-4xl gap-y-2">
-    @if (!get_rated_posts($user->id, FALSE)->isEmpty())
+    @if (!empty(get_rated_posts($user->id, FALSE)))
       @each('partials.preview_post', get_rated_posts($user->id, FALSE), 'post')
     @endif
 
@@ -84,7 +112,7 @@ function get_favorite_posts(int $id) {
   </div>
 
   <div id="favorited-content" class="flex flex-col w-px-896 max-w-4xl gap-y-2">
-    @if (!get_favorite_posts($user->id)->isEmpty())
+    @if (!empty(get_favorite_posts($user->id)))
       @each('partials.preview_post', get_favorite_posts($user->id), 'post')
     @endif
   </div>
