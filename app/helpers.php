@@ -104,6 +104,9 @@ function get_pfp_path(int $user_id) {
   return 'storage/pfp/' . $user_id;
 }
 
+function default_pfp() {
+  
+}
 
 
 function get_num_followers(int $id) : int {
