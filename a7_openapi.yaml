@@ -1047,43 +1047,43 @@ paths:
           '200':
             description: 'Ok. User deleted.'
 
-    /about:
-    
-      get:
-        operationId: R404
-        summary: 'R404: View About Page'
-        description: 'Provides the about page page view. Access: PUB'
-        tags:
-          - 'M04: User administration and Static Pages'
+  /about:
+  
+    get:
+      operationId: R404
+      summary: 'R404: View About Page'
+      description: 'Provides the about page page view. Access: PUB'
+      tags:
+        - 'M04: User administration and Static Pages'
 
-        responses:
-          '200':
-            description: 'Ok. Show about page UI.'
-
-
-    /help:
-    
-      get:
-        operationId: R405
-        summary: 'R405: View help Page'
-        description: 'Provides the help page page view. Access: PUB'
-        tags:
-          - 'M04: User administration and Static Pages'
-
-        responses:
-          '200':
-            description: 'Ok. Show help page UI.'
+      responses:
+        '200':
+          description: 'Ok. Show about page UI.'
 
 
-    /contacts:
+  /help:
+  
+    get:
+      operationId: R405
+      summary: 'R405: View help Page'
+      description: 'Provides the help page page view. Access: PUB'
+      tags:
+        - 'M04: User administration and Static Pages'
 
-      get:
-        operationId: R406
-        summary: 'R405: View contacts Page'
-        description: 'Provides the contact page page view. Access: PUB'
-        tags:
-          - 'M04: User administration and Static Pages'
+      responses:
+        '200':
+          description: 'Ok. Show help page UI.'
 
-        responses:
-          '200':
-            description: 'Ok. Show contact page UI.'
+
+  /contacts:
+
+    get:
+      operationId: R406
+      summary: 'R405: View contacts Page'
+      description: 'Provides the contact page page view. Access: PUB'
+      tags:
+        - 'M04: User administration and Static Pages'
+
+      responses:
+        '200':
+          description: 'Ok. Show contact page UI.'
