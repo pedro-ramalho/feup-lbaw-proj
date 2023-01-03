@@ -145,4 +145,19 @@ class UserController extends Controller
        DB::table('reply_notification')->where('id', '=', $id)->delete();
 
     }
+
+    public function follow(int $id){
+
+        if (DB::table('user_follow_user')->where('id_follower', '=', Auth::id())->where('id_followee', '=', $id)->count()==0){
+            
+            $follow=array('id_follower'=> Auth::id(), 'id_followee' => $id);
+
+            DB::table('user_follow_user')->insert($follow);
+        }
+        else{
+            DB::table('user_follow_user')->where('id_follower', '=', Auth::id())->where('id_followee', '=', $id)->delete();
+        }
+
+    }
+
 }

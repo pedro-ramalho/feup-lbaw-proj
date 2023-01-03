@@ -64,7 +64,7 @@
     <script src={{ asset('js/search.js') }} defer></script>
     <script src={{ asset('js/notifications.js') }} defer></script>
     <script src={{ asset('js/reply.js') }} defer></script>
-
+    <script src={{ asset('js/user_follow_user.js') }} defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="bg-white font-sans"> 
