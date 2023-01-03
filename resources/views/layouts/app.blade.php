@@ -55,6 +55,7 @@
     <script src={{ asset('js/popular_communities.js') }} defer></script>
     <script src={{ asset('js/search.js') }} defer></script>
     <script src={{ asset('js/notifications.js') }} defer></script>
+    <script src={{ asset('js/reply.js') }} defer></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
