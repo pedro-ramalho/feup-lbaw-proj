@@ -148,6 +148,51 @@ class MainController extends Controller
     return view('pages.main', ['communities' => $communities, 'posts' => $posts, 'userFollowCommunities' => $userFollowCommunities]);
 }
 
+public function showHot() {
+            
+    $posts=collect();
+    $userFollowCommunities=[];
+    if (Auth::check()){
+        
+        $posts = Post::whereExists((function ($query) {
+            $query->select(DB::raw(1))
+            ->from('user_follow_community')
+            ->whereColumn('user_follow_community.id_followee', 'post.id_community')
+            ->where('user_follow_community.id_follower', Auth::id());
+    }))
+    ->get();
+    $userFollowCommunities = Auth::user()->follows()->get();
+}
+$allposts=$posts;
+$posts=collect();   
+$newposts = Post::all();
+$newposts->each(function($newpost,$key) use ($allposts){
+    $allposts->push($newpost);
+});
+$allposts=$allposts->unique();
+
+$allposts->each(function($allpost,$key) use ($posts){
+    $ilikes=Post::find($allpost['id']);
+    if (!is_null($ilikes)){
+        $likes= $ilikes->content()->find($allpost['id'])->liked()->where('liked', True)->count();
+        $dislikes= $ilikes->content()->find($allpost['id'])->liked()->where('liked', False)->count();
+        $created= $ilikes->content()->find($allpost['id']);               
+        $allpost['likes']= $likes;   
+        $allpost['dislikes']= $dislikes;               
+        $allpost['created']= $created->created;
+        $allpost['comment']= get_num_comments($allpost['id']);
+        $allpost['activity']=  $likes+$dislikes+get_num_comments($allpost['id']); 
+    }
+    $posts->push(($allpost));
+}); 
+$posts=$posts->sortByDesc('activity');
+$posts=$posts->take(10);
+
+$communities = Community::all()->random(5);
+
+
+return view('pages.main', ['communities' => $communities, 'posts' => $posts, 'userFollowCommunities' => $userFollowCommunities]);
+}
 
 
 
