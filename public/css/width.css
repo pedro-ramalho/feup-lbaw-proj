@@ -1,0 +1,29 @@
+#pop-c {
+  width: 256px;
+  max-width: 384px;
+}
+
+.follow-button {
+  justify-self: flex-end;
+}
+
+.header-pfp {
+  width: 25px;
+  max-width: 25px;
+  height: 25px;
+  max-width: 25px;
+}
+
+.notif-pfp {
+  width: 35px;
+  max-width: 35px;
+  height: 35px;
+  max-width: 35px;
+}
+
+.profile-pfp {
+  width: 256px;
+  max-width: 256px;
+  height: 256px;
+  max-height: 256px;
+}

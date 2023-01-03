@@ -1,6 +1,6 @@
 <div id="user-info" class="mt-8 flex flex-col items-center gap-y-4">
   <div id="user-img-username" class="flex flex-col items-center gap-y-2">
-    <i class="fa-sharp fa-solid fa-user text-8xl"></i>
+    <img src="{{ url(get_pfp_path($user->id)) }}" class="profile-pfp rounded-full border-2 border-gray-700">
     <p id="username" class="text-xl font-semibold">{{ $user->username }}</p>
   </div>
   <div id="cday-rep-container" class="flex gap-x-6 justify-between text-xl">
@@ -26,7 +26,7 @@
   <div id="user-misc" class="flex gap-x-4 text-lg">
     <div id="user-num-followers" class="flex items-center gap-x-2">
       <i class="fa-solid fa-users text-gray-500"></i>
-      <p class="font-light"><span class="font-medium">20</span> followers</p>
+      <p class="font-light"><span class="font-medium"><?= get_num_followers($user->id) ?></span> followers</p>
     </div>
     <div id="user-num-posts" class="flex items-center gap-x-2">
       <i class="fa-solid fa-message text-gray-500"></i>
