@@ -37,4 +37,14 @@
       <p class="font-light"><span class="font-medium">{{ $user->content()->where('is_post', FALSE)->get()->count() }}</span> comments</p>
     </div>
   </div>
+  @auth
+      @if( $user->id != Auth::id())
+
+        @if(DB::Table('user_follow_user')->where('id_follower', '=', Auth::id())->where('id_followee', '=', $user->id)->count()==0)
+            <button id="follow-button-{{$user->id}}" class="user-follow-button p-2 rounded-lg text-sm bg-emerald-500 hover:cursor-pointer hover:bg-emerald-600 font-medium" data-id="{{$user->id}}">Follow</button>
+        @else    
+            <button id="follow-button-{{$user->id}}" class="user-follow-button p-2 rounded-lg text-sm bg-emerald-500 hover:cursor-pointer hover:bg-emerald-600 font-medium" data-id="{{$user->id}}">Followed</button>
+        @endif
+      @endif
+  @endauth
 </div>

@@ -30,6 +30,7 @@ Route::post('likeNotification/{id}/delete', 'UserController@deleteLikeNotificati
 Route::post('followNotification/{id}/delete', 'UserController@deleteFollowNotification')->name('deleteFollowNotification');
 Route::post('replyNotification/{id}/delete', 'UserController@deleteReplyNotification')->name('deleteReplyNotification');
 Route::get('user/{id}', 'UserController@show')->name('user');
+Route::post('user/{id}/follow', 'UserController@follow')->name('follow');
 
 // Admin
 Route::get('admin', 'AdministratorController@show')->name('admin');
