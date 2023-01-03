@@ -31,6 +31,10 @@
     @endif
   @endauth
   @guest
-    <a class="follow-community-button" href="{{ route('login') }}">Follow</a>
+    <form>
+      <button>
+        <a class="follow-community-button" href="{{ route('login') }}">Follow</a>
+      </button>
+    </form>
   @endguest
 </section>
