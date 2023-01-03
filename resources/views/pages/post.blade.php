@@ -106,7 +106,20 @@ function date_string($date_string)
     </div>
         <div class="comments"><i class="fa-solid fa-comment"></i> <span class="interactable-text">{{ $post->content->comments->count() }} comments</span></div>
         <div class="favorite"><i class="fa-regular fa-star"></i> <span class="interactable-text">Add to favorites</span></div>
-        <div class="report"><i class="fa-solid fa-flag"></i> <span class="interactable-text">Report post</span></div>
+        <div class="report">
+          @auth()
+          <a href="{{ route('report_post', $post->id) }}">
+            <i class="fa-solid fa-flag"></i> 
+            <span class="interactable-text">Report post</span>
+          </a>
+          @endauth()
+          @guest()
+          
+          <i class="fa-solid fa-flag"></i> 
+          <span class="interactable-text">Report post</span>
+
+          @endguest()
+        </div>
       </section>
       <form method="POST" action="{{ route('comment', $post->id) }}">
         {{ csrf_field() }}

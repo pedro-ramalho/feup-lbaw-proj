@@ -1,6 +1,6 @@
 <section class="preview-post flex flex-col gap-y-4 p-4 border-2 border-gray-300 max-w-4xl rounded-sm">
   <h2 class="text-2xl font-medium self-start"><a href="{{ route('post', $post->id) }}">{{ $post->title }}</a></h2>
-  <p class="p-2 font-medium bg-green-500 rounded-md text-center w-fit text-white">TAG</p>
+  <p class="p-2 font-medium bg-green-500 rounded-md text-center w-fit text-white">{{ $post->tag['name'] }}</p>
   <div class="flex gap-x-24">
     <div class="preview-post-rating flex gap-x-4">
       <div id="preview-post-like" class="flex gap-x-2 items-center">
@@ -26,11 +26,11 @@
             <button id="dislike-post{{$post->id}}" data-id="{{$post->id}} " class="dislike-post-button" type="submit" data-dislikepressed="1">
               <i id="dislike-post{{$post->id}}-symb" class="fa-solid fa-thumbs-down text-black text-3xl"></i>
             </button>
-        @else
+          @else
             <button id="dislike-post{{$post->id}}" data-id="{{$post->id}}" class="dislike-post-button" type="submit" data-dislikepressed="0">
               <i id="dislike-post{{$post->id}}-symb" class="fa-solid fa-thumbs-down text-gray-500 text-3xl"></i>
             </button>
-        @endif
+          @endif
         @endauth
         @guest
           <i class="fa-solid fa-thumbs-down text-gray-500 text-3xl"></i>
@@ -47,8 +47,16 @@
       <p class="font-medium">Add to favorites</p>
     </div>
     <div id="preview-post-report" class="flex gap-x-2 items-center">
+      @auth
+        <a href="{{ route('report_post', $post->id) }}">
+          <i class="fa-solid fa-flag text-gray-500 text-3xl"></i>
+          <p class="font-medium">Report post</p>   
+        </a>
+      @endauth
+      @guest
       <i class="fa-solid fa-flag text-gray-500 text-3xl"></i>
       <p class="font-medium">Report post</p>
+      @endguest
     </div>
   </div>
 </section>

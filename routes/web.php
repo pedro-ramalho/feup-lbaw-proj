@@ -51,6 +51,8 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // Post
 Route::get('post/{id}', 'PostController@show')->name('post');
+Route::get('post/{id}/report', 'ReportPostController@reportForm')->name('report_post');
+Route::post('post/{id}/report', 'ReportPostController@submitReport')->name('submit_report');
 Route::get('post/{id}/edit', 'PostController@getEditForm')->name('edit_post');
 Route::post('post/{id}/like', 'PostController@likePost')->name('like_post');
 Route::post('post/{id}/dislike', 'PostController@dislikePost')->name('dislike_post');
@@ -63,3 +65,16 @@ Route::post('post/{id}/reply', 'CommentController@processReplyForm')->name('repl
 
 // Search
 Route::get('search', 'SearchController@show')->name('search');
+
+// Search
+Route::get('search', 'SearchController@show')->name('search');
+
+//help
+Route::get('help', 'HelpController@Show')->name('help');
+
+//About us
+Route::get('about', 'AboutController@Show')->name('about');
+
+//Contacts
+Route::get('contacts', 'ContactsController@show')->name('contacts');
+
