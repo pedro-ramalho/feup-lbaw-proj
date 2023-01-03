@@ -229,7 +229,7 @@ paths:
     delete:
       operationId: R109
       summary: 'R109: Delete user profile'
-      description: 'Deletes the users profile.' Access: USR'
+      description: 'Deletes the users profile. Access: USR'
       tags:
         - 'M01: Authentication and Individual Profile'
 
@@ -251,7 +251,7 @@ paths:
     get:
       operationId: R110
       summary: 'R110: View user notifications'
-      description: 'Displays users notifcation.' Access: USR'
+      description: 'Displays users notifcation. Access: USR'
       tags:
         - 'M01: Authentication and Individual Profile'
       
@@ -275,7 +275,7 @@ paths:
     delete:
       operationId: R111
       summary: 'R111: Deletes a like notification'
-      description: 'Deletes a like notification.' Access: USR'
+      description: 'Deletes a like notification. Access: USR'
       tags:
         - 'M01: Authentication and Individual Profile'
 
@@ -297,7 +297,7 @@ paths:
     delete:
       operationId: R112
       summary: 'R112: Deletes a follow notification'
-      description: 'Deletes a follow notification.' Access: USR'
+      description: 'Deletes a follow notification. Access: USR'
       tags:
         - 'M01: Authentication and Individual Profile'
 
@@ -319,7 +319,7 @@ paths:
     delete:
       operationId: R113
       summary: 'R113: Deletes a reply notification'
-      description: 'Deletes a reply notification.' Access: USR'
+      description: 'Deletes a reply notification. Access: USR'
       tags:
         - 'M01: Authentication and Individual Profile'
 
