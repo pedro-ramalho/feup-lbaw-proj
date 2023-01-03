@@ -33,6 +33,6 @@ class Post extends Model
         return $this->belongsToMany(User::class);
     }
     
-    protected $appends= ['likes'];
+    
     protected $table = 'post';
 }

@@ -4,11 +4,11 @@
 			<i class="fa fa-fire"></i>
 			<p>Hot</p>
 		</a>
-		<a href="{{ route('hot') }}" class="flex gap-x-3 items-center p-2 hover:bg-gray-700 rounded-md"> 
+		<a href="{{ route('new') }}" class="flex gap-x-3 items-center p-2 hover:bg-gray-700 rounded-md"> 
 			<i class="fa-solid fa-certificate"></i>
 			<p>New</p>
 		</a>
-		<a href="{{ route('hot') }}" class="flex gap-x-3 items-center p-2 hover:bg-gray-700 rounded-md"> 
+		<a href="{{ route('top') }}" class="flex gap-x-3 items-center p-2 hover:bg-gray-700 rounded-md"> 
 			<i class="fa-solid fa-chart-line"></i>
 			<p>Top</p>
 		</a>
