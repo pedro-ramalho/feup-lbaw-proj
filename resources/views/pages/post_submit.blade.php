@@ -11,7 +11,7 @@
       <input type="number" name="is-image" id="is-image" hidden="hidden" value="0">
       <input type="text" name="title" id="new-post-title" placeholder="An interesting title..." required>
       <p id="tag">Advertisement</p>
-      <textarea name="text" id="new-post-text" required">An interesting post text</textarea>
+      <textarea name="text" id="new-post-text" required>An interesting post text</textarea>
       <button type="submit">Submit</button>
     </form>
   </main>
