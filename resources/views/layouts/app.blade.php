@@ -42,6 +42,13 @@
     <link href="{{ asset('css/pages/community_edit.css') }}" rel="stylesheet">
     <link href="{{ asset('css/common/notifications.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pages/search.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/common/aboutcommunity.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/common/communityrules.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/pages/community_edit.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/pages/report_post.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/pages/aboutus.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/pages/contacts.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/pages/help.css') }}" rel="stylesheet">
 
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug

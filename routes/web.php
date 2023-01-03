@@ -62,3 +62,18 @@ Route::post('community/{id}/submit', 'PostController@store');
 
 // Search
 Route::get('search', 'SearchController@show')->name('search');
+
+// Search
+Route::get('search', 'SearchController@show')->name('search');
+
+//help
+Route::get('help', 'HelpController@Show')->name('help');
+
+//About us
+Route::get('about', 'AboutController@Show')->name('about');
+
+//Contacts
+Route::get('contacts', 'ContactsController@show')->name('contacts');
+
+//Testing frontend of report form
+Route::get('report_post', 'ReportPostController@show')->name('report_post');
