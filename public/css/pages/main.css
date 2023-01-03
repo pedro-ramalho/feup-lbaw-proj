@@ -28,8 +28,9 @@
     row-gap: 2em;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 900px) {
   #main-content {
+    margin-left: 10px;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto 1fr;
     grid-template-areas: 
@@ -40,8 +41,13 @@
     justify-content: left;
   }
 
-  #main-content #main-posts, #main-content #main-posts{
+  #main-content #main-posts{
     width: 500px;
+  }
+
+  #main-content #main-posts .gap-x-24 > *:not(first-child){
+    margin-left: 5px;
+    width: 35px;  
   }
 
 }
