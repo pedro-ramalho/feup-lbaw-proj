@@ -51,6 +51,7 @@ Route::post('register', 'Auth\RegisterController@register');
 
 // Post
 Route::get('post/{id}', 'PostController@show')->name('post');
+Route::get('post/{id}/report', 'PostController@reportForm')->name('report_post');
 Route::get('post/{id}/edit', 'PostController@getEditForm')->name('edit_post');
 Route::post('post/{id}/like', 'PostController@likePost')->name('like_post');
 Route::post('post/{id}/dislike', 'PostController@dislikePost')->name('dislike_post');

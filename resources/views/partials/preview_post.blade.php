@@ -26,11 +26,11 @@
             <button id="dislike-post{{$post->id}}" data-id="{{$post->id}} " class="dislike-post-button" type="submit" data-dislikepressed="1">
               <i id="dislike-post{{$post->id}}-symb" class="fa-solid fa-thumbs-down text-black text-3xl"></i>
             </button>
-        @else
+          @else
             <button id="dislike-post{{$post->id}}" data-id="{{$post->id}}" class="dislike-post-button" type="submit" data-dislikepressed="0">
               <i id="dislike-post{{$post->id}}-symb" class="fa-solid fa-thumbs-down text-gray-500 text-3xl"></i>
             </button>
-        @endif
+          @endif
         @endauth
         @guest
           <i class="fa-solid fa-thumbs-down text-gray-500 text-3xl"></i>
@@ -47,8 +47,16 @@
       <p class="font-medium">Add to favorites</p>
     </div>
     <div id="preview-post-report" class="flex gap-x-2 items-center">
+      @auth
+        <a href="{{ route('report_post', $post->id) }}">
+          <i class="fa-solid fa-flag text-gray-500 text-3xl"></i>
+          <p class="font-medium">Report post</p>   
+        </a>
+      @endauth
+      @guest
       <i class="fa-solid fa-flag text-gray-500 text-3xl"></i>
       <p class="font-medium">Report post</p>
+      @endguest
     </div>
   </div>
 </section>
