@@ -435,7 +435,7 @@ insert into users (username, password, email, biography, pfp, is_deleted) values
 insert into users (username, password, email, biography, pfp, is_deleted) values ('gbaxill2', 'Em7cAwUXr', 'ratty2@linkedin.com', 'Enhanced scalable open system', 9003, false);
 insert into users (username, password, email, biography, pfp, is_deleted) values ('dgostyke3', 'm5oTwBQ7sLi', 'prosenfeld3@clickbank.net', 'Business-focused systemic internet solution', 378, false);
 insert into users (username, password, email, biography, pfp, is_deleted) values ('ecassam4', 'HKrOPh', 'fbucksey4@linkedin.com', null, null, true);
-insert into users (username, password, email, biography, pfp, is_deleted) values ('smacairt5', 'jsTQFPKbfoib', 'gfowell5@npr.org', 'Total optimizing knowledge user', 3579, false);
+insert into users (username, password, email, biography, pfp, is_deleted) values ('smacairt5', '$2y$10$4x8iE2ItcFYrs1e6SzOaler/MBd50UDPbUVAFfGhFUe7TIFzpzJfK', 'gfowell5@npr.org', 'Total optimizing knowledge user', 3579, false);
 insert into users (username, password, email, biography, pfp, is_deleted) values ('hchoupin6', 'yiAbrhXqBTv7', 'mgledstane6@accuweather.com', 'Focused 24 hour migration', 5374, false);
 insert into users (username, password, email, biography, pfp, is_deleted) values ('palyutin7', 'nkQv8DHI', 'rgehrtz7@nasa.gov', null, null, true);
 insert into users (username, password, email, biography, pfp, is_deleted) values ('sbeddis8', '5NnUUNSUt42', 'ebranchflower8@discuz.net', 'Re-engineered client-driven infrastructure', 9281, false);

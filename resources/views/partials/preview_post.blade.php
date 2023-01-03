@@ -48,7 +48,7 @@
     </div>
     <div id="preview-post-report" class="flex gap-x-2 items-center">
       @auth
-        <a href="{{ route('report_post', $post->id) }}">
+        <a href="{{ route('report_post', $post->id) }}" class="flex gap-x-2 items-center">
           <i class="fa-solid fa-flag text-gray-500 text-3xl"></i>
           <p class="font-medium">Report post</p>   
         </a>
