@@ -1,6 +1,6 @@
 <div id="user-info" class="mt-8 flex flex-col items-center gap-y-4">
   <div id="user-img-username" class="flex flex-col items-center gap-y-2">
-    <i class="fa-sharp fa-solid fa-user text-8xl"></i>
+    <img src="{{ url(get_pfp_path(Auth::user()->id)) }}" class="profile-pfp rounded-full border-2 border-gray-700">
     <p id="username" class="text-xl font-semibold">{{ $user->username }}</p>
   </div>
   <div id="cday-rep-container" class="flex gap-x-6 justify-between text-xl">

@@ -62,7 +62,17 @@ class LoginController extends Controller
         
         $redirect = $user->is_admin ? 'admin' 
                                     : 'main';
+        
 
+        if ($user->is_admin) {
+            $redirect = 'admin';
+        }
+        if ($user->is_deleted) {
+            $redirect = 'logout';
+        }
+
+        $redirect = 'main';
+        
         return $redirect;
     }
 }

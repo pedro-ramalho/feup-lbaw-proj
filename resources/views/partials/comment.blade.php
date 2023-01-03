@@ -1,6 +1,6 @@
 <article class="comment">
   <a class="comment-info" href="{{ route('user',$comment->content->owner->id) }}">
-    <i class="fa-regular fa-circle-user fa-2x"></i>
+    <img src="{{ url(get_pfp_path( get_comment_author_id($comment->id))) }}" class="header-pfp rounded-full border-2 border-white">
     <span class="comment-name">{{ $comment->content->owner->username }}</span>
     <span class="comment-time"><?php echo date_string(substr($comment->content['created'], 0, 19));  ?>
    </span>

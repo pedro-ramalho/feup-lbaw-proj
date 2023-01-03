@@ -3,6 +3,7 @@
 use App\Models\Comment;
 use App\Models\Content;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 
 /**
@@ -79,6 +80,15 @@ function get_comment_author(int $comment_id) : string {
   return strval($q[0]->username);
 }
 
+function get_comment_author_id(int $comment_id) : int {
+  $q = DB::table('content')
+       ->join('users', 'content.id_author', '=', 'users.id')
+       ->where('content.id', '=', $comment_id)
+       ->get();
+
+  return intval($q[0]->id_author);
+}
+
 function get_comment_community(int $comment_id) : string {
   $post_id = get_parent_post($comment_id);
 
@@ -90,6 +100,12 @@ function get_comment_community(int $comment_id) : string {
     return 'c/' . strval($q[0]->name);
 }
 
+function get_pfp_path(int $user_id) {
+  return 'storage/pfp/' . $user_id;
+}
+
+
+
 function get_num_followers(int $id) : int {
   $num_followers = DB::table('user_follow_user')
                    ->where('id_followee', '=', $id)
@@ -97,4 +113,6 @@ function get_num_followers(int $id) : int {
   
   return $num_followers;
 }
+
+
 ?>

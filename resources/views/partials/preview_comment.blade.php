@@ -1,6 +1,6 @@
 <article class="preview-comment max-w-4xl w-full flex flex-col gap-y-4 p-4 border-2 border-gray-300 rounded-sm">
   <div id="comment-header" class="flex gap-x-2 items-center pb-2 border-b">
-    <i class="fa-sharp fa-solid fa-user text-xl"></i>
+    <img src="{{ url(get_pfp_path( get_comment_author_id($comment->id))) }}" class="header-pfp rounded-full border-2 border-white">
     <p class="text-sm"><span class="font-semibold"><?= get_comment_author($comment->id) ?></span> <span class="font-light">commented on</span><span class="font-semibold italic"><?= get_comment_community($comment->id) ?></span><span class="font-light"> 8 days ago</span></p>
   </div>
   <p class="text-lg">{{ $comment->text }}</p>

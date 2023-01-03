@@ -1,14 +1,14 @@
 <div id="edit" class="flex flex-col items-center mt-4 gap-y-4">
   <h1 class="text-2xl font-bold">Edit your profile</h1>
-  <form method="POST" action="{{ route('edit', $user->id) }}" id="edit-profile" class="flex flex-col gap-y-4">
+  <form method="POST" action="{{ route('edit', $user->id) }}" id="edit-profile" class="flex flex-col gap-y-4" enctype="multipart/form-data">
     {{ csrf_field() }}
       <div id="edit-pfp" class="flex flex-col gap-y-2">
         <div id="edit-pfp-icons" class="flex items-center gap-x-2 text-xl">
           <i class="fa-solid fa-pen-to-square"></i>
           <label for="pfp">Edit your profile picture</label>
         </div>
-        <i class="fa-regular fa-user self-center text-8xl p-2"></i>
-        <input type="file" class="block w-full text-sm text-gray-500
+        <img src="{{ url(get_pfp_path(Auth::user()->id)) }}" class="profile-pfp rounded-full border-2 border-gray-700">
+        <input type="file" id="pfp" name="pfp" class="block w-full text-sm text-gray-500
                                   file:mr-4 file:py-2 file:px-4
                                   file:rounded-md file:border-0
                                   file:text-sm file:font-semibold

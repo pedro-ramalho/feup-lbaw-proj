@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class UserController extends Controller
         if (Auth::user()->id !== $id) {
             abort(403);
         }
-        
+
+        Storage::disk('public')->put('trolo.txt', 'Contents'); 
         return view('pages.profile_edit', ['user' => Auth::user()]);
     }
 
@@ -52,6 +54,15 @@ class UserController extends Controller
         $user->biography = $request->input('biography');
 
         $user->save();
+
+        $path = $request->file('pfp')->storeAs(
+            'pfp', 
+            $request->user()->id,
+            'public'
+        );
+        // Storage::disk('public')->put(Auth::user()->id, $request->file('pfp')); 
+
+        // Storage::disk('local')->put('example.txt', 'Contents');
 
         return redirect(route('user', $id));
     }

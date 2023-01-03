@@ -19,8 +19,16 @@
     <a href="{{ route('notifications', Auth::id()) }}"><i class="fa-solid fa-bell"></i></a>
     <a href="/"><i class="fa-solid fa-plus"></i></a>
     <div id="user-section">
-      <a href="{{ route('user', Auth::id()) }}"><i class="fa-sharp fa-solid fa-user"></i></a>
-      <i class="fa-solid fa-caret-down"></i>
+      <div id="user-pfp" class="flex gap-x-2 items-center">
+        <a href="{{ route('user', Auth::id()) }}">
+          @if ( get_pfp_path(Auth::user()->id) != null )
+            <img src="{{ url(get_pfp_path(Auth::user()->id)) }}" class="header-pfp rounded-full border-2 border-white">
+          @else
+            <i class="fa-regular fa-user" class="items-center text-sm"></i>
+          @endif
+        </a>
+        <i class="fa-solid fa-caret-down"></i>
+      </div>
       <nav id="navigation-options" class="show bg-gray-800 right-4 rounded-md w-60 border-2 border-slate-700 absolute">
         <ul class="list-none flex flex-col">
           <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="/">Home</a></li>
