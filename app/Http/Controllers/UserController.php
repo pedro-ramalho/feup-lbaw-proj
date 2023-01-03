@@ -56,10 +56,12 @@ class UserController extends Controller
         $user->save();
 
         $path = $request->file('pfp')->storeAs(
-            'pfp', 
+            '/user', 
             $request->user()->id,
-            'public'
+            'public_uploads'
         );
+
+        // $request->file('pfp')->move(public_path('/images/user/'), $user->id);
         // Storage::disk('public')->put(Auth::user()->id, $request->file('pfp')); 
 
         // Storage::disk('local')->put('example.txt', 'Contents');

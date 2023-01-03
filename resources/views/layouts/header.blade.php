@@ -21,11 +21,7 @@
     <div id="user-section">
       <div id="user-pfp" class="flex gap-x-2 items-center">
         <a href="{{ route('user', Auth::id()) }}">
-          @if ( get_pfp_path(Auth::user()->id) != null )
-            <img src="{{ url(get_pfp_path(Auth::user()->id)) }}" class="header-pfp rounded-full border-2 border-white">
-          @else
-            <i class="fa-regular fa-user" class="items-center text-sm"></i>
-          @endif
+            <img src="{{ url('images/user/' . Auth::user()->id) }}" class="header-pfp rounded-full border-2 border-white">
         </a>
         <i class="fa-solid fa-caret-down"></i>
       </div>

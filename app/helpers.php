@@ -101,7 +101,7 @@ function get_comment_community(int $comment_id) : string {
 }
 
 function get_pfp_path(int $user_id) {
-  return 'storage/pfp/' . $user_id;
+  return 'images/user/' . $user_id;
 }
 
 function default_pfp() {
