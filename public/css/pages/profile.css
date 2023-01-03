@@ -1,4 +1,5 @@
 #profile-container {
+  overflow-x: hidden;
   display: grid;
   grid-template-areas: "options options"
                        "info data";
@@ -17,11 +18,52 @@ div #user-data {
 
   display: flex;
   flex-direction: column;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 div #user-info {
   grid-area: info;
+  max-width: 100%;
 }
 
+@media screen and (max-width: 768px) {
+  #profile-container {
+    grid-template-areas: "options"
+                         "info"
+                         "data";
+  }
+  #user-info{
+    justify-self: left;
+    margin-left: 5em;
+  }
 
+  div #user-data{
+    justify-self: left;
+    margin-left: 10px;
+  }
 
+  #profile-container #sort{
+    width: 490px;
+  }
+  
+  #profile-options > *{
+    justify-content: left;
+    font-size: 12px;
+  }
+  
+
+  #profile-options > * > *{
+    width: 20px;
+  }
+
+  #profile-posts, #profile-comments, #liked-content, #disliked-content, #favorited-content{
+    width: 490px;
+  }
+
+  #main-content #profile-posts .gap-x-24 > *:not(first-child), #liked-content .gap-x-24 > *:not(first-child), #disliked-content .gap-x-24 > *:not(first-child), #favorited-content .gap-x-24 > *:not(first-child){
+    margin-left: 5px;
+    width: 35px;  
+  }
+
+}

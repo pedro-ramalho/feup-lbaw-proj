@@ -1,14 +1,29 @@
- /* search bar container */
- header > #search-bar-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+/* search bar container */
+
+header > #search-bar-container {
+  position: relative;
   display: flex;
   align-items: center;
   justify-self: center;
   height: 60%;
-  width: 500px;
+  max-width: 500px;
+  min-width: 300px;
+  min-height: 40px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  header > #search-bar-container {
+    max-width: 80%;
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 600px) {
+  header > #search-bar-container {
+    max-width: 90%;
+    min-width: 150px;
+  }
 }
 
 header > #search-bar-container > form {
