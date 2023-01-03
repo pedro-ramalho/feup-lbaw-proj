@@ -29,14 +29,14 @@
         <ul class="list-none flex flex-col">
           <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="/">Home</a></li>
           <div id="your-options" class="flex flex-col border-t border-b border-slate-700 p-0">
-            <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="/">Your profile</a></li>
-            <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="/">Your notifications</a></li>
-            <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="/">Your posts</a></li>
-            <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="/">Your comments</a></li>
+            <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="{{ route('user', Auth::id()) }}">Your profile</a></li>
+            <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="{{ route('notifications', Auth::id()) }}">Your notifications</a></li>
+            <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="{{ route('user', Auth::id()) }}">Your posts</a></li>
+            <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="{{ route('user', Auth::id()) }}">Your comments</a></li>
           </div>
           <div id="platform-options" class="flex flex-col border-b border-slate-700 p-0">
-            <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="/">About Us</a></li>
-            <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="/">Help</a></li>
+            <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="{{ route('about') }}">About Us</a></li>
+            <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="{{ route('help') }}">Help</a></li>
           </div>
           <li class="inline-block pl-4 py-2 hover:bg-gray-700"><a href="{{ route('logout') }}">Sign Out</a></li>
           
