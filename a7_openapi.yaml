@@ -224,6 +224,119 @@ paths:
         '404':
           description: 'Error. User not found.'
 
+  /user/{id}/delete:
+
+    delete:
+      operationId: R109
+      summary: 'R109: Delete user profile'
+      description: 'Deletes the users profile.' Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+
+      responses:
+        '200':
+          description: 'Ok. User deleted.'
+        '404' :
+          description: 'Error. User not found.'        
+  
+  /user/{id}/notifications:
+
+    get:
+      operationId: R110
+      summary: 'R110: View user notifications'
+      description: 'Displays users notifcation.' Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+      
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+      
+      responses:
+        '200':
+          description: 'Ok. Show notifications UI'  
+        '404':
+          description: 'Error. User not found'  
+
+
+
+  /likeNotifcation/{id}/delete:
+
+    delete:
+      operationId: R111
+      summary: 'R111: Deletes a like notification'
+      description: 'Deletes a like notification.' Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+
+      responses:
+        '200':
+          description: 'Ok. Notfication deleted.'
+        '404':
+          description: 'Error. User not found' 
+
+  /followNotifcation/{id}/delete:
+
+    delete:
+      operationId: R112
+      summary: 'R112: Deletes a follow notification'
+      description: 'Deletes a follow notification.' Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+
+      responses:
+        '200':
+          description: 'Ok. Notifcation deleted.'
+        '404':
+          description: 'Error. User not found' 
+
+  /replyNotifcation/{id}/delete:
+
+    delete:
+      operationId: R113
+      summary: 'R113: Deletes a reply notification'
+      description: 'Deletes a reply notification.' Access: USR'
+      tags:
+        - 'M01: Authentication and Individual Profile'
+
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+
+      responses:
+        '200':
+          description: 'Ok. Notification deleted.'
+        '404':
+          description: 'Error. User not found' 
+
+  
 
 # M02 - Communities
 
@@ -377,6 +490,52 @@ paths:
         '404':
           description: 'Error. Community not found.'
 
+  /community/{id}/follow:
+    put:
+      operationId: R205
+      summary: 'R205: Follow community action'
+      description: 'Process the community follow action. Access: USR'
+      tags:
+        - 'M02: Communities'
+
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+
+
+      responses:
+        '201':
+          description: 'Ok. Community followed successfully.'
+        '401':
+          description: 'Error. Unauthenticated user.'
+        '404':
+          description: 'Error. Community not found.'
+
+  /community/{id}/unfollow:
+    delete:
+      operationId: R206
+      summary: 'R206: Unfollow community action'
+      description: 'Process the community unfollow action. Access: USR'
+      tags:
+        - 'M02: Communities'
+
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+  
+      responses:
+        '201':
+          description: 'Ok. Community unfollowed successfully.'
+        '401':
+          description: 'Error. Unauthenticated user.'
+        '404':
+          description: 'Error. Community not found.'
 
 # M03 - Posts 
 
@@ -661,7 +820,7 @@ paths:
     get:
       operationId: R309
       summary: 'R309: View hot'
-      description: 'Provides the Hot page view. Access: PUB'
+      description: 'Provides the hot page view. Access: PUB'
       tags:
         - 'M03: Posts'
 
@@ -669,6 +828,151 @@ paths:
         '200':
           description: 'Ok. Show Hot page UI.'
 
+  /main/new:
+    get:
+      operationId: R310
+      summary: 'R310: View new'
+      description: 'Provides the recent posts page view. Access: PUB'
+      tags:
+        - 'M03: Posts'
+
+      responses:
+        '200':
+          description: 'Ok. Show New page UI.'
+
+  /main/top:
+    get:
+      operationId: R311
+      summary: 'R311: View top'
+      description: 'Provides the most liked posts page view. Access: PUB'
+      tags:
+        - 'M03: Posts'
+
+      responses:
+        '200':
+          description: 'Ok. Show Top page UI.'
+  
+  /post/{id}/like:
+    put:
+      operationId: R312
+      summary: 'R312: Like post action'
+      description: 'Likes a post. Access: USR'
+      tags:
+        - 'M03: post'
+
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+
+
+      responses:
+        '201':
+          description: 'Ok. Post liked successfully.'
+        '401':
+          description: 'Error. Unauthenticated user.'
+        '404':
+          description: 'Error. Post not found.'
+
+    delete:
+      operationId: R313
+      summary: 'R313: Remove like from post action'
+      description: 'Removes a like from a post. Access: USR'
+      tags:
+        - 'M03: post'
+
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+
+
+      responses:
+        '201':
+          description: 'Ok. Post like removed successfully.'
+        '401':
+          description: 'Error. Unauthenticated user.'
+        '404':
+          description: 'Error. Post not found.'
+
+  /post/{id}/dislike:
+    put:
+      operationId: R314
+      summary: 'R314: Dislike post action'
+      description: 'Dislikes a post. Access: USR'
+      tags:
+        - 'M03: post'
+
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+
+
+      responses:
+        '201':
+          description: 'Ok. Post disliked successfully.'
+        '401':
+          description: 'Error. Unauthenticated user.'
+        '404':
+          description: 'Error. Post not found.'
+
+    delete:
+      operationId: R315
+      summary: 'R315: Remove dislike from post action'
+      description: 'Removes a dislike from a post. Access: USR'
+      tags:
+        - 'M03: post'
+
+      parameters:
+        - in: path 
+          name: id 
+          schema:
+            type: integer
+          required: true 
+
+
+      responses:
+        '201':
+          description: 'Ok. Post dislike removed successfully.'
+        '401':
+          description: 'Error. Unauthenticated user.'
+        '404':
+          description: 'Error. Post not found.'
+
+  /post/{id}/comment:
+    put: 
+      operationId: R316
+      summary: 'R316: Comment post action'
+      description: 'Processes comment creation. Acess: USR'
+      tags:
+        - 'M03: post'
+      
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: string
+      
+      responses:
+        '201':
+          description: 'Ok. Comment created successfully.'
+        '401':
+          description: 'Error. Unauthenticated user.'
+        '404':
+          description: 'Error. Post not found.'
+
+  
 
 #M04 - User administration and Static Pages
   #delete user
@@ -743,3 +1047,43 @@ paths:
           '200':
             description: 'Ok. User deleted.'
 
+    /about:
+    
+      get:
+        operationId: R404
+        summary: 'R404: View About Page'
+        description: 'Provides the about page page view. Access: PUB'
+        tags:
+          - 'M04: User administration and Static Pages'
+
+        responses:
+          '200':
+            description: 'Ok. Show about page UI.'
+
+
+    /help:
+    
+      get:
+        operationId: R405
+        summary: 'R405: View help Page'
+        description: 'Provides the help page page view. Access: PUB'
+        tags:
+          - 'M04: User administration and Static Pages'
+
+        responses:
+          '200':
+            description: 'Ok. Show help page UI.'
+
+
+    /contacts:
+
+      get:
+        operationId: R406
+        summary: 'R405: View contacts Page'
+        description: 'Provides the contact page page view. Access: PUB'
+        tags:
+          - 'M04: User administration and Static Pages'
+
+        responses:
+          '200':
+            description: 'Ok. Show contact page UI.'
