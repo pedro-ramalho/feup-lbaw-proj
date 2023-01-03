@@ -41,6 +41,10 @@
     justify-content: left;
   }
 
+  #main-content #sort{
+    width: 490px;
+  }
+
   #main-content #main-posts{
     width: 490px;
   }
@@ -49,5 +53,7 @@
     margin-left: 5px;
     width: 35px;  
   }
+
+  
 
 }
