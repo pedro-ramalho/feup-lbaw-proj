@@ -68,10 +68,42 @@ function date_string($date_string)
       <p id="post-text"> {{ $model->find($post['id'])['text']}}</p>
       @endif
       <section id="post-interactables">
-        <div class="rate-interactables">
-          <div class="like"><i class="fa-regular fa-thumbs-up"></i> <span class="interactable-text">{{ $post->content->likers->count()}}</span></div>
-          <div class="dislike"><i class="fa-regular fa-thumbs-down"></i> <span class="interactable-text">{{ $post->content->dislikers->count()}}</span></div>
-        </div>
+      <div class="preview-post-rating flex gap-x-4">
+      <div id="preview-post-like" class="flex gap-x-2 items-center">
+        @auth
+          @if ($post->content->likers->contains(Auth::user()))
+            <button id="like-post{{$post->id}}" data-id="{{$post->id}} " class="like-post-button" type="submit" data-likepressed="1">
+              <i id="like-post{{$post->id}}-symb" class="fa-solid fa-thumbs-up text-black text-3xl"></i>
+            </button>
+          @else
+            <button id="like-post{{$post->id}}" data-id="{{$post->id}}" class="like-post-button" type="submit" data-likepressed="0">
+              <i id="like-post{{$post->id}}-symb" class="fa-solid fa-thumbs-up text-gray-500 text-3xl"></i>
+            </button>
+          @endif
+        @endauth
+        @guest
+          <i class="fa-solid fa-thumbs-up text-gray-500 text-3xl"></i>
+        @endguest
+        <p class="font-normal" id="post{{$post->id}}likes"> <span>{{ $post->likes }}</span></p>
+      </div>
+      <div id="preview-post-dislike" class="flex gap-x-2 items-center">
+        @auth
+          @if ($post->content->dislikers->contains(Auth::user()))
+            <button id="dislike-post{{$post->id}}" data-id="{{$post->id}} " class="dislike-post-button" type="submit" data-dislikepressed="1">
+              <i id="dislike-post{{$post->id}}-symb" class="fa-solid fa-thumbs-down text-black text-3xl"></i>
+            </button>
+        @else
+            <button id="dislike-post{{$post->id}}" data-id="{{$post->id}}" class="dislike-post-button" type="submit" data-dislikepressed="0">
+              <i id="dislike-post{{$post->id}}-symb" class="fa-solid fa-thumbs-down text-gray-500 text-3xl"></i>
+            </button>
+        @endif
+        @endauth
+        @guest
+          <i class="fa-solid fa-thumbs-down text-gray-500 text-3xl"></i>
+        @endguest
+        <p class="font-normal" id="post{{$post->id}}dislikes"> <span>{{$post->dislikes}}</span></p>
+      </div>
+    </div>
         <div class="comments"><i class="fa-solid fa-comment"></i> <span class="interactable-text">{{ $post->content->comments->count() }} comments</span></div>
         <div class="favorite"><i class="fa-regular fa-star"></i> <span class="interactable-text">Add to favorites</span></div>
         <div class="report">
@@ -89,7 +121,8 @@ function date_string($date_string)
           @endguest()
         </div>
       </section>
-      <form action="">
+      <form method="POST" action="{{ route('comment', $post->id) }}">
+        {{ csrf_field() }}
         <textarea name="comment-text" id="post-comment-text" placeholder="Write your comment..."></textarea>
         <button type="submit">Comment</button>
       </form>

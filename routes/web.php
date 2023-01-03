@@ -60,6 +60,8 @@ Route::delete('post/{id}', 'PostController@destroy')->name('delete_post');
 Route::post('post/{id}/edit', 'PostController@processEditForm');
 Route::get('community/{id}/submit', 'PostController@create')->name('submit_post');
 Route::post('community/{id}/submit', 'PostController@store');
+Route::post('post/{id}/comment', 'CommentController@processCommentForm')->name('comment');
+Route::post('post/{id}/reply', 'CommentController@processReplyForm')->name('reply');
 
 // Search
 Route::get('search', 'SearchController@show')->name('search');

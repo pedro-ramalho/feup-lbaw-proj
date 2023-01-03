@@ -3,7 +3,7 @@
 <?php
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Auth;
 
 
 function get_username(int $id) {

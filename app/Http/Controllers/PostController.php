@@ -82,6 +82,10 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        $likes= $post->content()->find($post['id'])->liked()->where('liked', True)->count();
+        $dislikes= $post->content()->find($post['id'])->liked()->where('liked', False)->count();
+                    $post['likes']= $likes;   
+                    $post['dislikes']= $dislikes;
         if ($post['is_image']) $model = ImagePost::find($id);
         else $model = TextPost::find($id);
         return view('pages.post', ['post' => $post])->withModel($model);

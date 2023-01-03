@@ -49,6 +49,8 @@
     <link href="{{ asset('css/pages/aboutus.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pages/contacts.css') }}" rel="stylesheet">
     <link href="{{ asset('css/pages/help.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/width.css') }}" rel="stylesheet">
+
 
     <script type="text/javascript">
         // Fix for Firefox autofocus CSS bug
@@ -61,6 +63,7 @@
     <script src={{ asset('js/popular_communities.js') }} defer></script>
     <script src={{ asset('js/search.js') }} defer></script>
     <script src={{ asset('js/notifications.js') }} defer></script>
+    <script src={{ asset('js/reply.js') }} defer></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
