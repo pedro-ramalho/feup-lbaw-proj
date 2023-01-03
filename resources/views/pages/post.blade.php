@@ -76,7 +76,8 @@ function date_string($date_string)
         <div class="favorite"><i class="fa-regular fa-star"></i> <span class="interactable-text">Add to favorites</span></div>
         <div class="report"><i class="fa-solid fa-flag"></i> <span class="interactable-text">Report post</span></div>
       </section>
-      <form action="">
+      <form method="POST" action="{{ route('comment', $post->id) }}">
+        {{ csrf_field() }}
         <textarea name="comment-text" id="post-comment-text" placeholder="Write your comment..."></textarea>
         <button type="submit">Comment</button>
       </form>
